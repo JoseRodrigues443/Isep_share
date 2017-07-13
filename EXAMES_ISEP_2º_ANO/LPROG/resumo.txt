@@ -1,0 +1,106 @@
+Allen Touring == inteligencia artificial = maquina de touring (maquina que percebe linguagens tipo zero[livre])
+
+Constituída por um controlo finito (conjunto finito de estados) uma fita dividida em células: FAZ: muda de estado,escreve um símbolo na célula que está debaixo da cabeça,move a cabeça para a esquerda ou para a direita
+
+Teste de turing: maquina de touring numa sala separada "enganar"" um humano, por ser capaz de raciocinos/conversas/relações como um ser humano.
+
+
+Tradutor: (assembler(baixo nivel) & Interpretadores(alto nivel)) traduz e executa o programa ate ao fim
+Compilador:traduz o programa fonte no programa em linguagem máquina que depois é executado como um todo
+
+
+COMPILADOR:
+
+Enquadramento compilador: Editor(programa fonte) --> pré processador (programa fonte modificado) --> compilador (codigo objeto) --> linker (liga-se a bibliotecas externas) --> loader (imagem na memoria com: HEAP, stack,instrucoes,variavies e constantes)
+
+Representaçao intermedia: entre o front end  (c, c++,pascal)e o back end (intel), permite a simplificacao de codigo
+
+Front end: analise lexica-->analise sintatica (parser)-->analise semantica -->INTERMEDIO --> BACK END
+
+INTERMEDIO: Novamente analise sintatica & semantica--> gera codigo intermedio.
+
+O O código intermédio == uma representação do texto fonte. sequência de instruções (EX: árvore ou grafo acíclico dirigido, OU stack com instrucoes), que quando “executadas” geram o mesmo que o codigo fonte.
+
+VANTAGENS: Reutilizacao (sem suplicacao de codigo), optimizacao (generico para todas linguagens, logo só se faz um codigo pra optimizar)
+
+back end: optimizacao intermedia-->selecao de instrucoes-->alocacao de registos--> optimiazcao final
+
+Codigo final = assembly, ou recolocavel (mesmo que assembley mas com enderecoes genericos)
+
+
+Tabela de simbolos: GUARDA: variaveis, classes, estruturas
+-->-->--> tabelas unico nivel: (linguagens com apenas variaveis globais | analisador lexico faz a estrutura)
+-->-->--> tabelas multinivel: guarda numa tabela com os diferentes "scoope" (mesmo que um mapa em java)
+
+
+Verificacao de tipos: tipo de dados verificados, num operador,e se sao compativeis. E ver se estão de acordo com a linguagem usada
+>>> Linguagen estaticamente tipadas: todos os erros relacionados com o sistema de
+tipos podem ser detectados e identificados durante a compilação
+>>> linguagensdinamicamente tipadas: , para as quais pode ser necessário, durante a execução dos programas, fazer verificações de tipos, a fim de detectar erros, dizem-se  (EX: Prolog, Lisp)
+
+
+Sistemas de tipos: coleção de regras, para expressoes de tipos no programa. EX: int + int = dá sempre int . EX2: &variaveis é o endereço.
+
+## Conversao entre tipos:EX:  double + int = double, feita pelo compilador, chamado de coerçãod e tipo. TAMBEM O PROGRAMADOR AO FAZER CAST esta a fazer convesao :EX: int pao = (int) double.
+
+## Expressões de tipos: Uma expressão de tipos é qualquer expressão cujo resultado é um tipo.EX:  return tipo
+
+## Construtores de tipos: Arrays, Subrange, Registos,apontadores, funcoes,variaveis, precisam de Construtores para tipos não normais (normais = boolean, int, dxouble)
+
+
+Durante declaracoes, serao guardadas uma lista de tipos usada. A tabela de simbolos que também especifica os identificadores/tipo. RESPONSAVEL = analisador mlexico
+
+Verificacao de instruvoes & Verificacao de funcoes: AMBAS GUARDAM o nome e os tipos na tabela de simbolos
+
+## oberloading : quais ha mais que 1 caso em que o nome se aplique. EX: variavel global e privada com o mesmo nome e tipo (que normalmente da pra o desempate ao ver se é global ou nao)
+
+## Polimorfismo : basicamente uma apontador para o que é necessario invocar: É criada uma arvore com todos os elementos da "classe"
+
+
+## analisadores sintaticos: vê  se vada token é um programa valido
+
+>>>> Top down / descendentes: com retrocesso | sem retrocesso(recusico , preemptivo== LL[1])
+- - - Neste tipo de análise sintáctica, a árvore de parse é construída partindo da
+raiz, até se chegar à sequência de tokens do texto da entrada. FORMA DE RAIZ DE ARVORE da esquerda para a direita
+
+>>>> bottom up / ascendentes: shift-reduce|shift-reduce com precedencia analisada|LR (lr[0],slr[1], LALR[1], lr[1])
+
+### analise lexica : Agrupa sequências de caracteres em tokens - as unidades básicas da
+sintaxe,A sequência de caracteres que formam um token chama-se lexema
+tokens típicos: constantes (literais), id’s, operadores, palavras--chave,
+etc, Elimina sequência
+
+### analise sintatica: Verificar se uma dada sequência de tokens constitui um programa válido .Caso a sequência esteja correcta, extrair a sua estrutura (construir a árvore de parse) de acordo com as regras gramaticais que especificam a linguagem Compete ao analisador sintáctico encontrar erros na sequência de tokens e reportá-los o mais cedo possível, sem cessar a análise do resto da sequência Outras tarefas que podem ser realizadas conjuntamente com a análise sintáctica:
+
+### analise semantica: O analisador semântico deve verificar se as construções estão correctas do ponto de vista semântico da linguagem. Assim as verificações realizadas pelo analisador semântico podem ser classificadas em: 1. verificação de tipos 2. verificação do fluxo de controle 3. verificação de unicidade 4. verificação relacionada aos nomes
+
+
+
+## Lexema – é uma determinada cadeia de entrada associada a um token
+## token: é uma determinada cadeia de entrada associada a um token
+## automato finito: As expressões regulares são convenientes para especificar os tokens de uma linguagem. 
+
+>>>> optimizacao de codigo: Optimização durante a geração de código objecto,Optimização aplicada à representação intermédia, Eliminação de sub-expressões comuns (repeticao), Eliminação de código morto, Optimização de ciclos, Optimização de ciclos, Propagação de cópia / Renomeação de variáveis, Transformações algébricas, Transformações algébricas, Redução de força(coisas pessadas trocadas por coisas leves que fazem o mesmo), Optimização Peephole (a cada 4 instrucoes ver se ha uma alternativa melhor)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

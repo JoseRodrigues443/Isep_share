@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agencia>
+ <viagens>
+ <!-- origem e destino são códigos iata relativos aos aeroportos -->
+ <!-- i
+ ata é o código do aeroporto restrito a OPO, LIS, FAO, MAD, PAR e LON-->
+ <!-- duracao é tempo no formato hh:mm:ss -->
+ <!-- custo é um valor monetário -->
+ <viagem origem="OPO" destino="LIS">
+ <duracao>00:45:00</duracao> <custo>40.00</custo>
+ </viagem>
+ <viagem origem="OPO" destino="FAO">
+ <duracao>01:10:00</duracao> <custo>45.00</custo>
+ </viagem>
+ <viagem origem="OPO" destino="PAR">
+ <duracao>02:15:00</duracao> <custo>55.00</custo>
+ </viagem>
+ <viagem origem="OPO" destino="LON">
+ <duracao>02:30:00</duracao> <custo>49.00</custo>
+ </viagem>
+ <viagem origem="LIS" destino="LON">
+ <duracao>02:45:00</duracao> <custo>35.00</custo>
+ </viagem>
+ </viagens>
+ <aeroportos>
+ <aeroporto>
+ <!--designacao: string com comprimento máximo de 30 -->
+ <iata>LIS</iata> <designacao>Lisboa</designacao>
+ </aeroporto>
+ <aeroporto>
+ <iata>FAO</iata> <designacao>Faro</designacao>
+ </aeroporto>
+ <aeroporto>
+ <iata>MAD</iata> <designacao>Madrid</designacao>
+ </aeroporto>
+ <aeroporto>
+ <iata>PAR</iata> <designacao>Paris</designacao>
+ </aeroporto>
+ <aeroporto>
+ <iata>LON</iata> <designacao>Londres</designacao>
+ </aeroporto>
+ </aeroportos>
+</agencia> 

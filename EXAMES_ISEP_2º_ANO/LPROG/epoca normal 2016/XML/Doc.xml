@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Gestao>
+    <Projetos>
+        <Projeto id="p001" designacao="Projeto 1">
+            <!-- id é uma string, cujo formato é o carater p seguido de 3 algarismos -->
+            <!-- designacao é uma string com o comprimento minimo de 5 e maximo de 30
+           carateres -->
+            <!-- DataInicio contém uma data no formato AAAA-MM-DD -->
+            <Elementos>
+                <Elemento id="ps001"/>
+                <!-- id é uma referência ao identificador id de Pessoas/Pessoa -->
+                <Elemento id="ps002"/>
+                <Elemento id="ps004"/>
+            </Elementos>
+            <DataInicio>2016-02-27</DataInicio>
+        </Projeto>
+        <Projeto id="p002" designacao="Projeto 2">
+            <Elementos>
+                <Elemento id="ps002"/>
+                <Elemento id="ps003"/>
+                <Elemento id="ps001"/>
+                <Elemento id="ps004"/>
+            </Elementos>
+            <DataInicio>2016-01-19</DataInicio>
+        </Projeto>
+    </Projetos>
+    <Pessoas>
+        <Pessoa id ="ps001" nome="Maria F." classificacao="Excelente"/>
+        <!-- id é um identificador, cujo formato é "ps" seguido de 3 algarismos -->
+        <!-- classificacao é um de { Excelente, Muito Bom, Bom } e é opcional -->
+        <Pessoa id ="ps002" nome="Carla M." classificacao="Bom"/>
+        <Pessoa id ="ps003" nome="Antonio C." />
+        <Pessoa id ="ps004" nome="Joao L." classificacao="Muito Bom"/>
+
+    </Pessoas>
+</Gestao>

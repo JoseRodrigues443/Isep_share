@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified" xmlns:zs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Gestao" type="TGestao"/>
+    <xs:complexType name="TGestao">
+        <xs:sequence>
+            <xs:element name="Projetos" type="TProjetos"/>
+            <xs:element name="Pessoas" type="TPessoas"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- COMPLETAR schema -->
+    <xs:complexType name="TProjetos">
+        <xs:sequence>
+            <xs:element name="Projeto" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Elementos">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Elemento" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:attribute name="id" type="xs:IDREF"/>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name ="DataInicio" type="xs:date"/>
+                    </xs:sequence>
+                    <xs:attribute name="id">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="p[0-9]{3}"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="designacao">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30"/>
+                                <xs:minLength value="5"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TPessoas">
+        <xs:sequence>
+            <xs:element name="Pessoa" maxOccurs = "unbounded">
+                <xs:complexType>
+                    <xs:attribute name="id">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:ID">
+                                <xs:pattern value="ps[0-9]{3}"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <zs:attribute name="nome" type="xs:string"/>
+                    <xs:attribute name="classificacao" use="optional">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="Excelente"/>
+                                <xs:enumeration value="Muito Bom"/>
+                                <xs:enumeration value="Bom"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
