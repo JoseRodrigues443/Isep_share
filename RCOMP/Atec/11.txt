@@ -1,0 +1,129 @@
+NAT:	Serve como ligação entre as redes privadas numa rede...e um ip privado
+
+	4 tipos de endereços em nat:
+-->Inside local address (ip do dispositivo que envia o pacote...ex:PC)
+-->Inside global address (ip oficial dado pelo "ISP" para ser usado na saida dos pacotes dos dispositivos)
+-->Outside local address (ip no router com interface virado para a rede publica)
+-->Outside global address	(Ip da net do ISP)
+
+
+
+PAT    vs  NAT:
+	O nat usa muitos ips no inside global (um para cada dispositivo), mas o pat usa apenas um para todos os dispositivos
+
+	-->Configurações NAT   STATIC<-- 
+
+1)
+Definir os ip da rede "inside local" e insede global
+-->	ip nat inside souce static "local-ip" "global-ip"
+
+2)
+definir a interface onde o nat sera usado (este interface devera estar virado para o lado da rede privada)
+--> ip address "ip a usar"
+-->	interface (s0/0/0 ou outros)
+-->	ip nat inside
+
+3)
+entrar na interface que esta virada para a rede publica (WEB/CLOUD/CLUSTER)
+-->	interface (s0/0/1 ou outros)
+-->	ip nat outside
+
+
+		-->ANALISAR NAT Static<--
+--> show ip nat statistics		//mostra os ip inside,global etc
+-->clear ip nat statistics		//limpa o historico, caso se mude algo e se queira ver refreshed
+
+
+	-->Configurações NAT   Dinamico<--
+
+1) Criar um POOL
+-->ip nat pool "ip nats disponiveis inicial" "ip nats disponiveis final" netmask "mascara"
+
+2) Criar um acl basica;
+
+-->access-list "nº de 0 a 99" permit "ip-sumarizados-de-preferencia" "wildcard"
+
+3) "Fundir"  acl com o NAT
+
+-->ip nat inside source list "nº da acl anterior" pool "nome da POOL anterior"
+
+
+4)identificar interface inside (virado para a rede local/privada)
+
+--> interface "s0/0/0 ou outra porra"
+-->ip nat inside
+
+5)identificar interface outside (virado para a rede publica)
+
+--> interface "s0/0/1 ou outra porra"
+-->ip nat outside
+
+
+
+		-->ANALISAR NAT DINAMICO<--
+
+-->show ip nat translations
+-->show ip nat translations verbose	//mais info
+--> ip nat translation timeout "segundos"	//mudar o tempo de limpar cache/historico
+-->clear ip nat translation *      //limpa cache/historico da nat
+
+
+
+		-->PAT CONFIGURAR<--
+
+1) fazer access list
+
+-->access-list "nº 0-99" permit "ip dos dispositivos internos" "wildcard"
+
+2)"Fundir" acl com o PAT e a sua interface
+--> ip nat inside souce list "nº da acl" interface "serial ./." overload
+
+3)identificar interface inside (virado para a rede local/privada)
+
+--> interface "s0/0/0 ou outro caralho"
+-->ip nat inside
+
+4)identificar interface outside (virado para a rede publica)
+
+--> interface "s0/0/1 ou outra porra"
+-->ip nat outside
+
+
+		-->ANALISAR PAT<--
+
+-->show ip nat translations
+-->show ip nat statistics 
+
+
+
+		-->Port Fowarding<--
+
+Escolha de portas especificas ao entrar e sair "ex: 80 para web"
+
+Conf:
+
+-->ip nat inside source "TCP ou UDP  (o tcp é mais usado)" "ip local" "porta local" "ip global" "porta por onde vai entrar o pacote"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

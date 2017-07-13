@@ -1,0 +1,464 @@
+﻿Qual é uma vantagem de usar o método de comutação cut-through em vez do método de comutação store-and-forward?
+tem um adequado menor latência para aplicações de computação de alto desempenho *
+
+A designer de rede deve fornecer uma justificativa para um cliente para um projeto que irá mover uma empresa a partir de uma topologia de rede fixa para uma topologia de rede hierárquica. 
+Que dois elementos do projeto hierárquico torná-la a melhor escolha? (Escolha dois.)
+implantação mais simples para equipamento de comutação adicional *
+mais fácil para fornecer links redundantes para garantir maior disponibilidade *
+
+Quais são duas das vantagens de switches modulares mais de switches de configuração fixa? (Escolha dois.)
+necessidade de menos tomadas de energia *
+maior escalabilidade *
+
+Consulte a exposição. 
+Considere-se que a alimentação principal acaba de ser restaurado. 
+PC1 pede ao servidor DHCP para endereçamento IPv4. 
+O servidor DHCP envia um endereço IPv4. 
+Enquanto PC2 ainda está inicializando, PC3 emite uma difusão pedido IPv4 DHCP. 
+Para qual porta será SW1 para a frente este pedido?
+to Fa0/1, Fa0/2, and Fa0/3 only*
+
+O que é uma função de um switch da Camada 2?
+determina qual a interface é usado para encaminhar um quadro baseado no endereço MAC de destino *
+
+Há "12" domínios de colisão na topologia.
+
+O que é um núcleo colapsado em um projeto de rede?
+uma combinação de a funcionalidade das camadas de distribuição e de núcleo *
+
+Quais são as duas razões que um administrador de rede seria segmentar uma rede com um switch da Camada 2? (Escolha dois.)
+para aumentar a largura de banda do usuário *
+para isolar o tráfego entre os segmentos *
+
+Consulte a exposição.
+Como é um quadro enviado do PCA transmitiu ao PCC, se a tabela de endereços MAC no interruptor SW1 está vazio?
+SW1 inunda o quadro em todas as portas do SW1, excluindo a porta através da qual o quadro entrou no switch. *
+
+O que é uma função básica da camada de distribuição de arquitetura Cisco Borderless?
+agregador de camada 3 limites de roteamento *
+
+ABC, Inc. tem cerca de cinquenta hosts em uma LAN. 
+O administrador gostaria de aumentar a taxa de transferência de que a LAN.
+Qual o dispositivo para aumentar o número de domínios de colisão e, assim, aumentar a taxa de transferência da LAN?
+switch*
+
+O que significa o termo "port density" representam para um switch Ethernet?
+o número de portas disponíveis *
+
+Qual o tipo de transmissão é que um interruptor de usar quando o endereço MAC de destino não está contido na tabela de endereços MAC?
+broadcast*
+
+O que é uma função básica da camada de acesso a arquitetura Cisco Borderless?
+fornece acesso para o usuário*
+
+Que informações são adicionados à tabela de mudança de quadros de entrada?
+endereço MAC de origem e número de porta de entrada *
+
+Preencha o espaço em branco. 
+A rede "convergentes" é aquele que usa a mesma infra-estrutura para transporte de sinais de voz, dados e vídeo.
+
+Um administrador adquire novos switches Cisco que têm um recurso chamado StackPower. Qual é o objetivo desse recurso?
+Ele permite a partilha de poder entre os vários switches empilháveis. *
+
+Que mudar forma fator deve ser usado quando a densidade grande porto, tolerância a falhas e preço baixo são fatores importantes?
+empilhável switch 
+
+Consulte a exposição. Preencha o espaço em branco. 
+Há "5" domínios de broadcast na topologia.
+
+Que ferramenta é importante considerar para uso na tomada de decisões de melhoria de hardware sobre as opções?
+análise de fluxo de tráfego *
+
+Qual é a velocidade do arame máximo de uma única porta de um switch gigabit 48-port?
+1000 Mb/s*
+
+
+
+**************************************************************************capitulo 2****************************************************************************************************
+
+Que tipo de cabo é que um administrador de rede precisa conectar um PC a um switch para recuperá-lo depois que o software Cisco IOS não carrega?
+Cabo consola
+
+Quais duas funções básicas são realizadas por ferramentas de segurança de rede? (Escolha dois.)
+revelando o tipo de informação que um atacante é capaz de reunir a partir de tráfego de rede de monitoramento *
+simulando ataques contra a rede de produção para determinar as vulnerabilidades existentes *
+
+Ao solucionar um problema de conectividade, um administrador de rede percebe que um LED de status da porta do switch está alternando entre verde e âmbar. 
+O que poderia este LED indica?
+A porta contem erros.
+
+Consulte a exposição. O administrador de rede pretende configurar Switch1 para permitir conexões SSH e proibir conexões Telnet.
+Como deve ser o administrador de rede alterar a configuração exibida para satisfazer o requisito?
+Modificar o comando de entrada de transporte. *
+
+Abra o PT Atividade. 
+Execute as tarefas nas instruções de atividade e, em seguida, responder a pergunta. 
+Preencha o espaço em branco. 
+Não use abbreviations.What é o comando em falta no S1? "Endereço IP 192.168.99.2 255.255.255.0"
+
+Quais três afirmações são verdadeiras sobre o uso de Fast Ethernet full-duplex? (Escolha três.)
+O desempenho é melhorado com o fluxo de dados bidirecional. *
+Fast Ethernet Full-duplex oferece 100 por cento de eficiência em ambas as direções. *
+O desempenho é melhorado porque a colisão detectar função é desativada no dispositivo. * 
+
+Em que tipo de ataque faz um pedido nó malicioso todos os endereços IP disponíveis no pool de endereços de um servidor DHCP, a fim de evitar anfitriões legítimas de obter acesso à rede?
+DHCP starvation*
+
+Qual o protocolo ou serviço envia transmissões contendo a versão do dispositivo de envio software Cisco IOS, e os pacotes que podem ser capturados por hosts maliciosos na rede?
+CDP*
+
+Quais são as duas afirmações são verdadeiras em relação à segurança da porta do switch? (Escolha dois.)
+Dinamicamente aprendeu endereços MAC seguros são perdidos quando a chave for reinicializado. *
+Se menos do que o número máximo de endereços MAC para uma porta são configurados estaticamente, aprendeu dinamicamente endereços são adicionados a CAM até o número máximo é atingido. * 
+
+O administrador de rede entra os seguintes comandos em um switch Cisco:
+Switch (config) # interface de vlan1 
+Switch (config-if) # ip endereço 192.168.1.2 255.255.255.0 
+Switch (config-if) # no shutdown
+Qual é o efeito de inserir esses comandos?
+Os usuários na sub-rede 192.168.1.0/24 são capazes de executar ping o interruptor no endereço 192.168.1.2 IP. *
+
+Consulte a exposição. 
+Porta Fa0 / 2 já foi configurado adequadamente. 
+O telefone IP e trabalho PC corretamente. 
+Que mudança de configuração seria mais adequado para a porta Fa0 / 2 se o administrador de rede tem os seguintes objetivos? 
+Ninguém tem permissão para desligar o telefone IP ou o computador e conecte qualquer outro dispositivo com fio. 
+Se um dispositivo diferente está ligado, a porta F0 / 2 é desligado. 
+O interruptor deve detectar automaticamente o endereço MAC do telefone IP e do PC e adicionar os endereços para a configuração atual.
+SWA(config-if)# switchport port-security
+SWA(config-if)# switchport port-security maximum 2
+SWA(config-if)# switchport port-security mac-address sticky********
+
+Consulte a exposição. Qual evento ocorrerá se houver uma violação de segurança da porta na interface do switch S1 Fa0 / 1?
+Pacotes com endereços de origem desconhecidos serão descartados.*
+
+Qual o método que mitigar um endereço MAC alagamento ataque?
+configurar o port security*
+
+Consulte a exposição. O problema da mídia pode existir no link ligado a Fa0 / 1 com base no comando show interface?
+poderia haver muita interferência elétrica e barulho no link. *
+
+Preencha o espaço em branco. 
+Comunicação "full-duplex" permite que ambas as extremidades de uma conexão para transmitir e receber dados simultaneamente.
+
+Qual interface é o local padrão que deve conter o endereço IP usado para gerenciar um switch Ethernet de 24 portas?
+VLAN 1*
+
+Que medidas podem trazer uma porta de error-disabled switch de volta para um estado operacional?
+Digitar "shutdown" e depois "no shutdown" no comando interface .*
+
+Consulte a exposição.
+O que pode ser determinado sobre segurança portuária a partir da informação que é mostrada?
+O modo da porta violação é o padrão para qualquer porta que tem segurança porta ativada. *
+
+Preencha o espaço em branco. 
+Quando a segurança da porta é ativada, uma porta do switch usa o modo de violação padrão de "shutdown" até que especificamente configurado para utilizar um modo de violação diferente.
+
+Consulte a exposição. Quais S1 interface de porta de switch ou interfaces devem ser configurado com o comando ip dhcp snooping confiança se as melhores práticas são implementadas?
+Somente as portas G0/1 e G0/24*
+
+Qual o impacto que o uso do comando de configuração de auto mdix ter em uma interface Ethernet em um switch?
+detecta automaticamente o tipo de cabo de cobre *
+
+Qual comando exibe informações sobre a configuração de auto-MDIX para uma interface específica?
+show controllers*
+
+Um interruptor de produção é recarregado e termina com um switch> prompt. Quais os dois fatos podem ser determinados? (Escolha dois.)
+A versão completa do Cisco IOS foi localizado e carregado.*
+POST ocorreu normalmente.*
+
+**********************************************************************************capitulo 3*********************************************************************************************
+
+Um administrador de rede é determinar a melhor colocação de VLAN links tronco. 
+Quais dois tipos de conexões ponto-a-ponto utilizar VLAN trunking? (Escolha dois.)
+entre um interruptor e um servidor que tem um 802.1Q NIC *
+entre dois switches que utilizam múltiplas VLANs *
+
+O que acontece a uma porta que está associado a VLAN 10, quando o administrador exclui VLAN 10 do interruptor ?.
+A porta se torna inativa. *
+
+Consulte a exposição. 
+Interface Fa0 / 1 está ligado a um PC. Fa0 / 2 é um link de tronco para outro switch.
+Todas as outras portas não estão sendo utilizados. 
+Quais as melhores práticas de segurança que o administrador se esqueça de configurar?
+Todas as portas de usuário estão associados com VLANs distinta da VLAN 1 e distinto da VLAN 'buraco negro'. *
+
+Que comando é usado para remover apenas VLAN 20 de um switch?
+no vlan 20*
+
+Um switch Cisco Catalyst foi adicionado para suportar o uso de múltiplas VLANs como parte de uma rede corporativa. 
+O técnico de rede acha necessário limpar todas as informações VLAN do interruptor, a fim de incorporar um novo projeto de rede. 
+O que deve fazer o técnico para realizar essa tarefa?
+Excluir a configuração do startup e o arquivo vlan.dat na memória flash do switch e reinicializar o switch. *
+
+Qual é o efeito de emitir um comando de acesso switchport vlan 20 no / 18 porta de um switch que não tem essa VLAN no banco de dados VLAN Fa0?
+VLAN 20 será criado automaticamente. *
+
+Qual comando exibe o tipo de encapsulamento, a VLAN ID de voz, eo modo de VLAN acesso para a interface F0 / 1?
+show interfaces Fa0 / 1 switchport *
+
+Porto Fa0 / 11 em um switch é atribuído à VLAN 30. Se o comando no switchport acesso vlan 30 é inserido na interface Fa0 / 11, o que vai acontecer?
+Porto Fa0 / 11 será devolvido ao VLAN 1. *
+
+O que deve o administrador da rede fazer para remover porta Fast Ethernet fa0 / 1 de VLAN 2 e atribuí-la a VLAN 3?
+Digite o comando switchport access vlan 3 no modo de configuração de interface. *
+
+Quais são os dois melhores práticas Camada 2 de segurança ajudaria a evitar os ataques de VLAN pulando? (Escolha dois.)
+Desativar DTP auto negociação em portas de usuário final. *
+Alterar o número de VLAN nativa para um que é diferente de todas as VLANs do usuário e não é VLAN 1. *
+
+Em um basico VLAN hopping attack, que switch característica que os atacantes tirar proveito de?
+a configuração automática de trunking padrão *
+
+Um switch Cisco atualmente permite o tráfego marcado com VLANs 10 e 20 através de porta de tronco Fa0 / 5. Qual é o efeito da emissão de um tronco switchport permitido vlan 30 comando em Fa0 / 5?
+Ele permite que só em 30 VLAN F0 / 5.*
+
+Consulte a exposição. Um quadro é viajar entre PC-A e PC-B através do switch. Qual afirmação é verdadeira a respeito de marcação de VLAN do quadro?
+Nenhuma tag VLAN é adicionado ao quadro. *
+
+Consulte a exposição. PC-A e PC-B estão ambos na VLAN 60. PC-A é incapaz de se comunicar com o PC-B. 
+Qual é o problema?
+A VLAN que é usado por PC-A não está na lista de permitidos VLANs no tronco. *
+
+O que VLANs são permitidos através de um porta-malas quando o intervalo de VLANs permitidos está definido para o valor padrão?
+Todas as VLANs será permitido em todo o tronco.
+
+Sob quais duas ocasiões deve um administrador desativar VTP enquanto gerencia uma rede de área local? (Escolha dois.)
+em links que não deve ser trunking *
+ao conectar um switch Cisco a um switch não-Cisco *
+
+Abra o PT Atividade. Execute as tarefas nas instruções de atividade e, em seguida, responder a pergunta.
+Quais PCs vai receber a transmissão enviada por PC-C?
+PC-D, PC-E*
+
+Quais são as duas afirmações são verdadeiras sobre implementação VLAN? (Escolha dois.)
+Dispositivos em uma VLAN não ouvir as transmissões a partir de dispositivos em outra VLAN. *
+VLANs logicamente anfitriões grupo, independentemente da localização física. *
+
+Consulte a exposição. DLS1 está conectado a outro switch, DLS2, através de um link tronco. 
+Um host que está conectado a DLS1 não é capaz de se comunicar com um host que está conectado a DLS2, mesmo que ambos estão em VLAN 99. 
+Qual comando deve ser adicionado ao F0 / 1 no DLS1 para corrigir o problema?
+switchport trunk native vlan 66*
+
+Que mudar recurso garante que não unicast, multicast, ou o tráfego de broadcast é passado entre os portos que estão configurados com esse recurso?
+PVLAN protected port*
+
+Preencha o espaço em branco. Use a sintaxe do comando completo.
+O "show vlan brief" comando exibe a atribuição de VLAN para todas as portas, bem como as VLANs existentes na chave.
+
+Quais três declarações descrever com precisão os tipos de VLAN? (Escolha três).
+Uma porta de tronco 802.1Q, com uma VLAN nativa atribuído, suporta tanto tráfego marcados e não marcados. *
+A VLAN de gestão é qualquer VLAN que está configurado para acessar os recursos do interruptor de gestão. *
+Após o arranque inicial de um switch não configurado, todas as portas são membros da VLAN padrão. *
+
+Qual comando deve o administrador da rede implementar para impedir a transferência de quadros DTP entre um switch Cisco e um switch não Cisco?
+S1(config-if)# switchport nonegotiate*
+
+
+**************************************************************************************capitulo 4*****************************************************************************************************
+Que tipo de endereço IPv6 é necessário, no mínimo, em IPv6 habilitado as interfaces?
+link-local*
+
+Para que os pacotes devem ser enviados para um destino remoto, o que três peças de informação deve ser configurado em um host? (Escolha três.)
+link-local*
+IP address*
+subnet mask*
+
+Quais os dois pedaços de informações são exibidas na saída do show interface ip breve comando? (Escolha dois.)
+Layer 1 statuses*
+IP addresses*
+
+Que dois elementos são utilizados por um dispositivo de acolhimento quando se realiza uma operação ANDing para determinar se um endereço de destino está na mesma rede local? (Escolha dois.)
+IP address de destino*
+mascara de rede*
+
+Consulte a exposição. 
+Um administrador de rede emite o comando route ipv6 show em R1. 
+Quais são as duas conclusões podem ser tiradas a partir da tabela de roteamento? (Escolha dois.)
+R1 não sabe uma rota para todas as redes remotas. *
+A interface de F0 / 1 está configurado com endereço IPv6 2001: DB8: ACAD: A :: 12. *
+
+Consulte a exposição. Qual é o objetivo do campo destacado na linha que é exibida a partir do comando show ip route?
+Ele indica que esta rota foi aprendida via EIGRP. *
+
+Quais as duas declarações descrevem corretamente os conceitos de distância administrativa e métrica? (Escolha dois.)
+Rotas com a menor métrica para um destino indicar o melhor caminho. *
+Distância administrativa refere-se a confiabilidade de uma determinada rota. *
+
+Quais são as duas funções de um roteador? (Escolha dois.)
+Ele determina o melhor caminho para enviar pacotes. *
+Ele se conecta várias redes IP. *
+
+Um pacote se move de um host em uma rede para um dispositivo em uma rede remota dentro da mesma empresa. 
+Se não NAT é realizada na embalagem, o qual dois elementos permanecem inalterados durante a transferência do pacote da origem ao destino? (Escolha dois.)
+endereço IP de origem *
+endereço IP de destino *
+
+Consulte a exposição. 
+PC1 tenta se conectar a Fileserver 1 e envia uma solicitação ARP para obter um endereço MAC de destino. 
+Qual o endereço MAC vai receber PC1 na resposta ARP?
+the MAC address of the G0/0 interface on R1*
+
+Um administrador de rede configura a interface fa0 / 0 no roteador R1 com o endereço comando ip 172.16.1.254 255.255.255.0. 
+No entanto, quando o administrador emite o comando show ip route, a tabela de roteamento não mostra a rede diretamente conectada. 
+Qual é a possível causa do problema?
+A interface de fa0 / 0 não foi ativado. *
+
+Qual comando é usado para configurar um endereço IPv6 em uma interface de roteador para que o roteador irá combinar um prefixo de rede especificado manualmente com uma interface identificador gerado automaticamente?
+endereço ipv6 ipv6-address / prefixo de comprimento eui-64 *
+
+Preencha o espaço em branco.
+Quando um roteador recebe um pacote, ele examina o endereço de destino do pacote e olha na tabela "encaminhamento" para determinar o melhor caminho a ser usado para encaminhar o pacote.
+
+Um administrador de rede configura um roteador pela via comando ip 0.0.0.0 0.0.0.0 209.165.200.226. 
+Qual é o propósito deste comando?
+proporcionar uma via para encaminhar pacotes para os quais não existe uma rota na tabela de encaminhamento *
+
+Consulte a exposição. Um administrador de rede emite o comando route ipv6 show em R1. Quais são os dois tipos de rotas são exibidos na tabela de roteamento? (Escolha dois.)
+rede diretamente conectada *
+rota host local *
+
+O endereço de mudanças como um pacote de viagens através de múltiplos saltos Ethernet Layer 3 para o seu destino final?
+fonte Layer 2 endereço *
+
+Consulte a exposição. Qual será o roteador faz com um pacote que tem um endereço IP de destino de 192.168.12.227?
+Enviar o pacote da interface Serial0 / 0/0. *
+
+Um administrador de rede está implementando protocolos de roteamento dinâmico para uma empresa. Qual comando pode a questão administrador em um roteador para exibir os protocolos de roteamento suportados?
+Router (config) # router? *
+
+Consulte a exposição. 
+Um administrador de rede configurou R1 imediata. 
+Quando o administrador verifica o status da interface serial, a interface é mostrado como sendo administrativamente para baixo. 
+O comando adicional deve ser inserido na interface serial de R1 para trazer a interface up?
+no shutdown *
+
+O que é uma característica que distingue os roteadores de switches Layer 2?
+Routers suportam uma variedade de tipos de interface. Switches normalmente suportam interfaces Ethernet. *
+
+Qual afirmação descreve um percurso que foi aprendido de forma dinâmica?
+Ele é atualizado automaticamente e mantido por protocolos de roteamento.*
+
+Consulte a exposição. 
+Um administrador de rede emite o comando show ip route em R2. 
+Quais os dois tipos de rotas são instalados na tabela de roteamento? (Escolha dois.)
+redes conectadas diretamente *
+rotas que são aprendidas através do protocolo de roteamento EIGRP *
+
+Quando um computador é ping outro computador, pela primeira vez, o tipo de mensagem que isso coloque sobre a rede para determinar o endereço MAC do outro dispositivo?
+an ARP request*
+
+
+*******************************************************************************Capitulo 5******************************************************************************************
+Preencha o espaço em branco. Não use abreviaturas.
+Um engenheiro de rede é a solução de problemas na configuração de novas VLANs em uma rede.
+Que comando é usado para exibir a lista de VLANs que existe no switch? "Show vlan"
+
+Qual é desvantagem da utilização de switches de múltiplas camadas para inter-VLAN routing?
+Switches de múltiplas camadas são mais caros do que as implementações router-on-a-stick. *
+
+
+Consulte a exposição. A configuração do router-on-a-stick foi implementado para VLANs 15, 30 e 45, de acordo com o programa de saída do comando running-config. 
+PCs na VLAN 45 que estão usando a rede 172.16.45.0 / 24 está tendo problemas para se conectar a PCs na VLAN 30 na rede 172.16.30.0 / 24. 
+Que erro é mais provável a causar este problema?
+Há um endereço IP incorreto configurado no GigabitEthernet 0 / 0,30. *
+
+Consulte a exposição. Um administrador de rede configurou roteador Cisco Ver com os comandos acima para fornecer roteamento inter-VLAN. 
+O comando será exigido em um interruptor que está ligado ao / 0 interface de Gi0 no roteador Cisco Vista para permitir o roteamento inter-VLAN?
+switchport mode trunk*
+
+Consulte a exposição. 
+O interruptor faz o encaminhamento para os anfitriões que se conectam à VLAN 5. 
+Se o PC acessa um servidor web a partir da Internet, em que ponto será um número VLAN ser adicionados ao frame?
+Sem número de VLAN é adicionado ao quadro neste projeto.
+
+Comunicação inter-VLAN não está ocorrendo em um prédio particular de uma escola. 
+Quais são os dois comandos podem usar o administrador de rede para verificar se a comunicação inter-VLAN estava funcionando corretamente entre um roteador e um switch de camada 2, quando o método de concepção router-on-a-stick é implementado? (Escolha dois.)
+A partir do switch, emitir o comando show interface trunk . *
+A partir do roteador, emitir o comando show ip route. *
+
+Consulte a exposição. Router RA recebe um pacote com um endereço de origem de 192.168.1.35 e um endereço de destino de 192.168.1.85. 
+O que será o roteador irá fazer com este pacote?
+O roteador irá encaminhar o pacote para fora interface FastEthernet 0 / 1.2. *
+
+Que condição é necessária para ativar Layer 3 switching?
+O switch Layer 3 deve ter roteamento IP habilitado. *
+
+Que tipo de design de comunicação inter-VLAN requer a configuração de múltiplas sub-interfaces?
+router on a stick*
+
+Consulte a exposição. Um administrador de rede está configurando RT1 para roteamento inter-VLAN. 
+O interruptor está configurado corretamente e é funcional. 
+Host1, Host2 e host3 não podem se comunicar uns com os outros. 
+Com base na configuração do roteador, o que está causando o problema?
+Endereços IP na subinterfaces incorretamente incompatíveis com as VLANs. *
+
+Como é tráfego cursado entre várias VLANs em um switch multicamada?
+Tráfego é encaminhado via interfaces VLAN internos. *
+
+Consulte a exposição.
+A comunicação entre as VLANs não está ocorrendo. 
+O que poderia ser o problema?
+ A porta do switch Gi1/1 não está em trunk mode.*
+
+O que é uma desvantagem do uso de roteamento inter-VLAN router-on-a-stick?
+não escala bem além de 50 VLANs*
+
+Qual afirmação descreve uma desvantagem de usar subinterfaces roteador para o roteamento inter-VLAN?
+Tráfego cursado devem lutar por largura de banda em uma única interface do roteador. *
+
+Preencha o espaço em branco com uma sigla.
+Ao configurar o roteamento inter-VLAN em um switch de múltiplas camadas, a / uma "SVI" é usado como uma interface de VLAN virtual roteado.
+
+Consulte a exposição. 
+Um administrador de rede está verificando a configuração de roteamento inter-VLAN. 
+Usuários reclamam que PC2 não pode se comunicar com PC1. 
+Baseado na saída, o que é possível a causa do problema?
+O comando encapsulamento dot1q 5 contém a VLAN errado. *
+
+Consulte a exposição. 
+Um administrador de rede está verificando a configuração de roteamento inter-VLAN. 
+Usuários reclamam que PCs em diferentes VLANs não podem se comunicar. 
+Baseado na saída, o que são dois erros de configuração na interface do switch Gi1 / 1? (Escolha dois.)
+Gi1 / 1 está configurado em trunk mode.**.
+Gi1 / 1 está em default VLAN.*. *
+
+Ao configurar o roteamento inter-VLAN em um switch de múltiplas camadas, um administrador de rede emite o comando no switchport em uma interface que está conectado a outro switch.
+ Qual é o propósito deste comando?
+Para criar uma porta encaminhado para uma única rede *
+
+A inicialização do PT foi ignorado. Você não será capaz de ver a atividade PT.
+Abra o PT Atividade. Execute as tarefas nas instruções de atividade e, em seguida, responder a pergunta.
+Preencha o espaço em branco. Não use abreviaturas.
+“ ip address 192.168.20.1 255.255.255.0 ”
+
+Uma pequena faculdade usa VLAN 10 para a rede de sala de aula e VLAN 20 para a rede do escritório. 
+O que é necessário para permitir a comunicação entre essas duas VLANs ao usar legado de roteamento inter-VLAN?
+Um router com, pelo menos, dois interfaces LAN devem ser usados.*
+
+Consulte a exposição.
+Depois de tentar entrar com a configuração que é mostrado na router RTA, um administrador recebe um erro e usuários em VLAN 20 relatório que eles são incapazes de alcançar os usuários sobre VLAN 30.
+O que está causando o problema?
+RTA está usando a mesma sub-rede para VLAN 20 e VLAN 30. *
+
+Consulte a exposição. 
+Um administrador de rede precisa configurar router-on-a-stick para as redes que são mostrados.
+Quantos subinterfaces terá de ser criado no roteador se cada VLAN que é mostrado é para ser encaminhado e cada VLAN tem sua própria subinterface?
+4*
+
+Consulte a exposição. 
+Qual comando pode a questão administrador para alterar o status VLAN 10 para cima?
+Switch1(config)# vlan 10*
+
+***********************************************************************************+fim***********************************************************+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="sistema" type="TSistema"/>
+    <xsd:complexType name="TSistema">
+        <xsd:sequence>
+            <xsd:element name="computador" type="TComputador" />
+            <xsd:element name="componentes" type="TComponentes" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--COMPLETAR! -->
+    
+    <!--by JSM-->
+    <xsd:complexType name="TComputador">
+        <xsd:sequence>
+            <xsd:element name="componente" maxOccurs="unbounded" >     
+                <xsd:complexType>           
+                    <xsd:attribute name="id" type="TCOD"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="descricao" type="xsd:string"/>
+    </xsd:complexType>  
+            
+    <xsd:simpleType name="TCOD">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[A-Z0-9]{3}"/> 
+        </xsd:restriction>
+    </xsd:simpleType>
+        
+    <xsd:complexType name="TComponentes">
+        <xsd:sequence>
+            <xsd:element name="componente" type="TC" maxOccurs="unbounded" /> 
+        </xsd:sequence>
+    </xsd:complexType>  
+                  
+    <xsd:complexType name="TC">
+        <xsd:sequence>
+            <xsd:element name="item" type="TItem" />                
+            <xsd:element name="modelo" type="TMod" />                
+            <xsd:element name="preco" type="TPrec" />                
+        </xsd:sequence>
+        <xsd:attribute name="codigo" type="TCOD"/>
+    </xsd:complexType>  
+    
+    <xsd:simpleType name="TItem">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Motherboard"/>
+            <xsd:enumeration value="Video Card"/>
+            <xsd:enumeration value="Sound Card"/>
+            <xsd:enumeration value="Monitor"/>
+            <xsd:enumeration value="CPU"/>
+            <xsd:enumeration value="HDD"/>
+            <xsd:enumeration value="DVD"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="TMod">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="32"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="TPrec">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

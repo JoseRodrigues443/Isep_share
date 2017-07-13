@@ -1,0 +1,293 @@
+--> Building1_Floor0:
+enable
+conf t
+hostname Building2_Floor0 
+
+enable
+conf t
+no ip domain-lookup
+enable secret isep
+line con 0
+logging synchronous
+password isep
+login
+exit
+line vty 0 4
+password isep
+login
+exit
+service password-encryption
+
+crypto key generate rsa
+1024
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+exit
+
+banner motd #
+______________________
+
+================================================.       
+     .-.   .-.     .--.                         |       
+    | OO| | OO|   / _.-' .-.   .-.  .-.   .''.  |       
+    |   | |   |   \  '-. '-'   '-'  '-'   '..'  |       
+    '^^^' '^^^'    '--'                         |       
+===============.  .-.  .================.  .-.  |       
+               | |   | |                |  '-'  |       
+               | |   | |                |       |       
+               | ':-:' |                |  .-.  |       
+               |  '-'  |                |  '-'  |       
+==============='       '================'       |    
+
+"THIS IS A ISEP_RCOMP_2017_2DB COMPUTER SYSTEM. THIS COMPUTER
+SYSTEM, INCLUDING ALL RELATED EQUIPMENT, NETWORKS AND NETWORK DEVICES
+(SPECIFICALLY INCLUDING INTERNET ACCESS), ARE PROVIDED ONLY FOR
+AUTHORIZED USE. ISEP_RCOMP_2017_2DB SYSTEMS MAY BE MONITORED
+FOR ALL LAWFUL PURPOSES, INCLUDING TO ENSURE THAT THEIR USE IS
+AUTHORIZED, FOR MANAGEMENT OF THE SYSTEM, TO FACILITATE PROTECTION
+AGAINST UNAUTHORIZED ACCESS, AND TO VERIFY SECURITY PROCEDURES,
+SURVIVABILITY AND OPERATIONAL SECURITY. MONITORING INCLUDES ACTIVE
+ATTACKS BY AUTHORIZED COMPANY ENTITIES TO TEST OR VERIFY THE SECURITY OF
+THIS SYSTEM. DURING MONITORING, INFORMATION MAY BE EXAMINED,
+RECORDED, COPIED AND USED FOR AUTHORIZED PURPOSES. ALL INFORMATION,
+INCLUDING PERSONAL INFORMATION, PLACED ON OR SENT OVER THIS SYSTEM MAY
+BE MONITORED.
+
+USE OF THIS ISEP_RCOMP_2017_2DB SYSTEM, AUTHORIZED OR UNAUTHORIZED,
+CONSTITUTES CONSENT TO MONITORING OF THIS SYSTEM. UNAUTHORIZED USE
+MAY SUBJECT YOU TO CRIMINAL PROSECUTION. EVIDENCE OF UNAUTHORIZED USE
+COLLECTED DURING MONITORING MAY BE USED FOR ADMINISTRATIVE, CRIMINAL
+OR OTHER ADVERSE ACTION. USE OF THIS SYSTEM CONSTITUTES CONSENT TO
+MONITORING FOR THESE PURPOSES."
+#
+
+exit
+exit
+
+
+
+
+
+
+
+--> ROUTER B1
+
+
+
+
+en
+conf t
+
+ ip dhcp excluded-address 10.0.173.1
+ ip dhcp excluded-address 10.0.168.1
+ ip dhcp excluded-address 10.0.170.1
+ ip dhcp excluded-address 10.0.175.1
+ ip dhcp excluded-address 10.0.160.1
+ ip dhcp excluded-address 10.0.164.1
+ ip dhcp excluded-address 10.0.166.1
+ ip dhcp excluded-address 10.0.172.1
+ ip dhcp excluded-address 10.0.174.1
+ ip dhcp excluded-address 10.0.174.129
+
+
+
+ip dhcp pool NET-10
+default-router 10.0.173.1
+network 10.0.173.0 255.255.255.0
+exit
+
+ip dhcp pool NET-11
+default-router 10.0.168.1
+network 10.0.168.0 255.255.254.0
+exit
+
+ip dhcp pool NET-12
+default-router 10.0.170.1
+network 10.0.170.0 255.255.254.0
+exit
+
+
+
+ip dhcp pool NET-5-wif1
+default-router 10.0.164.1
+network 10.0.164.0 255.255.254.0
+exit
+
+
+ip dhcp pool NET-7-Voip 
+option 150 ip 10.0.172.1
+default-router 10.0.172.1
+network 10.0.172.0 255.255.255.0
+
+exit
+
+
+ip dhcp pool NET-8-dmz
+default-router 10.0.174.1
+network 10.0.174.0 255.255.255.128
+exit
+
+
+
+interface fastEthernet 0/0.1
+encapsulation dot1Q 10
+ip address 10.0.173.1 255.255.255.0
+exit
+
+interface fastEthernet 0/0.2
+encapsulation dot1Q 11
+ip address 10.0.168.1 255.255.254.0
+exit
+
+
+interface fastEthernet 0/0.3
+encapsulation dot1Q 12
+ip address 10.0.170.1 255.255.254.0
+exit
+
+
+interface fastEthernet 0/0.6
+encapsulation dot1Q 5
+ip address 10.0.164.1 255.255.254.0
+exit
+
+
+
+interface fastEthernet 0/0.8
+encapsulation dot1Q 7
+ip address 10.0.172.1 255.255.255.0
+exit
+
+
+interface fastEthernet 0/0.9
+encapsulation dot1Q 8
+ip address 10.0.174.1 255.255.255.128
+exit
+
+
+
+
+
+-->  ROUTER B2 <--
+
+
+ ip dhcp excluded-address 10.0.173.1
+ ip dhcp excluded-address 10.0.168.1
+ ip dhcp excluded-address 10.0.170.1
+ ip dhcp excluded-address 10.0.175.1
+ ip dhcp excluded-address 10.0.160.1
+ ip dhcp excluded-address 10.0.164.1
+ ip dhcp excluded-address 10.0.166.1
+ ip dhcp excluded-address 10.0.172.1
+ ip dhcp excluded-address 10.0.174.1
+ ip dhcp excluded-address 10.0.174.129
+
+
+
+ip dhcp pool NET-20
+default-router 10.0.175.1
+network 10.0.175.0 255.255.255.0
+exit
+
+ip dhcp pool NET-21
+default-router 10.0.160.1
+network 10.0.160.0 255.255.252.0
+exit
+
+ip dhcp pool NET-6-wifi2
+default-router 10.0.166.1
+network 10.0.166.0 255.255.254.0
+exit
+
+
+interface fastEthernet 0/0.4
+encapsulation dot1Q 20
+ip address 10.0.175.1 255.255.255.0
+exit
+
+
+interface fastEthernet 0/0.5
+encapsulation dot1Q 21
+ip address 10.0.160.1 255.255.252.0
+exit
+
+
+
+interface fastEthernet 0/0.7
+encapsulation dot1Q 6
+ip address 10.0.166.1 255.255.254.0
+exit
+
+
+
+
+---->     VOIP   swsitch  <-------
+
+interface fastEthernet 0/1
+switchport mode access
+switchport voice vlan 7
+switchport access vlan 10
+exit
+
+
+
+-->    VOIP    router
+
+telephony-service 
+auto-reg-ephone 
+ip source-address 10.0.172.1 port 2000
+max-ephones 30
+max-dn 30
+auto assign 11 to 40
+
+
+ephone-dn 11
+number 11001
+exit
+ephone-dn 12
+number 1002
+exit
+ephone-dn 13
+number 1003
+exit
+ephone-dn 14
+number 1004
+exit
+ephone-dn 15
+number 1005
+exit
+ephone-dn 16
+number 1101
+exit
+ephone-dn 17
+number 11022
+exit
+
+ephone-dn 18
+number 10053
+exit
+ephone-dn 19
+number 110112
+exit
+ephone-dn 20
+number 110233
+exit
+
+ephone-dn 21
+number 100588
+exit
+ephone-dn 22
+number 110199
+exit
+ephone-dn 23
+number 110200
+exit
+
+
+
+
+
+
+

@@ -1,0 +1,186 @@
+--> Building1_Floor0:
+enable
+conf t
+hostname Building1_Floor0 
+
+enable
+conf t
+no ip domain-lookup
+enable secret isep
+line con 0
+logging synchronous
+password isep
+login
+exit
+line vty 0 4
+password isep
+login
+exit
+service password-encryption
+
+crypto key generate rsa
+1024
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+exit
+
+banner motd #
+______________________
+
+================================================.       
+     .-.   .-.     .--.                         |       
+    | OO| | OO|   / _.-' .-.   .-.  .-.   .''.  |       
+    |   | |   |   \  '-. '-'   '-'  '-'   '..'  |       
+    '^^^' '^^^'    '--'                         |       
+===============.  .-.  .================.  .-.  |       
+               | |   | |                |  '-'  |       
+               | |   | |                |       |       
+               | ':-:' |                |  .-.  |       
+               |  '-'  |                |  '-'  |       
+==============='       '================'       |    
+
+"THIS IS A ISEP_RCOMP_2017_2DB COMPUTER SYSTEM. THIS COMPUTER
+SYSTEM, INCLUDING ALL RELATED EQUIPMENT, NETWORKS AND NETWORK DEVICES
+(SPECIFICALLY INCLUDING INTERNET ACCESS), ARE PROVIDED ONLY FOR
+AUTHORIZED USE. ISEP_RCOMP_2017_2DB SYSTEMS MAY BE MONITORED
+FOR ALL LAWFUL PURPOSES, INCLUDING TO ENSURE THAT THEIR USE IS
+AUTHORIZED, FOR MANAGEMENT OF THE SYSTEM, TO FACILITATE PROTECTION
+AGAINST UNAUTHORIZED ACCESS, AND TO VERIFY SECURITY PROCEDURES,
+SURVIVABILITY AND OPERATIONAL SECURITY. MONITORING INCLUDES ACTIVE
+ATTACKS BY AUTHORIZED COMPANY ENTITIES TO TEST OR VERIFY THE SECURITY OF
+THIS SYSTEM. DURING MONITORING, INFORMATION MAY BE EXAMINED,
+RECORDED, COPIED AND USED FOR AUTHORIZED PURPOSES. ALL INFORMATION,
+INCLUDING PERSONAL INFORMATION, PLACED ON OR SENT OVER THIS SYSTEM MAY
+BE MONITORED.
+
+USE OF THIS ISEP_RCOMP_2017_2DB SYSTEM, AUTHORIZED OR UNAUTHORIZED,
+CONSTITUTES CONSENT TO MONITORING OF THIS SYSTEM. UNAUTHORIZED USE
+MAY SUBJECT YOU TO CRIMINAL PROSECUTION. EVIDENCE OF UNAUTHORIZED USE
+COLLECTED DURING MONITORING MAY BE USED FOR ADMINISTRATIVE, CRIMINAL
+OR OTHER ADVERSE ACTION. USE OF THIS SYSTEM CONSTITUTES CONSENT TO
+MONITORING FOR THESE PURPOSES."
+
+_____________________________________
+#
+
+vtp domain building1
+vtp mode client
+
+
+
+					SERVER
+
+vtp domain building1
+vtp mode server
+vlan 10
+name vlan10
+exit
+vlan 11
+name vlan11
+exit
+vlan 7
+name voip
+exit
+vlan 12
+name vlan12
+exit
+vlan 5
+name wifi1
+exit
+interface vlan 5
+ip address 10.0.164.1 255.255.254.0
+exit
+interface vlan 10
+ip address 10.0.173.1 255.255.255.0
+exit
+interface vlan 11
+ip address 10.0.168.1 255.255.254.0
+exit
+interface vlan 12
+ip address 10.0.170.1 255.255.254.0
+exit
+interface vlan 7
+ip address 10.0.172.1 255.255.255.0
+exit
+
+
+
+------ >				interface vlan 6
+------->				ip address 10.10.166.0 255.255.254.0
+
+interface FastEthernet0/9
+switchport mode trunk
+exit
+interface range fastEthernet 0/1-9
+switchport mode trunk
+exit
+interface fastEthernet 0/11
+switchport mode trunk
+exit
+no spanning-tree vlan 1 
+copy running-config startup-config
+
+
+
+SWITCH CLIENTS:
+
+
+enable
+conf t
+hostname B1_F0_SW0
+
+enable
+conf t
+vtp domain building1
+vtp mode client
+exit
+copy running-config startup-config
+
+
+--> Building1_Floor1
+
+enable
+conf t
+vtp domain building1
+vtp mode client
+interface range fastEthernet 0/1-11
+switchport mode trunk
+exit
+
+no spanning-tree vlan 1 
+copy running-config startup-config
+
+
+
+SWITCH CLIENTS
+
+enable
+conf t
+
+vtp domain building1
+vtp mode client
+exit
+
+
+int range fa0/2-24
+switchport mode access
+switchport access vlan 12
+switchport port-security maximum 2
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+switchport nonegotiate
+no shutdown
+exit
+exit
+copy running-config startup-config
+
+
+
+
+
+
+
+
+

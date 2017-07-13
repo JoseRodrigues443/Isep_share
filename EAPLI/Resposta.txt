@@ -1,0 +1,59 @@
+# Seleção e reserva de Refeições - Respostas
+
+
+##2) 
+
+## 3). 
+
+##4) 
+
+
+
+## 5) 
+
+
+## 6) Consiste nas calorias e na quantidade de sal. Unidades- mg Sal cal
+
+## 7.)
+ 
+## 8) O utente apenas pode fazer um rating depois de a consumir e apenas dessa dada refeição
+
+## 9) Definido pelo utilizador. Quantas refeições marcadas
+
+## 10) 
+
+## 11) Não existe qualquer caso especial
+
+## 12) Definido pelo utilizador. Não existe qualquer tipo de identificador
+
+## 13)
+
+## 14) 
+
+
+## 15) Total. Mensagem na aplicação
+
+
+##16) 
+
+
+## 17) Durante a semana o numero de calorias ingeridas
+
+
+##18) Comentarios não anonimos. Sem moderadores. Deve existir um alerta sobre as mensagem não lidas
+
+
+## 19)
+
+
+## 20) Apenas gastos
+
+
+## 21) Apenas gastos
+
+## 22) 
+
+
+
+
+

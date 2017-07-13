@@ -1,0 +1,168 @@
+# Perguntas)
+
+//Seleção e reserva de Refeições
+
+## 2) 
+
+Quais as regras de validação do número mecanográfico? E quais as situações especificas?
+
+
+## 3)
+
+ Existe algum número limite de tentativas no login do utilizador? 
+
+
+## 4)
+
+NADA
+
+
+## 5)
+
+NADA
+
+
+## 6)
+
+ Qual é a informação nutricional? Unidades de medida? 
+    Existe algum tipo de plafon para o caso de utilizador não ter credito suficiente para uma dada refeição?
+    
+> Consiste nas calorias e na quantidade de sal. Unidades- mg Sal cal
+
+
+
+## 7)
+
+NADA
+
+
+## 8)
+
+A partir de que hora/data se encontra disponivel a avaliação dos pratos? Toda a gente pode avaliar um dado prato ou apenas quem o consumir?
+
+>  O utente apenas pode fazer um rating depois de a consumir e apenas dessa dada refeição
+
+
+## 9) 
+
+O chef pode ver? Ou só o cliente, pode ver reservas de outros?
+
+Qual a informação necessaria apresentar? Basta apresentar o prato e a data, ou deve ser apresentada toda a inf nutricional?
+
+> Definido pelo utilizador. Quantas refeições marcadas
+
+
+## 10)
+
+
+
+Dados necessarios apresentar?
+
+> RESPONDIDA PELA 9
+
+As compras canceladas devem ser apresentadas?
+
+> SIM
+
+
+## 11)
+
+Existe algum caso especial em que o cancelamento da refeição depois da hora não apresente custo ao cliente?
+
+> Não existe qualquer caso especial
+
+## 12)
+
+devolução, transforma-se num débito se exceder o tempo de cancelamento?
+
+Qual é a data a partir do qual se apresenta os movimentos? Esta é escolhida pelo utilizador? 
+Como distinguimos todos os movimentos? Alguma especie de sigla?
+
+> Definido pelo utilizador. Não existe qualquer tipo de identificador
+
+
+## 13)
+
+Sempre presente como assim?
+
+
+## 14)
+
+Mesma pergunta que o 13
+
+Caso o plafon exista o saldo deve ser apresentado em valor negativo ou 0, e ter uma especie de aviso
+em relação aos debitos atuais?
+
+
+## 15) 
+
+Que tipo de alerta querem?
+
+O custo medio considerado, num dia é referente a uma dada refeição(almoço ou jantar) ou ambos?
+
+> Total. Mensagem na aplicação
+
+
+## 16)
+
+--> NADA
+
+## 17)
+
+Formato de período: dias ou suporta intervalos e horas?
+Qual a unidade que deve ser transmitida ao cliente? 
+Qual o periodo apresentado? É também selecionado pelo utilizador?
+
+> Durante a semana o numero de calorias ingeridas
+
+## 18)
+
+Comentários e ratings são anónimos? se não são , que dados devem aparecer sobre quem comenta? 
+
+É possível fazer reply/responder ás respostas do gestor de ementas.
+
+Admin pode moderar os comentários? Mas os ratings não?
+
+Estamos a falar de ratings e comentarios atribuidos por todos os utilizador
+
+> Comentarios não anonimos. Sem moderadores. Deve existir um alerta sobre as mensagem não lidas
+
+## 19)
+
+Deve mostrar a quantidade de respostas por ler?
+
+
+
+## 20) 
+
+
+Como é a formatação do ficheiro?
+Intervalo de tempo (dias, meses, horas) e é o cliente que escolhe?
+
+
+O periodo é definido pelo utilizador ou existe uma base(semana/mes)? Quais os dados ao certo que devem ser exportados?
+
+> Apenas gastos
+
+## 21) ver 20
+
+> Apenas gastos
+
+## 22)
+
+ICAL: Deve ter?: titulo, descricao, data e hora do evento? E localizacao? 
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+

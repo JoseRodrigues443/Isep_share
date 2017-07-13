@@ -1,0 +1,4 @@
+ans23
+AAA32 3 125 12
+MAT33 "Matematica I" 1 445 8
+ANF42 "Analise Financeira" 5 12 4

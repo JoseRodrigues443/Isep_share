@@ -1,0 +1,53 @@
+
+@startuml
+
+title UC_SR_11 Cancelamento de reservas
+
+
+
+actor User
+
+User->CancelReservationsUI:Inicia o processo de cancelamento de reservas.
+CancelReservationsUI->CancelReservationsController: create()
+CancelReservationsUI->CancelReservationsController: rl = getReservationsList()
+CancelReservationsController->Session: au = autenticateUser()
+CancelReservationsController->SystemUser: id()
+CancelReservationsUI->CancelReservationsController: create()
+CancelReservationsUI->CancelReservationsController: listActiveReservations()
+CancelReservationsController->ListExistingReservationsService: create()
+CancelReservationsController->ListExistingReservationsService: ativeExistingReservations()
+ListExistingReservationsService->PersistenceContext: repositories()
+PersistenceContext->RepositoryFactory: create()
+PersistenceContext->RepositoryFactory: reservations()
+RepositoryFactory->ReservationRepository: create()
+ListExistingReservationsService->ReservationRepository: findActive()
+ReservationRepository-->ListExistingReservationsService: listActiveReservations()
+ListExistingReservationsService-->CancelReservationsController: 
+CancelReservationsController-->CancelReservationsUI:
+CancelReservationsUI->CancelReservationsUI: show()
+
+loop
+    User->CancelReservationsUI: seleciona uma das reservas
+    CancelReservationsUI->CancelReservationsController:setReservation(r)
+    CancelReservationsUI->User: Pede confirmação
+    CancelReservationsUI->CancelReservationsController:setReservationState()
+    CancelReservationsController-->ReservationStateEnum: create()
+    CancelReservationsUI->User: Pede Confirmação
+    User->CancelReservationsUI: Confirma
+    CancelReservationsUI-> CancelReservationsController: cancelReservation()
+    CancelReservationsController->ReservationState: setState(ReservationStateEnum.CANCELED)
+        opt
+            note right of User
+            de momento desnecessario fazer a parte do dinheiro do cliente
+            end note
+        end opt
+end loop
+
+CancelReservationsController->CancelReservationsUI:
+CancelReservationsUI->User: terminado
+
+
+@enduml
+
+
+

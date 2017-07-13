@@ -1,0 +1,163 @@
+Grammar
+
+    0 $accept: regra $end
+
+    1 regra: %empty
+    2      | regra expressao '\n'
+
+    3 expressao: operando '+' operando
+    4          | operando '-' operando
+    5          | operando '*' operando
+    6          | operando '/' operando
+
+    7 operando: INT
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'\n' (10) 2
+'*' (42) 5
+'+' (43) 3
+'-' (45) 4
+'/' (47) 6
+error (256)
+INT (258) 7
+
+
+Nonterminals, with rules where they appear
+
+$accept (9)
+    on left: 0
+regra (10)
+    on left: 1 2, on right: 0 2
+expressao (11)
+    on left: 3 4 5 6, on right: 2
+operando (12)
+    on left: 7, on right: 3 4 5 6
+
+
+State 0
+
+    0 $accept: . regra $end
+
+    $default  reduce using rule 1 (regra)
+
+    regra  go to state 1
+
+
+State 1
+
+    0 $accept: regra . $end
+    2 regra: regra . expressao '\n'
+
+    $end  shift, and go to state 2
+    INT   shift, and go to state 3
+
+    expressao  go to state 4
+    operando   go to state 5
+
+
+State 2
+
+    0 $accept: regra $end .
+
+    $default  accept
+
+
+State 3
+
+    7 operando: INT .
+
+    $default  reduce using rule 7 (operando)
+
+
+State 4
+
+    2 regra: regra expressao . '\n'
+
+    '\n'  shift, and go to state 6
+
+
+State 5
+
+    3 expressao: operando . '+' operando
+    4          | operando . '-' operando
+    5          | operando . '*' operando
+    6          | operando . '/' operando
+
+    '+'  shift, and go to state 7
+    '-'  shift, and go to state 8
+    '*'  shift, and go to state 9
+    '/'  shift, and go to state 10
+
+
+State 6
+
+    2 regra: regra expressao '\n' .
+
+    $default  reduce using rule 2 (regra)
+
+
+State 7
+
+    3 expressao: operando '+' . operando
+
+    INT  shift, and go to state 3
+
+    operando  go to state 11
+
+
+State 8
+
+    4 expressao: operando '-' . operando
+
+    INT  shift, and go to state 3
+
+    operando  go to state 12
+
+
+State 9
+
+    5 expressao: operando '*' . operando
+
+    INT  shift, and go to state 3
+
+    operando  go to state 13
+
+
+State 10
+
+    6 expressao: operando '/' . operando
+
+    INT  shift, and go to state 3
+
+    operando  go to state 14
+
+
+State 11
+
+    3 expressao: operando '+' operando .
+
+    $default  reduce using rule 3 (expressao)
+
+
+State 12
+
+    4 expressao: operando '-' operando .
+
+    $default  reduce using rule 4 (expressao)
+
+
+State 13
+
+    5 expressao: operando '*' operando .
+
+    $default  reduce using rule 5 (expressao)
+
+
+State 14
+
+    6 expressao: operando '/' operando .
+
+    $default  reduce using rule 6 (expressao)

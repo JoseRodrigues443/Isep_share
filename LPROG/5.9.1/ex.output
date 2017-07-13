@@ -1,0 +1,89 @@
+Nonterminals useless in grammar
+
+   PARTE_1
+   PARTE_2
+   SUB_PARTE_2
+   ANO_CURRICULAR
+   NUM_ALUNOS
+   CARGA_HORARIA
+
+
+Terminals unused in grammar
+
+   CODIGO_FORMADOR
+   NOME_FORMADOR
+   CODIGO_CURSO
+   NOME_CURSO
+   NUMERO_GENERICO
+   ' '
+   '\n'
+
+
+Rules useless in grammar
+
+    2 FRASE: FRASE PARTE_1
+
+    3 PARTE_1: CODIGO_FORMADOR ' ' '\n' PARTE_2
+    4        | CODIGO_FORMADOR ' ' NOME_FORMADOR '\n' PARTE_2
+
+    5 PARTE_2: CODIGO_CURSO ' ' NOME_CURSO ' ' SUB_PARTE_2 ' ' PARTE_2
+    6        | CODIGO_CURSO ' ' SUB_PARTE_2 ' ' PARTE_2
+
+    7 SUB_PARTE_2: ANO_CURRICULAR ' ' NUM_ALUNOS ' ' CARGA_HORARIA '\n'
+
+    8 ANO_CURRICULAR: NUMERO_GENERICO
+
+    9 NUM_ALUNOS: NUMERO_GENERICO
+
+   10 CARGA_HORARIA: NUMERO_GENERICO
+
+
+Grammar
+
+    0 $accept: FRASE $end
+
+    1 FRASE: %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'\n' (10)
+' ' (32)
+error (256)
+CODIGO_FORMADOR (258)
+NOME_FORMADOR (259)
+CODIGO_CURSO (260)
+NOME_CURSO (261)
+NUMERO_GENERICO (262)
+
+
+Nonterminals, with rules where they appear
+
+$accept (10)
+    on left: 0
+FRASE (11)
+    on left: 1, on right: 0
+
+
+State 0
+
+    0 $accept: . FRASE $end
+
+    $default  reduce using rule 1 (FRASE)
+
+    FRASE  go to state 1
+
+
+State 1
+
+    0 $accept: FRASE . $end
+
+    $end  shift, and go to state 2
+
+
+State 2
+
+    0 $accept: FRASE $end .
+
+    $default  accept

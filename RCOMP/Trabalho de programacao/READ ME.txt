@@ -1,0 +1,35 @@
+Bem vindo!!!!
+
+EXEMPLO EM VÍDEO DO PROGRAMA A CORRER: https://drive.google.com/file/d/0B3FB1QSP4t1McFJkTXNuLXVjbm8/view?usp=sharing
+
+
+____________________________
+
+Para executar o programa faça:
+
+copie a pasta "Executavel" para o local que desejar (nos 2 ou mais computadores)
+
+Encontra-se lá um  ficheiro chamado "FileTransfer.jar" para o executar faça:
+
+Duplo clique
+
+Ou se não funcionar: execute o comando no terminal: 
+java -jar FileTransfer.jar
+
+A pasta "share" contém ficheiros para partilhar
+
+E a pasta "download" é onde os ficheiros serão guardados.
+
+
+Aprecie o programa obrigado.
+
+
+______________________
+
+A pasta "netbeansCore" contém o projeto todo, caso queira usar o netbeans é só selecionar o ficheiro.
+
+Caso queira usar um editor para apenas ver o código, as classes encontram-se na pasta "src" do projeto
+
+
+
+
