@@ -1,0 +1,22 @@
+@startuml export_txt_extension_uc_realization1.png
+
+actor User 
+participant "<<analysis>>\nImport/ExportUI" as UI
+participant "<<analysis>>\nImport/ExportCtrl" as Ctrl
+participant "<<analysis>>\nExportText" as Out
+
+User->UI: Export Option
+activate UI 
+UI->User: Cell range
+User->UI: Inserts cell range
+UI->User: Asks for special character, file name and first row behavior
+User->UI: Gives information
+UI->Ctrl: exportInformation()
+activate Ctrl
+Ctrl->Out: exportInformation()
+activate Out
+deactivate Out
+deactivate Ctrl
+deactivate UI
+
+@enduml

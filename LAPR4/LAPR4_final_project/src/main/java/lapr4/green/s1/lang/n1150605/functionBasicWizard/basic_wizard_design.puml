@@ -1,0 +1,43 @@
+@startuml
+actor User 
+participant FunctionBasicWizardUI
+participant FunctionBasicWizardController
+participant Language
+participant Function
+participant FunctionParameter
+participant UIController
+
+User->FunctionBasicWizardUI: starts functionality
+FunctionBasicWizardUI->FunctionBasicWizardController: create()
+FunctionBasicWizardController->Language: getInstance()
+FunctionBasicWizardUI->FunctionBasicWizardController: f = functions()
+FunctionBasicWizardController->Language: f = getFunctions()
+
+loop for each function
+    FunctionBasicWizardUI->FunctionBasicWizardController: s = getFunctionIdentifier(f)
+    FunctionBasicWizardController->Function: s = getIdentifier()
+end
+
+FunctionBasicWizardUI->User: shows available functions
+User->FunctionBasicWizardUI: selects function
+FunctionBasicWizardUI->FunctionBasicWizardController: fp = functionParameters(f)
+FunctionBasicWizardController->Function: fp = getParameters()
+
+loop for each parameter
+FunctionBasicWizardUI->FunctionBasicWizardController: name = parameterName(p)
+FunctionBasicWizardController->FunctionParameter: name = getName()
+FunctionBasicWizardUI->FunctionBasicWizardController: b = parameterOptional(p)
+FunctionBasicWizardController->FunctionParameter: b = isOptional()
+FunctionBasicWizardUI->FunctionBasicWizardController: desc = getDescription(p)
+FunctionBasicWizardController->FunctionParameter: desc = getDescription()
+end
+
+FunctionBasicWizardUI->User: shows details of the selected function
+User->FunctionBasicWizardUI: inserts values for parameters on edit box
+FunctionBasicWizardUI->User: requests confirmation
+User->FunctionBasicWizardUI: confirms
+FunctionBasicWizardUI->FunctionBasicWizardController: setFormulaBarExpression(uiController, str)
+FunctionBasicWizardController->UIController: cell = getActiveCell()
+UIController->Cell: setContent(str)
+
+@enduml

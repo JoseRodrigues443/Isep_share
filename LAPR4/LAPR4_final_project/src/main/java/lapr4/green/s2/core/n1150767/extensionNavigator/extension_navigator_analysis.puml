@@ -1,0 +1,11 @@
+@startuml CORE04.2_extension_navigator_analysis.png
+
+  Actor -> System : Starts use case
+  Actor -> System : Chooses a button(Enabled Extenions/Disabled Extensions)
+  System -> Actor : Show results
+  alt
+  Actor -> System : Selects a enabled extension
+  System -> Actor : Runs extension  
+  end
+
+@enduml

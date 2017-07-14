@@ -1,0 +1,29 @@
+
+'1150710@isep.ipp.pt
+@startuml macro_08_01_analyse.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+actor user
+participant menui
+
+
+user -> menui : getMacroWindow()
+create ui
+menui -> ui : create()
+create controller
+ui -> controller : create()
+ui --> user : showScriptWindow()
+user -> ui : write script code
+user -> ui : execute
+ui -> controller : runCode(scriptCode:String)
+create nSpreadCheetMacro
+controller -> nSpreadCheetMacro : create()
+controller -> nSpreadCheetMacro : execute(scriptCode:String) : Value
+nSpreadCheetMacro -> nSpreadCheetMacro : run()
+ui -> user : showResult()
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml import_export_txt_import.png
+
+actor User 
+  participant "UIExtensionImportExport" as UI
+  participant "ImportUI" as Iui
+  participant "ImportController" as Ctrl
+  participant "in : ImportTxt" as In
+  participant "this.uiController : UIController" as UIC
+  participant "sheet : Spreadsheet" as sheet
+  participant "cell : Cell" as cell
+
+  User -> UI: Import Option
+  Iui -> User: Choose File
+  activate Iui
+  User -> Iui: Chooses File
+  Iui -> User: Asks for cell range and row behavior
+  User -> Iui: Gives cell range and row behavior
+  create Ctrl
+  Iui ->Ctrl: create(uiController)
+  Iui ->Ctrl: importInformation(file,cell_range,behavior)
+  create In
+  Ctrl -> In : create(uiController,file,cell_range,behavior)
+  Ctrl -> In : importInformationTxt()
+  In -> UIC : sheet=getActiveSpreadsheet();
+  loop for String line : buffer
+    In -> sheet: cell=getCell(column,row)
+    In -> cell: setContent(new_content)
+  end
+
+
+@enduml

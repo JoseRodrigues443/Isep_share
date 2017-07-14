@@ -1,0 +1,15 @@
+@startuml
+User->AddressEditionUI:selects the option to create a new address
+AddressEditionUI->AddressEditionController: create()
+AddressEditionUI-->User:shows the parameters for the user to fill
+User->AddressEditionUI:Address(street, town, postal code, city and country)
+AddressEditionUI->AddressEditionController:addAddress(street, twon, postalCode, city, country)
+AddressEditionController->Contact:addAddress(street, twon, postalCode, city, country)
+Contact->Address:address=create(street, twon, postalCode, city, country)
+Address->Address:validate
+Address-->Contact:saveAddress(address)
+AddressEditionController->ContactRepository:save(contact)
+AddressEditionUI-->User:reports success
+
+@enduml
+

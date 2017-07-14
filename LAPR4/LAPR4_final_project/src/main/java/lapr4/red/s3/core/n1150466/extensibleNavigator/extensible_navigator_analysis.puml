@@ -1,0 +1,26 @@
+@startuml extensible_navigator_analysis.png
+
+  participant "NavigatorUI" as UI
+  participant "NavigatorController" as ctrl
+  participant "Navigator" as nav
+  participant "Extension"  as ext
+  participant "List : Content" as cont
+
+
+activate UI
+
+UI -> ctrl : extensionContents()
+activate ctrl
+ctrl -> nav : extensionContents()
+loop for each enabled or \ndisabled extension
+    activate nav
+    nav -> ext : content()
+    ext -> cont : create()
+    deactivate nav
+end
+
+ctrl -> UI : showContentNodes()
+deactivate ctrl
+deactivate UI
+
+@enduml

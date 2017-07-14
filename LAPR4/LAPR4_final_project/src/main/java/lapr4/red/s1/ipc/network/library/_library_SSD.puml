@@ -1,0 +1,18 @@
+@startuml IPC01.1_UDP_machineList_update.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+/' SSD '/loop while(server on)
+
+Server -> Client : send UDP broadcast
+Client -> Server : send TCP request (text)
+Server -> Client : send requested info
+Client -> Server : server close connect
+Server -> Client : server terminate connect to client
+end    
+
+@enduml

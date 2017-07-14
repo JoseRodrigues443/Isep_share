@@ -1,0 +1,37 @@
+@startuml IPC08.1_UDP_file_sharing_Reciever_SD.png
+
+   skinparam handwritten false
+   skinparam monochrome true
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+    
+
+   box "Receiver"
+    participant "UI"
+    
+    participant "Controller"
+    
+    participant "ConnectionManagerFileSharing"
+    participant "NetworkMachinesAndFileList"
+    participant "FileShare"
+  end box
+
+
+    create Controller
+    
+    UI->Controller: create()
+    create ConnectionManagerFileSharing
+    Controller -> ConnectionManagerFileSharing :create()
+    create NetworkMachinesAndFileList
+    ConnectionManagerFileSharing->NetworkMachinesAndFileList:create()
+    ConnectionManagerFileSharing->NetworkMachinesAndFileList: ownIp()
+    ConnectionManagerFileSharing->ConnectionManagerFileSharing: start()
+    ConnectionManagerFileSharing->ConnectionManagerFileSharing:sendAnnouncementTimedUDP()
+    note left: sends UDP Broadcast every N seconds
+    ConnectionManagerFileSharing->ConnectionManagerFileSharing:udpListener()
+    note left:uses network library to create UPD listener(see network library javadoc)
+    Controller->ConnectionManagerFileSharing:downloadFileList()
+    ConnectionManagerFileSharing->NetworkMachinesAndFileList:filesListToDownloadWithData()
+    Controller->UI:shows files available to download
+@enduml

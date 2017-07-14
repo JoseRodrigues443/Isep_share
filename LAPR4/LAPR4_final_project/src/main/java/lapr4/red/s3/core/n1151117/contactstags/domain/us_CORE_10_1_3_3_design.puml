@@ -1,0 +1,31 @@
+@startuml us_core_10_1_3_3_design.png
+actor User as u
+    participant "contactPanel : ContactPanel" as cp
+	participant "ctrl : ContactController" as ctrl
+	participant "MostUsedTagsUI" as ui
+	participant "ctx : PersistenceContext" as ctx
+	participant "factory : RepositoryFactory " as fac
+	participant "cRepo : ContactRepository" as cRepo
+
+	u -> cp : selects a the search by tag
+	
+	create ctrl
+	cp -> ctrl : new(userProperties());
+	
+	ctrl -> ctx : repositories();
+	
+	create fac
+	ctx -> fac : create()
+
+	create cRepo
+	fac -> cRepo : contacts();
+	
+	cp -> ctrl : list = allTagsByFrequency();
+	ctrl -> cRepo : tagsByFrequency();
+	
+    create ui
+    cp -> ui : new(list);
+	
+	ui -> u : shows all tags with the frequency
+
+@enduml

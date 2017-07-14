@@ -1,0 +1,9 @@
+@startuml
+
+User->UI: The user selects the option of enabling and disabling extensions
+UI-->User: The System shows a list of the various extensions avaliable
+User->UI: The user selects an extension
+UI-->User: The System asks if the user wants to enable/disable the extension
+User->UI: The user accepts
+UI-->User: The System shows a confirmation message
+@enduml

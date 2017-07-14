@@ -1,0 +1,24 @@
+@startuml
+
+    participant "NetworkExplorerController"
+    participant "ExtensionConnectionManagerNetworkExplorer"
+    participant "ObjectConnectionTCP"
+    participant "ReceiverTCP"
+
+create ExtensionConnectionManagerNetworkExplorer 
+    NetworkExplorerController -> ExtensionConnectionManagerNetworkExplorer : new()
+create ObjectConnectionTCP 
+    ExtensionConnectionManagerNetworkExplorer -> ObjectConnectionTCP : new(tcpPort)
+    ExtensionConnectionManagerNetworkExplorer -> ObjectConnectionTCP : clientStartReceiveMessage(this)
+create ReceiverTCP
+    ObjectConnectionTCP -> ReceiverTCP : new()
+    ObjectConnectionTCP -> ReceiverTCP : start()
+    loop While(receivesUdp)
+        ReceiverTCP -> ReceiverTCP : run()
+        ExtensionConnectionManagerNetworkExplorer -> ExtensionConnectionManagerNetworkExplorer : messageReceivedTrigger(messageReceived)
+        ExtensionConnectionManagerNetworkExplorer -> NetworkExplorerController : update()
+    end
+    
+    
+    
+@enduml

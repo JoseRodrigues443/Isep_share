@@ -1,0 +1,27 @@
+@startumlipc82ss.png
+actor user
+participant System as sys
+
+user-> sys: The user selects a file to download
+sys->user: Asks the user if the download will be permanent
+alt
+user->sys: The user confirms
+sys->user: The system shows confirmation and the progress of the download
+loop
+sys->user: The system asks if the user wants to overwrite the file
+alt
+user->sys: The user confirms
+sys->user: The system shows confirmation
+end
+alt
+user->sys: The user denies
+sys->user: The system shows confirmation
+end
+end
+end
+alt
+user->sys: The user denies
+sys->user: The system shows confirmation and the progress of the download
+end
+
+@enduml

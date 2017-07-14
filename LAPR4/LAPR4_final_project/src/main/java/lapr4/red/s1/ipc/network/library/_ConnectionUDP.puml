@@ -1,0 +1,40 @@
+  @startuml ConnectionUDP.png
+
+  box "UDPStringSenderManager"
+    participant "UdpServer"
+    participant "ServerSocket"
+    participant "CommWorker"
+    participant "aSocket:Socket" as aSocket
+  end box
+
+  box "UDPStringReceiverManager"
+    participant "Client"
+    participant "Socket"
+    participant "ob:DTO" as DTO
+    participant "os:OutputStream" as OutputStream
+  end box
+
+  create ServerSocket
+  UdpServer -> ServerSocket : new();
+  UdpServer -> ServerSocket : aSocket=accept();
+
+  create Socket
+  Client -> Socket : new();
+  ServerSocket <-- Socket : connection established 
+
+  create aSocket
+  ServerSocket -> aSocket : new();
+
+  create CommWorker
+  UdpServer -> CommWorker : new(aSocket);
+
+  CommWorker -> aSocket : getInputStream();
+
+  create DTO
+  Client -> DTO : ob=new();
+  Client -> Socket : os=getOutputStream();
+  create OutputStream
+  Socket -> OutputStream : new();
+  Client -> OutputStream : write(ob);
+
+  @enduml

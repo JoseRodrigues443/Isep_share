@@ -1,0 +1,6 @@
+@startuml core_07_1_flow.png
+User -> System: Activates the extension
+System --> User: Shows the search window
+User -> System: Inputs the search and presses the search button
+System --> User: Shows the results of the search
+@enduml

@@ -1,0 +1,24 @@
+@startuml IPC02.3_multiple_workbook_search_design.png
+
+actor User
+  participant "FindWorkbooksUI" as UI
+  participant "FindWorkbooksAction" as ctrl
+  participant "fw : FindWorkbooks" as find
+  participant "app : CleanSheets"  as app
+
+
+User -> UI : insert directory to search
+
+UI -> ctrl : findCLSFiles()
+
+ctrl -> find : setDirectory()
+
+ctrl -> find : findCLSFiles()
+UI -> UI : showFiles()
+UI -> User : show files in directory
+User -> UI : select file to open
+UI -> ctrl : load(file)
+ctrl -> app : load(file)
+UI -> User : load to active spreadsheet
+
+@enduml

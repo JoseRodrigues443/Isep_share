@@ -1,0 +1,25 @@
+@startuml conditional_formatting_range_realization1.png
+
+actor User 
+  participant "<<analysis>>\nFormattingRangeUI" as UI
+  participant "<<analysis>>\nFormattingRangeController" as Ctrl
+  participant "<<analysis>>\nReationalOperator" as Ro
+  participant "<<analysis>>\ncell : Cell" as cell
+
+  User -> UI: selects the formatting range option
+  activate UI
+  UI -> User: asks for the cell range
+  User -> UI: gives the cell range
+  UI -> User: asks for a condition
+  User -> UI: gives the condition
+  UI -> Ctrl: formatRange()
+  activate Ctrl
+  loop for Cells cell : cell_range
+    Ctrl -> Ro: checkCondition()
+    Ctrl -> cell: setFormat()
+  end
+  deactivate Ctrl
+  UI -> User: shows the formatted cells
+  deactivate UI
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml ipc_05_1_design2.png
+    actor User as u
+    participant "LogListUI : LogListUI" as ui
+    participant "LogListController" as ctrl
+    participant "LogList" as LogList
+
+    u -> ui : starts the log extension
+    create ctrl
+    ui -> ctrl : showLogList()
+    ctrl -> LogList : logLines()
+    ui -> u : shows all the communications
+
+@enduml

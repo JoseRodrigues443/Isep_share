@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence">
+  <persistence-unit name="lapr4.csheets-crm-extension-PU">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>lapr4.white.s1.core.n4567890.contacts.domain.Contact</class>
+    <class>lapr4.white.s1.core.n4567890.contacts.domain.Agenda</class>
+    <class>lapr4.white.s1.core.n4567890.contacts.domain.Event</class>
+    <class>lapr4.blue.s1.core.n1150595.emailAndPhoneEdition.domain.email.Email</class>
+    <class>lapr4.blue.s1.core.n1150595.emailAndPhoneEdition.domain.phoneNumbers.PhoneNumber</class>
+    <class>lapr4.blue.s1.core.n1150433.addressEdition.domain.Address</class>
+    <class>lapr4.green.s2.core.n1150993.CompanyContact.Company</class>
+    <class>lapr4.blue.s1.core.n1150595.emailAndPhoneEdition.domain.phoneNumbers.countryCode.CountryCode</class>
+    <class>lapr4.blue.s1.core.n1150433.addressEdition.domain.postalCode.PostalCode</class>
+    <properties>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:../db/demoapplication;MV_STORE=FALSE"/>-->
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:..\db\csheets-crm-extension;MV_STORE=FALSE"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/csheets-crm-extension"/>-->
+      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+      <property name="javax.persistence.jdbc.user" value=""/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+</persistence>

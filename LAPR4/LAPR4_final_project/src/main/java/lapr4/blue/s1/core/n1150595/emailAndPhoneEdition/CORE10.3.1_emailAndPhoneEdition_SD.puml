@@ -1,0 +1,40 @@
+@startuml CORE10.3.1_emailAndPhoneEdition_SD.png
+
+User->EmailAndPhoneEditionUI: selects the option of email and phone edition
+EmailAndPhoneEditionUI-->User: shows the parameters the user can change
+User->EmailAndPhoneEditionUI: Work Phone, Home Phone, Celular 1, Celular 2
+EmailAndPhoneEditionUI->ContactController: countryCodesList=persistenceContext()
+ContactController->PersistenceContext: repositories()
+PersistenceContext->RepositoryFactory: countryCodes()
+RepositoryFactory->CountryCodesRepository: findAll()
+EmailAndPhoneEditionUI->Contact: updatePhones(Work Phone, HomePhone, Celular 1, Celular 2, countryCodesList)
+Contact-->PhoneNumber: create(Work Phone)
+PhoneNumber->PhoneNumber: phoneValidation(countryCodesList)
+Contact-->PhoneNumber: create(Home Phone)
+PhoneNumber->PhoneNumber: phoneValidation(countryCodesList)
+Contact-->PhoneNumber: create(Celular 1)
+PhoneNumber->PhoneNumber: phoneValidation(countryCodesList)
+Contact-->PhoneNumber: create(Celular 2)
+PhoneNumber->PhoneNumber: phoneValidation(countryCodesList)
+User->EmailAndPhoneEditionUI: Main Email
+EmailAndPhoneEditionUI->Contact: updateMainEmail(Main Email)
+Contact-->Email: create(Main Email)
+Email->Contact: mainEmail
+Contact->Contact: addEmail(mainEmail, Main Email)
+Contact->Email: mainEmail
+Email->Email: validateEmail()
+loop add secondary emails
+    User->EmailAndPhoneEditionUI: Secondary Email
+    EmailAndPhoneEditionUI->Contact: addSecondaryEmail(Secondary Email)
+    Contact-->Email: create(Secondary Email)
+    Email->Contact: secondaryEmail
+    Contact->Contact: addEmail(secondaryEmail, Secondary Email)
+    Contact->Email: mainEmail
+    Email->Email: validateEmail()
+end
+User->EmailAndPhoneEditionUI: confirms
+EmailAndPhoneEditionUI->ContactController: updateContact(contact)
+ContactController->ContactRepository: save(contact)
+EmailAndPhoneEditionUI-->User: reports operation success
+
+@enduml

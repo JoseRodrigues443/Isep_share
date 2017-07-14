@@ -1,0 +1,12 @@
+@startuml IPC02.3_multiple_workbook_search_analysis.png
+
+User->UI: the user opens the "Find Workbooks" sidebar
+UI-->User: shows the sidebar and asks for a pattern
+User->UI: introduces a pattern or none if he doesn't want
+UI-->User: asks for a directory
+User->UI: the user selects the directory
+UI-->User: shows the files
+User->UI: clicks one time to preview the workbook or changes the content of a file
+UI-->User: shows the preview
+
+@enduml

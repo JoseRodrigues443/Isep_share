@@ -1,0 +1,16 @@
+@startuml importxml_analysis.png
+actor User 
+participant "<<analysis>>\nImportXMLUI" as UI
+participant "<<analysis>>\nImportXMLController" as controller
+participant "<<analysis>>\nImportData" as imp
+
+
+User -> UI : select file to import
+UI->User: asks for import type
+User->UI: selects workbook, worksheet or range
+UI->controller: importL()
+controller->imp:importXML()
+UI->User:request confirmation
+User -> UI : confirm
+
+@enduml

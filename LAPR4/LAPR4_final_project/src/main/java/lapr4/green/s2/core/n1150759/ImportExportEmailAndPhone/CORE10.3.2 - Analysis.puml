@@ -1,0 +1,33 @@
+@startuml
+
+participant User
+participant UI
+
+note right of User: Worsheet -> Import -> BD
+note right of User: BD -> Export (expression) -> Worksheet
+
+User -> UI: Selects import or export option
+
+alt import
+UI --> User: Asks which cells should be imported
+User -> UI: Selects the cells
+
+else export
+UI --> User: Asks the user to enter an expression
+User -> UI: Enters an expression
+UI --> User: Asks if the operation is a one-time operation or an active operation
+User -> UI: Defines the operation type
+
+end
+
+UI --> User: Shows active operations
+
+opt
+User -> UI: Chooses an operation
+UI --> User: Allows the user to edit or remove the operation
+User -> UI: Edits or removes the operation
+
+end
+UI --> User: Reports operation success
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+actor User
+participant UI
+participant Controller
+participant Cell 
+participant Image
+participant Spreadsheet
+
+
+User->UI : Wants to insert an image in the selected cell
+UI-->User : Choose an image
+User->UI : The user selects an image.
+UI->Controller : addImageInSelectedCell(path)
+Controller->Spreadsheet :getCell()
+Controller->Cell : addImage(path)
+Cell->Image : create(path)
+Image->Cell : return image
+Cell->Cell  :addImage(image)
+Cell->Controller :return true
+UI-->User : The operation was done with success 
+
+@enduml

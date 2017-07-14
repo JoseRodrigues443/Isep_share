@@ -1,0 +1,65 @@
+@startuml
+
+actor User
+
+participant AscendingOrDescendingColumnSortUI as uiSort
+participant SortColumnController as controller
+participant Sort as sort
+participant UIController as uiMain
+participant Spreadsheet as sheet
+participant Cell as cell
+participant Adress as adr
+
+activate uiSort
+User->uiSort : Asks to sort selected column of Spreadsheet
+create controller
+activate controller
+uiSort->controller : create()
+uiSort->controller : getColumnIndex()
+deactivate uiSort
+activate uiMain
+controller->uiMain : getActiveCell()
+deactivate controller
+activate cell
+uiMain->cell : getAdress()
+deactivate uiMain
+activate adr
+cell->adr : index=getColumn()
+deactivate cell
+deactivate adr
+activate uiSort
+activate controller
+uiSort->controller : getColumnCells()
+deactivate uiSort
+activate uiMain
+controller->uiMain : active=getActiveSpreadsheet()
+deactivate controller
+activate sheet
+uiMain->sheet : list=getColumn()
+deactivate uiMain
+deactivate sheet
+activate uiSort
+activate controller
+uiSort->controller : (ascending/descending)order()
+deactivate uiSort
+activate sort
+controller->sort : (ascending/descending)sort(list)
+deactivate sort
+activate sortUI
+sortUI->controller : sortSpreadsheet()
+deactivate sortUI 
+activate sort
+controller->sort : sortSpreadsheet(active, index list)
+deactivate controller
+loop
+activate sheet
+sort->sheet : getCell()
+deactivate sort
+activate cell
+sheet-> cell : setContent()
+deactivate sheet
+deactivate cell 
+end
+activate uiSort
+uiSort->User : Shows column organized
+@enduml

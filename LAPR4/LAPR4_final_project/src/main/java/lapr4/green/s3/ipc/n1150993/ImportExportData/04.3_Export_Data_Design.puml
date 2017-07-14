@@ -1,0 +1,51 @@
+@startuml
+
+actor User
+participant "ImportExportExtension" as extension
+participant "ImportExportDatabaseUI" as ui
+participant "ImportExporDatabaseController" as controller
+participant "ImportExportTable" as importExportTable
+participant "SpreadSheetTable" as spreadSheet
+participant "DataBaseManager" as jdbc
+participant "Cell" as cell
+
+
+User->extension: starts the process
+create ui
+extension->ui: create()
+create controller
+ui->controller:create()
+create importExportTable
+controller->importExportTable: create(uiController, connectionName,username,password)
+ui->controller: getSelectedCells()
+controller->importExportTable: getSelectedCells()
+importExportTable->spreadSheet: listCells=getSelectedCells()
+ui->User:Asks name of database conection, username and password
+User->ui: insert data and test connection
+ui->controller: testConnection()
+controller->importExportTable: testeConnection()
+create jdbc
+importExportTable->jdbc:create(username,password)
+importExportTable->jdbc: connectToDatabase(nameConnection)
+jdbc->jdbc:connection=getConnection()
+
+
+alt user choose an existing table
+    User->ui:choose an existing table
+ui->controller: insertOnExistingTable(String name,spreadsheetTable)
+    controller->importExportTable: setTable(connection,spreadsheetTable)
+end
+
+alt user choose an non existing table
+    User->ui: Introduce the name
+
+    ui->controller: exportTable(connection)
+    controller->importExportTable: verifyIfExistsTable(connection, nameTable)    
+    alt exists==false
+            controller->importExportTable: createTable(connection, tableName)
+    end
+    
+end
+
+ui->User: Inform of success
+@enduml

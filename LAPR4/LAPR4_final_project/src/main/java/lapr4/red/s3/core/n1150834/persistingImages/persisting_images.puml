@@ -1,0 +1,25 @@
+@startuml persisting_images.png
+
+actor User 
+  participant "UIExtensionPersistingImages" as UI
+  participant "ImportImageUI" as Iui
+  participant "IImportImageController" as Ctrl
+  participant "in : ImportImage" as In
+  participant "this.uiController : UIController" as UIC
+  participant "cell : Cell" as cell
+
+  User->UI: selects the import option
+  activate Iui 
+  Iui->User: asks for the image path
+  User->Iui: gives the image path
+  Iui->User: imports the image into the workbook
+  create Ctrl
+  Iui ->Ctrl: create(uiController)
+  Iui ->Ctrl: importImage(path)
+  create In
+  Ctrl -> In : create(uiController,path)
+  Ctrl -> In : importImage()
+  In -> UIC : cell=getActiveCell()
+  In -> cell: addImage(image)
+
+@enduml

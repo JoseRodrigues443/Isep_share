@@ -1,0 +1,23 @@
+@startuml
+
+actor User
+participant System
+
+User -> System: selects option to launch functionality
+System --> User: presents all extensions name
+
+User -> System: selects one extension
+
+alt
+System --> User: shows details of the selected extension
+User -> System: confirms loading of the selected extension
+end
+
+alt
+User -> System: confirms unloading of the select extension
+end
+
+System --> User: informs about operation's sucess
+
+@enduml
+

@@ -1,0 +1,21 @@
+@startuml ipc_07_1_design_2.png
+  actor User as u
+  
+  participant "wsui : WorkbookSearchUI" as WSUI
+  participant "uic : UIController" as UIC
+  participant "wcontroller : WorkbookSearchController" as WSC
+  participant "ws : WorkbookSearch" as WS
+  loop for Extension ext : extensions
+        u -> WSUI : String text: inputs text to Search and presses search;
+  	WSUI -> UIC : activeSpreadsheet: getActiveSpreadsheet();
+        WSUI -> WSC : searchSpreadsheet(activeSpreadsheet, text);
+        WSC -> WS : searchSpreadsheet(activeSpreadsheet, text);
+
+        WSUI -> WSC : searchResults();
+        WSC -> WS : searchResults();
+
+        WS -> WSC : List<String> searchResult;
+        WSC -> WSUI : List<String> searchResult;
+        WSUI -> u : Shows the search results;
+  end
+@enduml

@@ -1,0 +1,76 @@
+@startuml Core03.3_AutoSorting_Design.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+    actor User
+    activate AutoSortingMenu
+
+    User->AutoSortingMenu: starts the autoSorting use case
+    deactivate User
+
+    create AutoSortingAction
+    AutoSortingMenu->AutoSortingAction: create(uiController)
+    deactivate AutoSortingMenu
+
+    create AutoSortingController
+    AutoSortingAction->AutoSortingController: create(uiController)
+    deactivate AutoSortingAction
+
+    AutoSortingController->AutoSortingController: checkRange(focusOwner)
+    note right AutoSortingController
+        checks the selected range 
+    end note
+
+    create AutoSortingThread
+    AutoSortingController->AutoSortingThread: create(cellRange, uiController)
+
+    AutoSortingThread->AutoSortingThread: addObservers()
+    note right AutoSortingThread
+        each cell from the cellRange will be listening for updates
+    end note
+
+    create SortAlgorithms
+    AutoSortingThread->SortAlgorithms: create()
+
+    AutoSortingThread->User: waits for input
+
+    activate CellImpl
+    User->CellImpl: introduces the input in the range and selects a column to sort
+
+    CellImpl->CellImpl: setContent(content)
+
+    CellImpl->AutoSortingThread: update()
+    note right AutoSortingThread
+        it will trigger the observer
+    end note
+    deactivate CellImpl
+
+    AutoSortingThread->uiController: index = getActivateColumn()
+    note right AutoSortingThread
+        returns the index active column
+    end note
+
+    AutoSortingThread->uiController: sortingOrder = getSortingOrder()
+    note right AutoSortingThread
+        returns a boolean to know what sort needs to be applied
+    end note
+
+    AutoSortingThread->AutoSortingThread: run()
+
+    AutoSortingThread->SortAlgorithms: String[][] cell = ascedingRangeSort(cellRange, index)
+
+    AutoSortingThread->SortAlgorithms: sortSpreadsheetCells(uiController.getActivateSpreadsheet(), cell, cellRange)
+
+    loop
+        SortAlgorithms->Cell: setContent(content)
+        note left Cell
+            now we will update the cells with the sorted content
+        end note
+    end loop
+
+    AutoSortingThread->User: shows the input correctly sorted
+@enduml

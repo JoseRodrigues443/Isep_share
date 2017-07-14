@@ -1,0 +1,72 @@
+@startuml us_LANG_01_2_design.png
+
+actor User
+
+User --> CellEditor: Inputs block of instructions 
+activate CellEditor
+CellEditor -> Address: address = getAddress()
+CellEditor -> Controller: cell = getCell(address)
+CellEditor -> Cell: setContent(content)
+deactivate CellEditor
+
+activate Cell
+Cell -> CellImpl: setContent(content)
+
+activate CellImpl
+CellImpl -> CellImpl: storeContent(content)
+
+activate FormulaCompiler
+CellImpl -> FormulaCompiler: compile(cell, content)
+
+activate ExcelExpressionCompiler
+FormulaCompiler -> ExcelExpressionCompiler: compile(cell, content)
+
+activate ANTLRStringStream
+ExcelExpressionCompiler -> ANTLRStringStream: input = create(source)
+deactivate ANTLRStringStream
+
+activate FormulaLexer
+ExcelExpressionCompiler -> FormulaLexer: lexer = create(input)
+deactivate FormulaLexer
+
+activate CommonTokenStream
+ExcelExpressionCompiler -> CommonTokenStream: tokens = create(lexer)
+deactivate CommonTokenStream
+
+activate FormulaParser
+ExcelExpressionCompiler -> FormulaParser: parser = create(tokens)
+ExcelExpressionCompiler -> FormulaParser: tree = parser.expression()
+deactivate FormulaParser
+
+activate FormulaEvalVisitor
+ExcelExpressionCompiler -> FormulaEvalVisitor : create(cell)
+ExcelExpressionCompiler -> FormulaEvalVisitor : visit(tree)
+deactivate FormulaEvalVisitor
+
+activate Expression
+ExcelExpressionCompiler -> Expression: create()
+deactivate Expression
+
+ExcelExpressionCompiler -> ExcelExpressionCompiler: expression = convert(cell, tree)
+ExcelExpressionCompiler -> FormulaCompiler: expression
+deactivate ExcelExpressionCompiler
+
+activate Formula
+FormulaCompiler -> Formula: formula = create(cell, expression)
+deactivate Formula
+
+note left of Formula
+It was used the strategy pattern
+to facilitate the operations
+between different currecies
+end note
+
+FormulaCompiler -> CellImpl: formula
+deactivate FormulaCompiler
+
+CellImpl -> Cell: show()
+deactivate CellImpl
+Cell --> User: Result
+deactivate Cell
+
+@enduml

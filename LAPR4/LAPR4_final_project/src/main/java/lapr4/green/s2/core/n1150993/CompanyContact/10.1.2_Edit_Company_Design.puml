@@ -1,0 +1,33 @@
+@startuml
+
+actor User
+participant SideBar as sb
+participant ContactsMenu as menu
+participant EditCompanyMenu as menuCompany
+participant CompanyContactController as controller
+participant JPACompanyRepository as repository
+
+User->sb: Select Contacts
+create menu
+sb->menu: createContactsMenu()
+menu->User: Show contacts menu
+
+User->menu: Select edit company
+create menuCompany
+menu->menuCompany: create()
+create controller
+menuCompany->controller:create()
+menuCompany->controller: list=getAllCompanys()
+create repository
+controller->repository:create()
+controller->repository:getAllCompanys()
+menuCompany->User:Show a list of available companys
+User->menuCompany: Choose a company and introduce the new data of company
+menuCompany->controller: editCompany(c,name)
+controller->controller:validateInfo()
+alt validateInfo==true
+    controller->repository: editCompany(c,name)
+end
+
+
+@enduml

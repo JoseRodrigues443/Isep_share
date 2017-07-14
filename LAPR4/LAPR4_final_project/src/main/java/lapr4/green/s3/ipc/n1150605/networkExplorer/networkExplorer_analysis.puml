@@ -1,0 +1,9 @@
+@startuml
+
+actor User
+participant System
+
+User -> System: selects option to launch functionality
+System --> User: presents a tree with all instances of Cleansheets and its resources
+
+@enduml

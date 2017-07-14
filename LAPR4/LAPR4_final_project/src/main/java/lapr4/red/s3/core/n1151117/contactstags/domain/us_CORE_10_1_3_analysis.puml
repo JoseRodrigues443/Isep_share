@@ -1,0 +1,6 @@
+@startuml us_core_10_1_3_analysis.png
+
+Contact *--* Tag
+(Contact, Tag) .. TagList
+
+@enduml

@@ -1,0 +1,27 @@
+'1150710@isep.ipp.pt
+@startuml Lang07_beanShell_ window creation.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+@startuml 
+
+actor user
+participant UIController
+
+
+user -> UIController : select macro window
+activate UIController
+create MacrosPanel
+UIController -> MacrosPanel : create(uic)
+deactivate UIController
+user -> MacrosPanel : Choose write a script
+activate MacrosPanel
+create ScriptUI
+MacrosPanel -> ScriptUI : create(uic)
+deactivate MacrosPanel
+
+
+
+@enduml

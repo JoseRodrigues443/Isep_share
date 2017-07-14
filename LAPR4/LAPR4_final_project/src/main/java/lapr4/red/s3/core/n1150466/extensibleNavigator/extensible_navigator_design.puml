@@ -1,0 +1,28 @@
+@startuml extensible_navigator_design.png
+
+
+actor User
+    participant ExtensibleNavigatorPanel as UI
+    participant ExtensibleNavigatorController as CTRL
+    participant UIController as UICTRL 
+    participant UIExtension as EXTENSIONS
+    participant Extension as EXT
+    participant ListEnabledDisabledExtension as LIST
+    
+    User -> UI : begins use case
+    UI -> CTRL : create()
+    User -> UI : chooses a button
+    alt disabled/enabled
+    UI -> CTRL : getEnabledExtensions()
+    CTRL -> LIST : getListEnabled()
+loop
+    CTRL -> UICTRL : getExtensions()[i]
+    UICTRL -> EXTENSIONS : getExtension().equals(extension)
+    CTRL -> UICTRL : getExtensions()[num]
+    UICTRL -> EXTENSIONS : getContent()
+
+end
+    end
+    UI -> User : show results
+\
+@enduml

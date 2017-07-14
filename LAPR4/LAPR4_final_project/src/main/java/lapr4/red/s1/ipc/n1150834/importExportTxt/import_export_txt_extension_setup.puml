@@ -1,0 +1,25 @@
+  @startuml import_export_txt_extension_setup.png
+
+  participant "uic : UIController" as UIC
+  participant ExtensionManager as Manager
+  participant "extension : ImportExportTxtExtension" as Extension
+  participant "uiExtension : UIExtensionImportExportTxt" as UI
+  participant "Panel : JPanel" as panel
+
+  UIC -> Manager : extensions=getExtensions();
+  loop for Extension ext : extensions
+  	UIC -> Extension : uiExtension=getUIExtension(this);
+  	activate Extension
+  	create UI
+  	Extension -> UI : new(extension, uic)
+  	deactivate Extension
+  	UI -> UI : getSideBar();
+  	activate UI
+  	create panel
+  	Extension -> panel :  new (uic)  	
+  	deactivate Extension
+  	UIC -> UIC : uiExtensions.add(uiExtension);
+    deactivate UI
+  end
+  
+  @enduml

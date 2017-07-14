@@ -1,0 +1,62 @@
+@startuml IPC08.1_UDP_machineList_update.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+  box "Sender"
+    participant "SenderExtension"
+    participant "SenderUDP"
+    participant "SenderTCP"
+    participant "ReceiverTCP"
+  end box
+
+  box "Receiver"
+    participant "ReceiverExtension"
+    participant "ReceiverUDP"
+    participant "Receiver.ReceiverTCP"
+    participant "Receiver.SenderTCP"
+  end box
+
+create ReceiverUDP
+    ReceiverExtension -> ReceiverUDP : new(udpPort)
+loop waitting for udp broadcast THREAD    
+    ReceiverUDP -> ReceiverUDP : run()
+end
+
+create SenderUDP
+SenderExtension -> SenderUDP : new(udpPort);
+    loop send udp timd
+        SenderExtension -> SenderExtension : new Timer()
+        SenderExtension -> SenderUDP : sendMessage(message, ipAddress);
+    end
+        SenderUDP --> ReceiverUDP :  connection send
+    SenderExtension -> ReceiverTCP : new(tcpPort);
+
+loop waitting for request   
+    ReceiverTCP -> ReceiverTCP : run()
+    note right of ReceiverTCP : tread to receive
+end
+
+create Receiver.SenderTCP       
+ReceiverExtension -> Receiver.SenderTCP : new (tcpPort);
+
+ReceiverExtension ->Receiver.SenderTCP : send(message, address )
+
+Receiver.SenderTCP --> ReceiverTCP : sendTcpMessage();
+
+create SenderTCP
+SenderExtension -> SenderTCP : new (tcpPort)
+SenderTCP --> Receiver.ReceiverTCP : send(messageToSend, address);
+  
+
+
+
+
+
+
+
+
+@enduml

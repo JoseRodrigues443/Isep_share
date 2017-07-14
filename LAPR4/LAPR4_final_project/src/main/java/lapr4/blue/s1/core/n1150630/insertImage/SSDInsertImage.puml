@@ -1,0 +1,10 @@
+@startuml
+actor User
+participant System
+title : Insert Image
+User -> System : Wants to add a image in the active/selected cell.
+System-->User : Ask for the path to the image
+User->System : Inserts the path
+System-->User : Saves the path
+
+@enduml

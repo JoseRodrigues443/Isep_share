@@ -1,0 +1,10 @@
+@startuml
+User->UIImportLinkExtension:starts the import txt extension
+UIImportLinkExtension->ImportTxtFilePanel:create
+ImportTxtFilePanel-->User:asks the user to choose a file
+User->ImportTxtFilePanel:selects file
+ImportTxtFilePanel->TextFileController:importTxt(sheet,file)
+TextFileController->LinkFileImport:importFile(sheet, file)
+LinkFileImport->ImportThread:create()
+LinkFileImport->LinkFileImport:addFile(thread, file)
+@enduml

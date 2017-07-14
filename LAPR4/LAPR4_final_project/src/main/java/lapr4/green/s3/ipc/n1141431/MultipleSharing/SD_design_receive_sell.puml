@@ -1,0 +1,29 @@
+  @startuml IPC01.1_TCP_receive_Cell_update.png
+  box "Share Cell Extension Receiver TCP cell importer"
+    participant "ExtensionShareCellController"
+    participant "ExtensionConnectionManager"
+    participant "ShareCellWorker"
+    participant "ObjectConnectionTCP"
+    participant "ReceiverTCP"
+  end box
+
+create ExtensionConnectionManager 
+    ExtensionShareCellController -> ExtensionConnectionManager : create()
+create ShareCellWorker 
+    ExtensionConnectionManager -> ShareCellWorker : create()
+create ObjectConnectionTCP 
+    ShareCellWorker -> ObjectConnectionTCP : new(tcpPort)
+    ShareCellWorker -> ObjectConnectionTCP : clientStartReceiveMessage(this)
+create ReceiverTCP
+    ObjectConnectionTCP -> ReceiverTCP : create()
+    ObjectConnectionTCP -> ReceiverTCP : start()
+    loop While(receivesUdp)
+        ReceiverTCP -> ReceiverTCP : run()
+        note right of ObjectConnectionTCP : thread that receives TCP messages\nWhen received forces the ShareCellWorker\n to manage the message and update the machine list             
+        ShareCellWorker -> ShareCellWorker : messageReceivedTrigger(messageReceived)
+        ShareCellWorker -> ExtensionShareCellController : update()
+    end
+    
+    
+    
+@enduml

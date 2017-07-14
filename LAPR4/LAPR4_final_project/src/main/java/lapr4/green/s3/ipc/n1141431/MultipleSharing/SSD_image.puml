@@ -1,0 +1,11 @@
+@startuml
+
+
+User -> System : Iniciates the share cells UI.
+System -> User : asks to select at least one cell area
+User -> System : selects the area of the cells and confirms
+System -> User : list all users in the same network.
+User -> System : selects one user to share the cells.
+System -> User : Informs that the cells were shared and sens a message of success.
+User -> System : Done.
+@enduml

@@ -1,0 +1,8 @@
+@startuml ipc_05_2_flow.png
+User -> System: Activates the extension
+System --> User: Shows all profiles in network using the app
+User -> System: Selects a profile
+System --> User: Requires the message
+User -> System: Writes a message and send
+System --> User: Informs the success of the operation
+@enduml

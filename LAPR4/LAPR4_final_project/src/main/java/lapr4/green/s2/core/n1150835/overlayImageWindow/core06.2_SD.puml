@@ -1,0 +1,25 @@
+ @startuml core06.2_SD.png
+
+    participant User
+    participant ImageBrowserListener
+    participant ShowImageBrowserUI
+    participant ShowImageBrowserController
+    participant Grid
+    participant InsertImageCell
+    
+    User -> ImageBrowserListener : Puts mouse over cell with image(s)
+    ImageBrowserListener -> Grid : getImageCell(mouseLocation)
+    Grid  -> InsertImageCell  : getImageCell(mouseLocation)
+    ImageBrowserListener -> ShowImageBrowserUI: create(imageCell)
+    ShowImageBrowserUI -> ShowImageBrowserController: create(imageCell)
+    ShowImageBrowserUI -> ShowImageBrowserController : getImageList()
+    ShowImageBrowserController -> InsertImageCell : getImageList()
+    ShowImageBrowserUI -> User : Shows image
+    opt
+        User -> ShowImageBrowserUI : Selects another image
+        ShowImageBrowserUI -> User: Shows another image
+    end
+    User -> ImageBrowserListener : Stops hovering mouse from cell with image(s)
+    ImageBrowserListener -> ShowImageBrowserUI : closeUI()
+    
+ @enduml

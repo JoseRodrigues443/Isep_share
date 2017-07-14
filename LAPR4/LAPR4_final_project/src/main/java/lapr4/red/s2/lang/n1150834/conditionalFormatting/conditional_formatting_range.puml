@@ -1,0 +1,49 @@
+@startuml conditional_formatting_range.png
+  actor User
+  participant "UIExtensionConditionalFormattingRange" as UIExt
+  participant "ConditionalFormattingRangeMenu" as UI
+  participant "ConditionalFormattingRangeController" as Ctrl
+  participant "Language" as Language
+  participant "FormattingCondition" as Condition
+  participant "ConditionalFormattingRange" as Formatter
+  participant "uiController : UIController" as UIC
+  participant "FormulaCompiler" as FC
+  participant "sheet : Spreadsheet" as sheet
+  participant "cell : Cell" as cell
+
+
+  User -> UIExt : selects the formatting\n range option
+  create UI
+  UIExt -> UI : create(uiController)
+  create Ctrl
+  UI -> Ctrl: create(uiController)
+  activate UI
+  UI -> Ctrl: list=getFormattingConditions()
+  activate Ctrl
+  Ctrl ->Language :getBinaryOperators()
+  loop for RelationalOperator op : list
+  create Condition
+  Ctrl -> Condition: create(op)
+  end
+  UI -> User: asks for the cell range
+  User -> UI: gives the cell range
+  UI -> User: asks for a condition
+  User -> UI: gives the condition
+  UI -> Ctrl: formatRange(cell_range,condition,formlua)
+  create Formatter
+  Ctrl -> Formatter: create(uiController,cell_range,condition)
+  Ctrl -> Formatter: formatRange(formula)
+  activate Formatter
+  Formatter -> UIC : sheet=getActiveSpreadsheet();
+  loop for Cells cell : cell_range
+  Formatter -> sheet: cell=getCell(column,row)
+  Formatter -> cell :  content= getContent()
+  Formatter -> FC :  compile(cell,formula)
+  Formatter -> Condition : color = formatColor()
+  Formatter -> cell :  setBackgroundColor(color)
+  end
+  deactivate Formatter
+  deactivate Ctrl
+  UI -> User: shows the formatted cells
+  deactivate UI
+@enduml

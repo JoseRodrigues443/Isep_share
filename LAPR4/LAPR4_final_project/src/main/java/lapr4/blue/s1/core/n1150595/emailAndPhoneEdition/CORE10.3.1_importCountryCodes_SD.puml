@@ -1,0 +1,12 @@
+@startuml CORE10.3.1_emailAndPhoneEdition_SD.png
+
+User->ImportCountryCodesUI: selects the option of importing the country codes
+ImportCountryCodesUI-->ImportCountryCodesController: create
+ImportCountryCodesUI-->User:asks for the selection of a file
+User->ImportCountryCodesUI: fileName
+ImportCountryCodesUI->ImportCountryCodesController: importCountryCode(fileName)
+ImportCountryCodesController-->CountryCodesReader: create
+CountryCodesReader->CountryCodesReader: read()
+ImportCountryCodesUI-->User: reports operation success
+
+@enduml

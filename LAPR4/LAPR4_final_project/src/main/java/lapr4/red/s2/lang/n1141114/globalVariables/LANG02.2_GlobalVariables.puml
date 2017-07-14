@@ -1,0 +1,37 @@
+@startuml LANG02.2_GlobalVariables.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+    activate FormulaCompiler
+
+    activate ExcelExpressionCompiler
+    FormulaCompiler -> ExcelExpressionCompiler: compile()
+
+    activate FormulaEvalVisitor
+    ExcelExpressionCompiler -> FormulaEvalVisitor : create()
+    ExcelExpressionCompiler -> FormulaEvalVisitor : visit()
+
+    activate GlobalVariableReferenceSearch
+    FormulaEvalVisitor -> GlobalVariableReferenceSearch: create(cell, sheet, tempVariable)
+
+    activate GlobalVariableList
+    GlobalVariableReferenceSearch -> GlobalVariableList: addGlobalVariable(cell, sheet, tempVariable, value)
+    deactivate GlobalVariableReferenceSearch
+    deactivate GlobalVariableList
+
+    activate BinaryOperator
+    FormulaEvalVisitor -> BinaryOperator: visit()
+    
+    activate AssignmentOperator
+    BinaryOperator -> AssignmentOperator: applyTo()
+    deactivate BinaryOperator
+
+    note left of AssignmentOperator: simple global variable assign demonstration
+
+    AssignmentOperator -> GlobalVariableList: updateVariableValue(cell, sheet, tempVariable, value)
+
+@enduml

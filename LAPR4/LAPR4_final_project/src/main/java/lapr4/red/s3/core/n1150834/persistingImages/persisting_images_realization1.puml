@@ -1,0 +1,25 @@
+@startuml persisting_images_realization1.png
+
+actor User 
+participant "<<analysis>>\nImportImageUI" as UI
+participant "<<analysis>>\nImportImageCtrl" as Ctrl
+participant "<<analysis>>\nImportImage" as In
+participant "<<analysis>>\nCell" as Cell
+
+User->UI: selects the import option
+activate UI 
+UI->User: asks for the image path
+User->UI: gives the image path
+UI->User: imports the image into the workbook
+UI->Ctrl: importImage()
+activate Ctrl
+Ctrl->In: importImage()
+activate In
+In->Cell: addImage()
+activate Cell
+deactivate Cell
+deactivate In
+deactivate Ctrl
+deactivate UI
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+actor User
+
+participant AscendingOrDescendingColumnSortUI as uiSort
+participant SortColumnController as controller
+participant Sort as sort
+participant UIController as uiController
+
+
+activate uiSort
+User->uiSort : initiates the uc
+
+uiSort->controller : create()
+controller -> uiController :getUIController()
+uiSort->User : asks for the range for the sorting
+User-> uiSort : inserts the range
+uiSort->controller : chosengRange()
+uiSort->controller :ascendingOrDescendingRangeSort()
+controller->sort:getSort()
+controller->sort: ascendingOrDescendingRangeSort()
+controller->sort: sortSpreadsheet()
+uiSort->User : Shows columns organized
+@enduml

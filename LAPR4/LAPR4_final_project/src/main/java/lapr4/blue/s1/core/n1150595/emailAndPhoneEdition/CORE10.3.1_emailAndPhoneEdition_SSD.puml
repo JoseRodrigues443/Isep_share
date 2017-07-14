@@ -1,0 +1,10 @@
+@startuml 
+
+User->UI: selects the option of editing contact
+UI-->User: shows the parameters the user can change
+User->UI: selects the option of email and phone edition
+UI-->User: shows a window with the parameters the user can change
+User->UI: edits what he wants and confirms
+UI-->User: reports the operation success
+
+@enduml

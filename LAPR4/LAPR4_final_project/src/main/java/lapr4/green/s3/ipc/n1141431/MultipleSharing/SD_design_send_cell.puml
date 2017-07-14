@@ -1,0 +1,39 @@
+@startuml
+  box "Share Cell Extension TCP cell sender"
+    participant "ShareCellExtension"
+    participant "ShareCellController"
+    participant "ExtensionConnectionManager"
+    participant "ObjectConnectionTCP"
+    participant "SenderTCP"
+    participant "Socket"
+    participant "DataOutputStream"
+  end box
+
+create ShareCellController 
+    ShareCellExtension -> ShareCellController : create()
+    ShareCellExtension -> ShareCellController : shareSelectedCells()
+create ExtensionConnectionManager 
+    ShareCellController -> ExtensionConnectionManager : create()
+  ShareCellController -> Area : getArrayListSelectedCells()
+loop for(ArrayList a in ArrayList<CellsSelected>)
+    
+    ShareCellController -> ExtensionConnectionManager : cellMatrix = a
+
+create ObjectConnectionTCP 
+    ExtensionConnectionManager -> ObjectConnectionTCP : new(tcpPort)
+    ExtensionConnectionManager -> ObjectConnectionTCP : serverSendMessage(message, addressToSend)
+create SenderTCP
+    ObjectConnectionTCP -> SenderTCP : new(message, addressToSend)
+create Socket
+    SenderTCP -> Socket : socket = new Socket(ipAddress , tcpPort); 
+    ObjectConnectionTCP -> SenderTCP : send()
+   
+
+create DataOutputStream
+    SenderTCP -> DataOutputStream : new DataOutputStream(socket) 
+    SenderTCP -> SenderTCP : send()
+    SenderTCP -> SenderTCP : refresh(time)
+    note left of SenderTCP : it sends the object to another\n instance in the network
+    note right of SenderTCP : it refreshes the information sent from time to time(parameter)
+end
+@enduml

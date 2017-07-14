@@ -1,0 +1,31 @@
+@startuml extensible_navigator_design2.png
+
+
+actor User
+    participant ExtensibleNavigatorPanel as UI
+    participant Navigator as nav
+    participant ChooseContentDialog as DIALOG
+    participant Variables as VARIABLES
+    participant UIExtension  as ext
+    participant Class as CLASS
+    participant Fields as fields
+    participant List as LIST
+    User -> UI : selects navigator \ncontent button
+    UI -> nav : actionPerformed()
+    nav -> DIALOG : create()  
+    User -> DIALOG : chooses content \nto include
+    DIALOG->VARIABLES : create()
+    DIALOG->ext : setContent(variables)
+    ext->CLASS : getDeclaredFields()
+    nav->LIST : create()
+
+    loop for : field
+        ext->fields : field.equals(variable)
+        alt true
+        ext->LIST : add(x)
+        end    
+    end
+    
+
+\
+@enduml

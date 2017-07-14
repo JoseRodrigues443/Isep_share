@@ -1,0 +1,10 @@
+  @startuml us064_design2.png
+
+  participant "Client"
+  participant "CommClientWorker"
+
+
+  create CommClientWorker
+  Client -> CommClientWorker : new("server address", portNumber)
+
+  @enduml

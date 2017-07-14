@@ -1,0 +1,26 @@
+@startuml import_txt_extension_uc_realization1.png
+
+actor User 
+participant "<<analysis>>\nImport/ExportUI" as UI
+participant "<<analysis>>\nImport/ExportCtrl" as Ctrl
+participant "<<analysis>>\nImportText" as In
+participant "<<analysis>>\nSpreadsheet" as Sheet
+
+User->UI: Import Option
+activate UI 
+UI->User: Choose File
+User->UI: Chooses File
+UI->User: Asks for cell range
+User->UI: Gives cell range
+UI->Ctrl: importInformation()
+activate Ctrl
+Ctrl->In: importInformation()
+activate In
+In->Sheet: updateSheet()
+activate Sheet
+deactivate Sheet
+deactivate In
+deactivate Ctrl
+deactivate UI
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml LANG05.1_macro_window_analysis.png
+
+actor Actor
+  participant System
+
+  Actor -> System : starts use case
+  System -> Actor : Show operators
+  System -> Actor : Show functions
+  Actor -> System : Write macro lines
+  Actor -> System : Press execute button
+  System -> Actor : Show results
+
+@enduml

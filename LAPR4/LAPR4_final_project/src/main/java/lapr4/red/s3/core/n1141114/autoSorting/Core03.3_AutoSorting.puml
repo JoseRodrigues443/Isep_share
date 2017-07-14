@@ -1,0 +1,34 @@
+@startuml Core03.3_AutoSorting.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+    AutoSortingController->AutoSortingController: checkRange(focusOwner)
+    note right AutoSortingController
+        checks the selected range 
+    end note
+
+    create AutoSortingThread
+    AutoSortingController->AutoSortingThread: create(cellRange, uiController)
+
+    create SortAlgorithms
+    AutoSortingThread->SortAlgorithms: create()
+
+    AutoSortingThread->uiController: index = getActivateColumn()
+    note right AutoSortingThread
+        returns the index active column
+    end note
+
+    AutoSortingThread->uiController: sortingOrder = getSortingOrder()
+    note right AutoSortingThread
+        returns a boolean to know what sort needs to be applied
+    end note
+
+    AutoSortingThread->AutoSortingThread: run()
+
+    AutoSortingThread->SortAlgorithms: ascendingOrDescendingSort(cellRange, index)
+
+@enduml

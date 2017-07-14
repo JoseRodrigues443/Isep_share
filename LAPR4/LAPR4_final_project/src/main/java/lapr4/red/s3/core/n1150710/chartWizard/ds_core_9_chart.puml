@@ -1,0 +1,61 @@
+'1150710@isep.ipp.pt
+@startuml create_chart_core_9.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+    
+  box "Chart Creation"
+    actor user
+    participant "UI"
+    participant "ChartWizardController"  
+    participant "ChartTypeEnum"
+    participant "ChartCreator"
+    participant "ChartCreatorInterface"
+
+  end box
+
+ 
+    user -> UI : selects cell range
+
+    create ChartWizardController
+        UI -> ChartWizardController : new()
+
+    create ChartCreator
+        ChartWizardController -> ChartCreator : new()
+
+    UI -> user : show chart wizard   
+        
+    ChartTypeEnum -> ChartWizardController : typeOfChartsValues() 
+    ChartWizardController -> UI : listChartType();
+
+    user -> UI : edit chart configurations
+
+    UI -> ChartWizardController : editChart(info)
+    
+    ChartWizardController -> ChartTypeEnum : type : getChartType(selectedType)
+
+    ChartWizardController -> ChartCreator : setChartType(type)
+    
+    ChartWizardController -> ChartCreator : setHorizontal(true)
+
+    ChartWizardController -> ChartCreator : setLabel(label)
+
+    ChartCreator -> ChartCreatorInterface : new()
+
+    ChartCreatorInterface -> ChartCreator : createDataset()
+    
+    ChartCreator -> ChartWizardController : JFrame: chartImage()
+
+
+    UI -> user : show chart
+    
+    user -> UI : confirms chart
+    
+    UI -> user : show chart in cells
+        
+    
+    
+    
+@enduml

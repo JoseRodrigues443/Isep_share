@@ -1,0 +1,41 @@
+@startuml
+participant "User"
+participant "LogListUI"
+participant "LogListController"
+participant "TrafficAnalizer"
+participant "ConnectionUDP"
+participant "ConnectionTCP"
+participant "SecureCommunication"
+
+User -> LogListUI: requests the real time chart of the network traffic (Log sidebar)
+create LogListController
+    LogListUI->LogListController: create()
+
+loop (updates through a timer)
+    LogListUI->LogListController: getUnsecureIncomingColumn()
+    LogListController->TrafficAnalizer: unsecureIncoming()
+    TrafficAnalizer->ConnectionUDP: unsecureIncoming()
+    TrafficAnalizer->ConnectionTCP: unsecureIncoming()
+
+    LogListUI->LogListController: getUnsecureOutgoingColumn()
+    LogListController->TrafficAnalizer: unsecureOutgoing()
+    TrafficAnalizer->ConnectionUDP: unsecureOutgoing()
+    TrafficAnalizer->ConnectionTCP: unsecureOutgoing()
+
+    LogListUI->LogListController: getSecureIncomingColumn()
+    LogListController->TrafficAnalizer: secureIncoming()
+    TrafficAnalizer->SecureCommunication:secureIncoming()
+
+    LogListUI->LogListController: getSecureOutgoingColumn()
+    LogListController->TrafficAnalizer: secureOutgoing()
+    TrafficAnalizer->SecureCommunication:secureOutgoing()
+end
+
+LogListUI-->User: shows chart
+
+
+
+
+
+@enduml
+

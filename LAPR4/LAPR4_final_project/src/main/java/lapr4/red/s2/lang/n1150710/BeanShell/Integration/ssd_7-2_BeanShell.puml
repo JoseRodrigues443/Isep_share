@@ -1,0 +1,25 @@
+'1150710@isep.ipp.pt
+@startuml Lang07_2beanShell.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+
+
+  box "BeanShell Window"
+    actor "User" as user
+    participant "System"
+  end box
+
+user -> System : inserts function in cell (with a script name also inside)
+System -> user : Synchronously or asynchronously? (0/1)
+alt option 0 synchronously
+user  -> System : Synchronously
+else option 1 asynchronously
+user -> System : asynchronously
+end
+System -> user : sucess
+
+@enduml

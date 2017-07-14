@@ -1,0 +1,61 @@
+@startuml us_core_10_1_3_2_design.png
+	actor User as u
+    participant "contactPanel : ContactPanel" as cp
+	participant "ctrl : ContactController" as ctrl
+	participant "utils : Utils" as utils
+	participant "ContactsByTagUI" as ui
+	participant "c : Contact" as contact
+	participant "ctx : PersistenceContext" as ctx
+	participant "factory : RepositoryFactory " as fac
+	participant "cRepo : ContactRepository" as cRepo
+
+	u -> cp : selects a the search by tag
+	
+	create ctrl
+	cp -> ctrl : new(userProperties());
+	
+	ctrl -> ctx : repositories();
+	
+	create fac
+	ctx -> fac : create()
+
+	create cRepo
+	fac -> cRepo : contacts();
+	
+	create utils
+	cp -> utils : new();
+	
+	note left of utils
+		The Utils class was created
+		to facilitate the integration
+		of contacts edition in the
+		search contact by tag UI.
+	end note
+	
+    create ui
+    cp -> ui : new(ctrl);
+	
+	loop while the user wants to find contacts by tag
+		ui -> u : asks for tag to search
+		
+		u-> ui: writes the tag to search
+
+		
+		ui-> ctrl : contagsByTagValue(filter);
+		ctrl -> cRepo : findByTagValue(filter);
+		
+		ui -> u : shows all contacts with the tag
+	end
+
+	alt the user selects a contact and wants to edit it
+		ui -> utils : changeContact(c);
+		ui -> utils : changeActive();
+		
+		note left of utils
+			In the Utils class the contact and the edit intent
+			will be stored, so the previously created methods
+			to edit contact are called
+		end note
+	end
+
+@enduml

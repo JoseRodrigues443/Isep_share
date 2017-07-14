@@ -1,0 +1,12 @@
+@startuml
+actor User 
+participant System
+
+User->System: selects option to launch Function Intermidiate Wizard
+System->User: displays list with functions
+User->System: selects function
+System->User: presents details of the selected function (syntax and functionality)
+User->System: inserts parameters
+User->System: confirms the use of the function for the spreadsheet
+
+@enduml

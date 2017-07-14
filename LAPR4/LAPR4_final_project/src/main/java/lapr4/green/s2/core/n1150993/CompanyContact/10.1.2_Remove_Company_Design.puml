@@ -1,0 +1,31 @@
+@startuml
+
+actor User
+participant SideBar as sb
+participant ContactsMenu as menu
+participant RemoveCompanyMenu as menuCompany
+participant CompanyContactController as controller
+participant JPACompanyRepository as repository
+
+User->sb: Select Contacts
+create menu
+sb->menu: createContactsMenu()
+menu->User: Show contacts menu
+
+User->menu: Select remove company as contact
+
+create menuCompany
+menu->menuCompany: create()
+
+create controller
+menuCompany->controller: create()
+menuCompany->controller: getAllCompanys()
+create repository
+controller->repository:create()
+controller->repository:getAllCompanys()
+menuCompany->User:Show a list of available companys
+User->menuCompany:Select a company to remove
+menuCompany->controller:removeCompany(c)
+controller->repository:removeCompany(c)
+
+@enduml

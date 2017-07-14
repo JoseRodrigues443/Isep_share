@@ -1,0 +1,20 @@
+@startuml
+
+actor User
+participant "<<analysis>>\nSystem" as system
+participant "<<analysis>>\nDatabase" as db
+
+User->system: Select a range of cells to be used as source or destination
+system->User: Asks name of database and tabel
+User->system: Insert data
+system->User: Asks if user want import or export information
+User->system: Select one option.
+alt import option
+    system->db: Fill the cells with content of database(import)
+end
+alt export option
+    system->db: Export information of selected cells.
+end
+system->User: Asks confirmation
+User->system: Confirm
+@enduml

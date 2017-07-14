@@ -1,0 +1,83 @@
+@startuml LANG02.1_TemporaryVariables_Design.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+User --> CellEditor: Inputs block of instructions with global variables
+activate CellEditor
+CellEditor -> Address: address = getAddress()
+CellEditor -> Controller: cell = getCell(address)
+CellEditor -> Cell: setContent(content)
+deactivate CellEditor
+
+activate Cell
+Cell -> CellImpl: setContent(content)
+
+activate CellImpl
+CellImpl -> CellImpl: storeContent(content)
+CellImpl->FormulaCompiler: complie(cell, content)
+
+    activate FormulaCompiler
+
+    activate ExcelExpressionCompiler
+    FormulaCompiler -> ExcelExpressionCompiler: compile(cell, content)
+
+activate ANTLRStringStream
+ExcelExpressionCompiler -> ANTLRStringStream: input = create(source)
+deactivate ANTLRStringStream
+
+activate FormulaLexer
+ExcelExpressionCompiler -> FormulaLexer: lexer = create(input)
+deactivate FormulaLexer
+
+activate CommonTokenStream
+ExcelExpressionCompiler -> CommonTokenStream: tokens = create(lexer)
+deactivate CommonTokenStream
+
+activate FormulaParser
+ExcelExpressionCompiler -> FormulaParser: parser = create(tokens)
+ExcelExpressionCompiler -> FormulaParser: tree = parser.expression()
+deactivate FormulaParser
+
+activate FormulaEvalVisitor
+ExcelExpressionCompiler -> FormulaEvalVisitor : create(cell)
+ExcelExpressionCompiler -> FormulaEvalVisitor : visit(tree)
+
+activate TemporaryVariableReferenceSearch
+    FormulaEvalVisitor -> TemporaryVariableReferenceSearch: create(cell, sheet, tempVariable)
+
+    activate TemporaryVariableList
+    TemporaryVariableReferenceSearch -> TemporaryVariableList: addTemporaryVariable(cell, sheet, tempVariable, value)
+    deactivate TemporaryVariableReferenceSearch
+    deactivate TemporaryVariableList
+
+    activate BinaryOperator
+    FormulaEvalVisitor -> BinaryOperator: visit()
+    deactivate BinaryOperator
+    deactivate FormulaEvalVistior
+    
+    activate AssignmentOperator
+    BinaryOperator -> AssignmentOperator: applyTo()
+    note left of AssignmentOperator: simple temporary variable assign demonstration
+
+    AssignmentOperator -> TemporaryVariableList: updateVariableValue(cell, sheet, tempVariable, value)
+    deactivate AssignmentOperator
+
+    FormulaEvalVisitor->ExcelExpressionCompiler: expressionResult
+    deactivate FormulaEvalVisitor
+    ExcelExpressionCompiler->FormulaCompiler: expressionResult
+    deactivate ExcelExpressionCompiler
+
+    FormulaCompiler->CellImpl: setContent()
+    deactivate FormulaCompiler
+
+    CellImpl->Cell: updateCell(content)
+    deactivate CellImpl
+
+    Cell->User: Shows the output of the instruction
+    deactivate Cell
+    
+@enduml

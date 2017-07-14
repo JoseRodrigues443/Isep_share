@@ -1,0 +1,35 @@
+@startuml emailSMS_SSD.png
+
+skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+
+
+  box "Email/SMS"
+    actor "User"
+    participant "EmailSMSUI"
+    participant "EmailSMSController"
+    participant "ContactHandler"
+    participant "EmailHandler"
+    
+  end box
+  
+    User->EmailSMSUI:selects sends email option
+    note right: sms is simulated
+    create EmailSMSController
+    EmailSMSUI->EmailSMSController:new
+    EmailSMSUI->EmailSMSController:getListOfContacts
+    EmailSMSController->ContactHandler:getListOfContacts
+    EmailSMSUI->User:shows list of contacts
+    User->EmailSMSUI:selects recipients based on address, profession or tag
+    User->EmailSMSUI:types subject and body
+    EmailSMSUI->EmailSMSController:sendEmail
+    EmailSMSController->EmailHandler:sendEmail
+    note right: open default email app
+    EmailHandler->EmailHandler:saves email
+    EmailSMSUI->User:ends process
+    
+@enduml

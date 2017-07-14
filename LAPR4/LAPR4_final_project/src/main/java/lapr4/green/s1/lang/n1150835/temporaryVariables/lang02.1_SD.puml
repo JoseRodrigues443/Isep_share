@@ -1,0 +1,17 @@
+@startuml doc-files/sd_Lang02.1.png
+
+ User --> CellImpl: Inserts block of instructions with a formula that contains a variable
+ CellImpl->FormulaCompiler : storeContent(content)
+loop
+ FormulaCompiler->ExpressionCompiler : compile(cell,source)
+    loop
+        opt
+         VariableReference->Variable : create(variableName, 0.0)
+        end
+    end
+end
+
+ CellImpl->CellImpl : removeDependent(this)
+ CellImpl->CellImpl : fireContentChanged()
+ CellImpl->CellImpl : reevaluate()
+ @enduml

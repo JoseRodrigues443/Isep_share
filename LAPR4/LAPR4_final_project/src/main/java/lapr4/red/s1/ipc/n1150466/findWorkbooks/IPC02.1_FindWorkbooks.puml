@@ -1,0 +1,21 @@
+@startuml IPC02.1_FindWorkbooks.png
+
+  actor User
+  participant "<<analysis>>\nFindWorkbookUI" as UI
+  participant "<<analysis>>\nFindWorkbookCtrl" as ctrl
+  participant "<<analysis>>\nFileChooser" as fc
+
+User -> UI : insert directory to search
+activate UI
+
+UI -> ctrl : load directory content
+activate ctrl
+ctrl -> fc : filter .cls files
+deactivate ctrl
+UI -> UI : display .cls files
+deactivate UI
+User -> UI : select file to open
+activate UI
+UI -> ctrl : load file
+deactivate UI
+@enduml

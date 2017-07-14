@@ -1,0 +1,31 @@
+@startuml 
+  
+    participant "NetworkExplorerExtension"
+    participant "NetworkExplorerController"
+    participant "ExtensionConnectionManagerNetworkExplorer"
+    participant "ObjectConnectionTCP"
+    participant "SenderTCP"
+    participant "Socket"
+    participant "DataOutputStream"
+
+create NetworkExplorerController 
+    NetworkExplorerExtension -> NetworkExplorerController : new()
+    NetworkExplorerExtension -> NetworkExplorerController : sendCleansheetInstance(message)
+create ExtensionConnectionManagerNetworkExplorer
+    NetworkExplorerController -> ExtensionConnectionManagerNetworkExplorer : new(Cleansheet message)
+create ObjectConnectionTCP 
+    ExtensionConnectionManagerNetworkExplorer -> ObjectConnectionTCP : new(tcpPort)
+    ExtensionConnectionManagerNetworkExplorer -> ObjectConnectionTCP : serverSendMessage(message, addressToSend)
+create SenderTCP
+    ObjectConnectionTCP -> SenderTCP : new(message)
+create Socket
+    SenderTCP -> Socket : socket = new Socket(ipAddress , tcpPort); 
+    ObjectConnectionTCP -> SenderTCP : send()
+
+create DataOutputStream
+    SenderTCP -> DataOutputStream : new DataOutputStream(socket) 
+    SenderTCP -> SenderTCP : send()
+    note left of SenderTCP : it sends the object to another\n instance in the network
+
+
+@enduml

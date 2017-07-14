@@ -1,0 +1,9 @@
+@startuml
+actor User
+participant System
+title: Remove Image
+
+User->System : Selects the cell image to be removed
+System-->User : Removes the image and displays other image if the active cell has other.
+
+@enduml

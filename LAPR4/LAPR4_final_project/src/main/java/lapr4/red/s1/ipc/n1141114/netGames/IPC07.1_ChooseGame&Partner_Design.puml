@@ -1,0 +1,40 @@
+@startuml IPC08.1_UDP_machineList_update.png
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+actor User
+participant NetworkingGamesUI
+
+User->NetworkingGamesUI: Starts the use case
+create NetworkingGamesController
+NetworkingGamesUI->NetworkingGamesController: new();
+create ExtensionConnectionManagerGameCenter
+NetworkingGamesController->ExtensionConnectionManagerGameCenter: new();
+ExtensionConnectionManagerGameCenter->ExtensionConnectionManagerGameCenter: sendUDP(tcpPort);
+note left of ExtensionConnectionManagerGameCenter
+    sends signal to the other users
+end note
+create NetworkMachineListProfile
+NetworkingGamesController->NetworkMachineListProfile: new(GAME_CENTER);
+NetworkingGamesUI->User: Shows the user the profile photo selection
+User->NetworkingGamesUI: Selects a photo
+NetworkingGamesUI->NetworkingGamesController: updateProfile(photoDir);
+NetworkingGamesController->UserProfile: changeProfilePhoto(photoDir);
+note left of UserProfile
+    receives a String with the directory to the photo
+end note
+NetworkingGamesUI->NetworkingGamesController: showOnlineUsers();
+NetworkingGamesController->NetworkMachineListProfile: allMapMembers();
+NetworkingGamesUI->User: Shows all the online users ready to play
+User->NetworkingGamesUI: Selects one user
+NetworkingGamesUI->NetworkingGamesController: sendInvitation(address, tcpPort, profile);
+create TextConnectionTCP
+NetworkingGamesController->TextConnectionTCP: sendTCPConnection(address, tcpPort, profile);
+note left of TextConnectionTCP
+    networkAdress contains the adress to the user thats running the instance
+end note
+NetworkingGamesUI->User: The games starts
+@enduml

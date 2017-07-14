@@ -1,0 +1,27 @@
+  @startuml IPC01.1_ssd.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+/' SSD '/
+
+
+User -> System : Start cell sharing process
+System -> User : asks to select cell area (if not already selected)
+User -> System : selects cells
+System -> User : list all machines in network
+User -> System : selects one machine to share
+System -> User : informs sucess and that cells were sent.
+User -> System : Terminates process
+
+
+        
+    
+@enduml
+
+
+
+
+

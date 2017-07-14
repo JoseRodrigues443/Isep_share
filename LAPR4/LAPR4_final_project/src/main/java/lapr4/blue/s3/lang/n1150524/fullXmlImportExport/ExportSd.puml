@@ -1,0 +1,74 @@
+
+@startuml exportSd.png
+actor User
+participant ExportXMLUI as ui
+participant ExportXMLController as controller
+participant UIController as uiController
+participant CreateXML as crtXML
+participant SpreadSheetTable as table
+participant Workbook as w
+participant Cell as cell
+
+User->ui:start export xml
+ui->controller:create(controller)
+ui->User: Asks export type
+User->ui:choose type
+ui->User:Ask tags
+User->ui:Select tags
+ui->controller:changeDataFile(tags,f)
+controller->uiController:w=getAtiveWorkbook()
+controller->crtXML:create()
+controller->crtXML:selectFile(f)
+controller->crtXML:selectTags(tags)
+controller->crtXML:selectWorkbook(w)
+controller->crtXML:selectController(controller)
+
+
+alt export workbook
+    ui->controller:exportWorkbook()
+    controller->crtXML:exportWorkbook()
+    loop
+        crtXML->w:s=getSpreadSheet(index)
+        crtXML->table:create(s,controller)
+        crtXML->table:selectAll()
+        crtXML->table:listCells=getSelectedCells()
+        loop
+            crtXML->cell:getContent()
+            crtXML->cell:getAddress()
+            crtXML->cell:getFormula()
+    end
+        crtXML->w:getMacroMap()
+        crtXML->w:getGlobalVariables()
+end
+else export worksheet(numberWorksheets)
+    ui->controller:exportWorksheet(numberWorksheets)
+    controller->crtXML:exportWorksheet(numberWorksheets)
+    loop
+        crtXML->w:s=getSpreadSheet(index)
+        crtXML->table:create(s,controller)
+        crtXML->table:selectAll()
+        crtXML->table:listCells=getSelectedCells()
+        loop
+            crtXML->cell:getContent()
+            crtXML->cell:getAddress()
+            crtXML->cell:getFormula()
+         end
+        crtXML->w:getMacroMap()
+        crtXML->w:getGlobalVariables()
+    end
+
+else export part of worksheet(spreadsheetTable,numberWorksheet)
+    ui->controller:exportPartOfWorksheet(spreadsheetTable,number)
+    controller->crtXML:exportPartOfWorksheet(spreadsheetTable,number)
+    crtXML->table:listCells=getSelectedCells()
+    loop
+        crtXML->cell:getContent()
+        crtXML->cell:getAddress()
+        crtXML->cell:getFormula()
+    end
+        crtXML->w:getMacroMap()
+        crtXML->w:getGlobalVariables()
+end
+
+
+@enduml

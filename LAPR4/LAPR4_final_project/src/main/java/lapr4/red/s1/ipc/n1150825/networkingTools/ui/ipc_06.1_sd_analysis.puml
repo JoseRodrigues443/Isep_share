@@ -1,0 +1,4 @@
+@startuml ipc_06_1_flow.png
+User -> System: Activates the extension
+System --> User: Shows the log with all the communications
+@enduml

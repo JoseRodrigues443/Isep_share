@@ -1,0 +1,45 @@
+@startuml importxml_analysis.png
+
+actor User
+participant ImportXMLUI as ui
+participant ImportXMLController as controller
+participant UIController as uiController
+participant ImportData as imp
+participant Workbook as w
+participant File as f
+participant Cell as cell
+
+User->ui:start import
+ui->controller:create()
+ui->User: asks to select file
+User->ui: selects file
+ui->User: asks for import type
+User->ui:choose type
+ui->User:asks if the user wants to replace or append
+alt
+User->ui:selects the replace option
+else
+User->ui:selects the append option
+end
+ui->controller:setType(type)
+controller->uiController:w=getActiveWorkbook()
+controller->imp:create()
+controller->imp:selectFile(file)
+
+ui->controller:importWorkbook()
+controller->imp:importWorkbook()
+imp->w:create()
+loop for each spreadsheet \n for each cell in range
+    imp->file:c=spreadsheetContent()
+    loop
+        imp->file:cc = cellContent()
+        imp->file:ca = cellAddress()
+    end
+    imp->w:addSpreadsheet(c)
+    imp->cell:addComments()
+    imp->cell:addGlobalVariables()
+    imp->w:addMacros()
+end
+imp->uiController: setActiveWorbook(wb) // \nsetActiveWorksheet(ws)
+
+@enduml

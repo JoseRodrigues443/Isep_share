@@ -1,0 +1,56 @@
+  @startuml IPC01.1_TCP_receive_Cell_update.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+  box "Share Cell Extension Connection Manager"
+    participant "ExtensionConnectionManager"
+    participant "NetworkMachinesList"
+    participant "CellDTO"
+  end box
+
+collections ConnectionUDP.UDPReceiverManager
+collections ConnectionUDP.UDPSenderManager
+collections ObjectConnectionTCP.SenderTCP
+collections ObjectConnectionTCP.ReceiverTCP
+
+create NetworkMachinesList
+    ExtensionConnectionManager -> NetworkMachinesList : new()
+opt elements created and actions executed in start()
+    ExtensionConnectionManager -> ExtensionConnectionManager : start()
+create ConnectionUDP.UDPReceiverManager
+ExtensionConnectionManager -> ConnectionUDP.UDPReceiverManager : sendMessageUDP(message, address)
+loop
+    ConnectionUDP.UDPReceiverManager -> ExtensionConnectionManager: message()
+    ExtensionConnectionManager -> NetworkMachinesList : add(address, tcpPort    )
+end
+create ConnectionUDP.UDPSenderManager
+ExtensionConnectionManager -> ConnectionUDP.UDPSenderManager : new Timer(startReceiveMessage(this))
+    note right of ExtensionConnectionManager : automatic runs every 2 seconds to send message
+
+ExtensionConnectionManager -> ObjectConnectionTCP.ReceiverTCP: tcpListener(this)
+    loop
+        ObjectConnectionTCP.ReceiverTCP -> ExtensionConnectionManager : receivedObject()
+        create CellDTO
+               ExtensionConnectionManager -> CellDTO : new()
+               CellDTO -> CellDTO : importCells(cells)
+    end
+end
+        create CellDTO
+               ExtensionConnectionManager -> CellDTO : c:new()
+               
+ExtensionConnectionManager -> ObjectConnectionTCP.SenderTCP : sendCells(c)
+
+
+
+
+
+
+
+    
+    
+@enduml
+
+

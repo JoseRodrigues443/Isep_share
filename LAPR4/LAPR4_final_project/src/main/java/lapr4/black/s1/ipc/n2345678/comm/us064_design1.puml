@@ -1,0 +1,32 @@
+  @startuml us064_design1.png
+
+  participant "CommExtension"
+  participant "CommServer" <<singleton>>
+  participant "hRC:HandleReceiveCells" as HandleReceiveCells
+  participant CommServerWorker 
+  participant "outStream:ObjectOutputStream" as ObjectOutputStream
+  participant "inStream:ObjectInputStream" as ObjectInputStream
+  participant "dto:ResquestSharedCellsDTO" as RequestSharedCellsDTO
+
+  create CommServer
+  CommExtension -> CommServer : getCommServer()
+  create HandleReceiveCells
+  CommExtension -> HandleReceiveCells : hRC=new
+  note right of CommExtension: CommExtension adds an handler to process client requests to update cells
+  CommExtension -> CommServer : addHandler(hRC)
+  note right of CommServer: CommServer waits for client connection
+  note right of CommServer: Client connects to the server
+  create CommServerWorker
+  CommServer -> CommServerWorker : new(socket, theCommServer)
+  create ObjectOutputStream
+  CommServerWorker -> ObjectOutputStream : new(socket) 
+  create ObjectInputStream
+  CommServerWorker -> ObjectInputStream : new(socket) 
+  note right of CommServerWorker: CommServerWorker receives an Object from the socket
+  CommServerWorker -> ObjectInputStream : dto=readObject();
+  create RequestSharedCellsDTO
+  ObjectInputStream -> RequestSharedCellsDTO : new
+  CommServerWorker -> HandleReceiveCells : handleDTO(dto, outStream)
+  note right of HandleReceiveCells: HandleReceiveCells will now update the contents of the sheet with the cells received
+  
+  @enduml

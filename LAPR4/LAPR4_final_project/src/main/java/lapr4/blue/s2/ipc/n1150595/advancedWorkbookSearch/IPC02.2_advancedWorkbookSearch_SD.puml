@@ -1,0 +1,19 @@
+@startuml IPC02.2_advancedWorkbookSearch_SD.png
+
+User->FindWorkbooksSideBar: pattern, directory
+FindWorkbooksSideBar->AdvancedWorkbookSearchController: search()
+AdvancedWorkbookSearchController-->FindWorkbooksSideBar: list files
+FindWorkbooksSideBar->FindWorkbooksSideBar: updateList()
+User->FindWorkbooksSideBar: clicks 1 time to preview file
+FindWorkbooksSideBar->AdvancedWorkbookSearchController: preview(file)
+AdvancedWorkbookSearchController->AdvancedWorkbookSearch: preview(file, uiController)
+AdvancedWorkbookSearch->AdvancedWorkbookSearch: n=firstCell()
+AdvancedWorkbookSearch->AdvancedWorkbookSearch: updateColumns()
+AdvancedWorkbookSearch-->PreviewWorkbookUI: create
+AdvancedWorkbookSearch->PreviewWorkbookUI: preview(file, columns, firstColumn, firstRow, n)
+PreviewWorkbookUI-->AdvancedWorkbookSearch: preview table
+AdvancedWorkbookSearch-->AdvancedWorkbookSearchController: preview table
+AdvancedWorkbookSearchController-->FindWorkbooksSideBar: preview table
+FindWorkbooksSideBar-->User: shows preview table
+
+@enduml

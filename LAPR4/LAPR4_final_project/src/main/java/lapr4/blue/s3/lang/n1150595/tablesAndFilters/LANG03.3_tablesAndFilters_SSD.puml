@@ -1,0 +1,11 @@
+@startuml
+
+User->UI: the user opens the "Tables and Filters" sidebar
+User->UI: the user activates the "Tables and Filters" extension
+UI-->User: the system asks for a range of cells that's corresponding to the table
+User->UI: the user inserts a range of cells (the first row will correspond to the header)
+UI-->User: the system asks for a filter
+User->UI: the user inserts a filter
+UI-->User: the system turns invisible the rows that contain cells which do not match the filter
+
+@enduml

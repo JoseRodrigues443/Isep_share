@@ -1,0 +1,66 @@
+@startuml us_core_10_1_3_1_design.png
+	actor User as u
+    participant "contactPanel : ContactPanel" as cp
+	participant "ctrl : ContactController" as ctrl
+	participant "ContactDialog" as cdialog
+	participant "AddTagUI" as tagUI
+	participant "t : Tag" as tag
+	participant "c : Contact" as contact
+	participant "ctx : PersistenceContext" as ctx
+	participant "factory : RepositoryFactory " as fac
+	participant "cRepo : ContactRepository" as cRepo
+
+	u -> cp : selects a contact and clicks the button to add a tag
+	note right of u
+		The processes to display all contacts
+		and to select a single contact are
+		omitted since they are explained in
+		the previous use cases (e.g. Edit contact).
+		The 'c' variable will represent the selected
+		contact
+	end note
+	
+	create ctrl
+	cp -> ctrl : new(userProperties());
+	
+	ctrl -> ctx : repositories();
+	
+	create fac
+	ctx -> fac : create()
+
+	create cRepo
+	fac -> cRepo : contacts();
+	
+	
+    create cdialog
+    cp -> cdialog : showdialog(c, ctrl);
+	
+	
+	note left of cp
+		The showDialog method will receive
+		other arguments such as frame components.
+		Only Contact and ContactController are
+		mentioned because they are the most
+		important arguments  for this use case.
+	end note
+	
+	create tagUI
+	cdialog -> tagUI : create(c, ctrl);
+	
+	loop while the user wants to insert tags in the contact
+		tagUI -> u : asks for tag to add
+		
+		u-> tagUI: writes the tag to add
+		
+		create tag
+		tagUI -> tag : newTag = new(text);
+
+		tagUI -> ctrl : associateTagToContact(c,newTag);
+		tagUI -> ctrl : updateContact(c, y);
+		ctrl -> cRepo : save(c);
+		
+	end
+
+	cp -> u : informs the success of the operation
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+
+actor User
+participant UI as UI
+participant Controller as ctrl
+participant ExportEmailsAndPhones as exporter
+participant PersistenceContext as ctx
+participant RepositoryFactory as factory
+participant JpaContactRepository as repo
+participant UIController as uiCtrl
+participant SpreadsheetTable as table
+participant Cell as cell
+
+
+User -> UI: Selects export option
+UI -> ctrl: create()
+
+User -> UI: Types the expression
+User -> UI: Selects the type of operation
+User -> UI: Clicks OK
+
+UI -> ctrl: IsValid(expression)
+ctrl -> exporter: export(expression)
+exporter -> ctx: repositories()
+ctx -> factory: contacts()
+exporter -> repo: data = find(expression)
+
+exporter -> uiCtrl: spreadsheet = getActiveSpreadsheet()
+exporter -> table: create(spreadsheet, uiController)
+
+loop
+exporter -> cell: setContent(data[i][0])
+exporter -> cell: setContent(data[i][1])
+exporter -> cell: setContent(data[i][2])
+end
+
+@enduml

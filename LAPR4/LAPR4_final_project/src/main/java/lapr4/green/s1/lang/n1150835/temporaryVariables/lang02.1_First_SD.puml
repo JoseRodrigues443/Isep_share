@@ -1,0 +1,11 @@
+@startuml 
+
+User --> CellImpl: Inserts block of instructions with a formula that contains a variable
+CellImpl --> Formula: Creates variable
+Formula --> Variable: create()
+Formula --> Variable: setValue()
+Formula --> VariableList: save(v)
+CellImpl --> Formula: Calculates the result
+CellImpl --> User: Shows the result
+
+@enduml

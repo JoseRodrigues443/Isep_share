@@ -1,0 +1,50 @@
+@startuml
+
+actor User
+participant "ImportExportExtension" as extension
+participant "ImportExportDatabaseUI" as ui
+participant "ImportExporDatabaseController" as controller
+participant "ImportExportTable" as importExportTable
+participant "SpreadSheetTable" as spreadSheet
+participant "DataBaseManager" as jdbc
+participant "Cell" as cell
+
+
+User->extension: starts the process
+create ui
+extension->ui: create()
+create controller
+ui->controller:create()
+create importExportTable
+controller->importExportTable: create(uiController, connectionName,username,password)
+ui->controller: getSelectedCells()
+controller->importExportTable: getSelectedCells()
+importExportTable->spreadSheet: listCells=getSelectedCells()
+ui->User:Asks name of database conection, username and password
+User->ui: insert data and test connection
+ui->controller: testConnection()
+controller->importExportTable: testeConnection()
+create jdbc
+importExportTable->jdbc:create(username,password)
+importExportTable->jdbc: connectToDatabase(connectionName)
+ui->User: Asks the name of table
+User->ui: Insert data
+ui->controller:importTable(connection,tableName)
+controller->importExportTable: getColumnCount()
+
+loop for each column
+    controller->importExportTable:name=getColumnName(index)
+    importExportTable->cell: setContent(name)
+end
+
+loop for each row in selected cells
+    loop for each column in current row
+        controller->importExportTable:name=getColumnName(index)
+        importExportTable->cell:setContent(name)
+    end
+end
+ui->User: Inform the success
+
+
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+actor User 
+participant "<<analysis>>\nExportXMLUI" as UI
+participant "<<analysis>>\nExportXMLController" as controller
+participant "<<analysis>>\nCreateXML" as crt
+
+
+
+User->UI: Start process
+UI->User: Ask export type
+User -> UI : Select "Workbook", "Workheet" or "Worksheet part"
+UI->User: Asks tags
+User->UI: Input tags
+UI->controller: exportXML()
+controller->crt:exportXML()
+UI->User:Request confirmation
+User -> UI : Confirm
+
+
+@enduml

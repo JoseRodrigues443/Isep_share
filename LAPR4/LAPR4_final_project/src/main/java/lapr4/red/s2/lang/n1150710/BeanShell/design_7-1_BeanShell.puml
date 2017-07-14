@@ -1,0 +1,50 @@
+
+'1150710@isep.ipp.pt
+@startuml beanshellDS.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+actor user
+participant UIExtension 
+participant MacrosPanel
+participant ScriptUI
+
+
+
+
+user -> ScriptUI : write ScriptControllerript
+user -> ScriptUI : execute
+activate ScriptUI
+create ScriptController
+ScriptUI -> ScriptController : create()
+ScriptUI -> ScriptController : run(code:String)
+deactivate ScriptUI
+activate ScriptController
+create BeanShellInterpreter
+ScriptController -> BeanShellInterpreter : run(code:String):Value
+deactivate ScriptController
+activate BeanShellInterpreter
+
+
+participant UIController
+BeanShellInterpreter -> UIController : getApp()
+participant CleanSheets
+BeanShellInterpreter -> CleanSheets : create()
+
+
+create Macro
+BeanShellInterpreter -> Macro : create(name:String, sp:SpreadSheet)
+loop for each line
+    BeanShellInterpreter -> Macro : addLine(lines:String)
+end loop
+
+
+BeanShellInterpreter -> Macro : evaluate()
+
+deactivate BeanShellInterpreter
+ScriptUI --> user : showValue()
+deactivate ScriptUI
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+actor User
+participant System
+title: Show Image
+User->System : Select the side bar with the list of images.
+System->User : Shows the list of images of the active/selected cell
+User->System : Select one of the image list.
+System->User : Shows the selected image.
+
+@enduml

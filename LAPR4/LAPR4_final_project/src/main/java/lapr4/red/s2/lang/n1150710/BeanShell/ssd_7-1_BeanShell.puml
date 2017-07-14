@@ -1,0 +1,32 @@
+'1150710@isep.ipp.pt
+@startuml Lang07_beanShell.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+
+
+  box "BeanShell Window"
+    actor "User" as user
+    participant "System"
+  end box
+
+user -> System : selects beansShell optin
+System -> user : generate script?
+    alt
+        user -> System : yes
+        System -> user : show generated  script
+            opt optional
+                user -> System : alter/edit script
+            end
+            System -> user : run script?
+            user -> System : yes
+            System -> user : show executed script output
+    else 
+user -> System : no
+end
+System -> user : ends UC
+
+@enduml

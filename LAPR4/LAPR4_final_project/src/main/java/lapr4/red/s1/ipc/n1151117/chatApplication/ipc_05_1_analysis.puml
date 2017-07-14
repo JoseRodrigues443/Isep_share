@@ -1,0 +1,6 @@
+@startuml ipc_05_1_analysis.png
+
+Chat "1" *-- "*" Message : stored at <
+Message "1" -- "2..*"User : send <
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+
+actor User
+participant "<<analysis>>\nMainMenuSideBar" as UI
+participant "<<analysis>>\nCompanyContactController" as ctrl
+participant "<<analysis>>\nc=Contact" as contact
+participant "<<analysis>>\ncompany=Company" as company
+participant "<<analysis>>\nDatabasee" as db
+
+User -> UI : User choose create a company
+UI->User:Asks name of company
+User->UI: Choose name
+UI->ctrl: createCompany(name)
+ctrl->company: c=createCompany(name)
+ctrl->db:validate(c)
+alt validate==true
+    ctrl->db:saveCompany(company)
+end
+
+User->UI: Create a person contact
+UI->ctrl: list=getProfessions()
+UI->ctrl: createPersonContact(firstName,lastName,photo,profession)
+ctrl->ctrl: validateInformation()
+alt validateInformation==true
+    ctrl->contact: c=createPersonContact(firstName,lastName,photo,profession)
+    ctrl->db:validatePersonContact(c)
+    alt validatePersonContact==true
+        ctrl->db:savePersonContact(c)
+    end
+end
+
+User->UI: Request all contacts
+UI->ctrl: getAllPersonContacts()
+ctrl->db: getAllPersonContacts()
+UI->User: Show all contact
+User->UI: choose one contact
+UI->ctrl: addPersonContactToCompany(c)
+ctrl->db: addPersonContactToCompany(c)
+ctrl->db: getEventFromPersonContact(c)
+
+@enduml

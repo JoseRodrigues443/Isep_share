@@ -1,0 +1,12 @@
+@startuml
+title Navigation Window SSD
+
+actor User as User
+participant System as System
+
+User -> System: Iniciates in the system the Navigation Panel
+System -> User: Shows The navigation Side bar
+User -> System: Chooses an option
+System -> User: Shows all matches according to the option
+User -> System: Done
+@enduml

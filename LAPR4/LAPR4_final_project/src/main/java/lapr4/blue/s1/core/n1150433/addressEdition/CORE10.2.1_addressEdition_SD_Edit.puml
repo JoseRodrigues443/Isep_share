@@ -1,0 +1,16 @@
+@startuml
+
+User->AddressEditionUI:selects the option to edit an address
+AddressEditionUI->AddressEditionController: create()
+AddressEditionController->Contact:address=getAddressInfo()
+AddressEditionUI-->User:shows the address parameters so that the user can change them
+User->AddressEditionUI:Address(street, town, postal code, city and country)
+AddressEditionUI->AddressEditionController:changeAddress(street, twon, postalCode, city, country)
+AddressEditionController->Contact:changeAddress(street, twon, postalCode, city, country)
+Contact->Address:address=change(street, twon, postalCode, city, country)
+Address->Address:validate()
+Address-->Contact:saveAddress(address)
+AddressEditionController->ContactRepository:save(contact)
+AddressEditionUI-->User:reports success
+
+@enduml

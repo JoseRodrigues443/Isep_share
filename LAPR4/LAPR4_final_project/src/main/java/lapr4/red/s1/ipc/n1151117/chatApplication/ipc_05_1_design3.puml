@@ -1,0 +1,44 @@
+@startuml ipc_05_1_design3.png
+    actor User as u
+    participant "chatUI : ChatUI" as ui
+    participant "ChatController" as ctrl
+    participant "ExtensionConnectionManagerChatApplication : connManager" as connManager
+    participant "SendMessageController" as messageCtrl
+    participant "chat: Chat" as chat
+    participant "chatList: ChatList" as chatList
+    participant "dialog: JDialog" as dialog
+
+    u -> ui : starts the chat extension
+    create ctrl
+    ui -> ctrl : new()
+    
+    create connManager
+    ctrl -> connManager : new()
+    note right of connManager
+        To understand the Extension
+        Manager, there is already a
+        diagram on network package called
+        "IPC01.1_Extension Manager start up"
+        the difference to this is the object used
+        since the chat uses Messages and not Cells.
+    end note
+	
+    connManager -> ui : notify(message);
+    note left of connManager
+        Using the Observer pattern
+        the extension notifies the
+        ui that there is a new message
+        to show.
+    end note
+    
+    
+    create chatList
+    ctrl -> chatList : new();
+    ctrl -> chat : c = new(message);
+    ctrl -> chatList : addChat(c)
+    
+    create dialog
+    ctrl -> dialog : new(message, fromIP);
+    
+
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+
+actor User
+participant UI as UI
+participant Controller as ctrl
+participant UIController as uiCtrl
+participant SpreadsheetTable as table
+participant ImportEmails as importE
+participant ImportPhones as importP
+participant PersistenceContext as ctx
+participant RepositoryFactory as factory
+participant Cell as cell
+participant Email as email
+participant PhoneNumber as phone
+participant Contact as contact
+participant JpaContactRepository as repo
+
+
+User -> UI: Selects import option
+UI -> ctrl: create()
+ctrl -> uiCtrl: spreadsheet = getActiveSpreadsheet()
+ctrl -> table: create(spreadsheet, uiController)
+
+UI --> User: Asks which cells contain the contact's data
+User -> UI: Selects the cells
+ctrl -> table: cells = getSelectedCells()
+ctrl -> ctrl: validateNumberOfArguments(cells)
+
+ctrl -> importE: create(cells[1])
+loop
+importE -> email: validate(stringEmail)
+importE -> email: email[i] = create(stringEmail)
+end
+
+ctrl -> importP: create(this, cells[2])
+loop
+importP -> phone: validate(stringPhone)
+importP -> phone: phone[i] = create(stringPhone)
+end
+
+User -> UI: Clicks OK button
+UI -> ctrl: importData()
+ctrl -> ctx: repositories()
+ctx -> factory: contacts()
+
+loop
+ctrl -> repo: contact = findByName(cells[i][0])
+ctrl -> contact: setMainEmail(email)
+ctrl -> contact: setWorkPhone(phone)
+ctrl -> repo: save(contact)
+end
+
+@enduml

@@ -1,0 +1,21 @@
+@startuml ipc_05_3_flow.png
+actor User
+
+note right of User
+    There are 2 types of chat rooms:
+    Public - Announced to all instances of Cleansheets, any user can enter.
+    Private - Not announced in the network, the owner has to invite other users.
+end note
+
+User -> System: Activates the extension
+System --> User: Shows the existing public chat rooms
+alt Joining a chat room
+    User -> System: Chooses a room and joins it
+else Creating a chat room
+    User -> System: Starts the chat room creation
+    System --> User: Asks for the room's name and type
+    User -> System: Provides the required data
+    System --> User: Informs that the room is created if its name was successfully validated
+end
+
+@enduml

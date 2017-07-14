@@ -1,0 +1,37 @@
+@startuml LANG02.1_TemporaryVariables.png
+
+   skinparam handwritten false
+   skinparam monochrome false
+   skinparam packageStyle rect
+   skinparam defaultFontName FG Virgil
+   skinparam shadowing false
+
+    activate FormulaCompiler
+
+    activate ExcelExpressionCompiler
+    FormulaCompiler -> ExcelExpressionCompiler: compile()
+
+    activate FormulaEvalVisitor
+    ExcelExpressionCompiler -> FormulaEvalVisitor : create()
+    ExcelExpressionCompiler -> FormulaEvalVisitor : visit()
+
+    activate TemporaryVariableReferenceSearch
+    FormulaEvalVisitor -> TemporaryVariableReferenceSearch: create(cell, sheet, tempVariable)
+
+    activate TemporaryVariableList
+    TemporaryVariableReferenceSearch -> TemporaryVariableList: addGlobalVariable(cell, sheet, tempVariable, value)
+    deactivate TemporaryVariableReferenceSearch
+    deactivate TemporaryVariableList
+
+    activate BinaryOperator
+    FormulaEvalVisitor -> BinaryOperator: visit()
+    
+    activate AssignmentOperator
+    BinaryOperator -> AssignmentOperator: applyTo()
+    deactivate BinaryOperator
+
+    note left of AssignmentOperator: simple temporary variable assign demonstration
+
+    AssignmentOperator -> TemporaryVariableList: updateVariableValue(cell, sheet, tempVariable, value)
+
+@enduml

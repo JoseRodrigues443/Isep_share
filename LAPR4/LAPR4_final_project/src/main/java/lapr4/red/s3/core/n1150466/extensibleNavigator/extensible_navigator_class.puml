@@ -1,0 +1,7 @@
+@startuml extensible_navigator_class.png
+UIExtension --|> Navigator
+Navigator --|> classUIExtension
+
+UIExtension --|> classUIExtension
+
+@enduml

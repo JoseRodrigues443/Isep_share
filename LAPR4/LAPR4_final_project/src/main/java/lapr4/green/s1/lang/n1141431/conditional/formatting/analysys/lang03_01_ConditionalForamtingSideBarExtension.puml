@@ -1,0 +1,14 @@
+
+@startuml lang03_01_ConditionalForamtingSideBarExtension.png
+  actor Actor
+ participant "<<Analysis>>\nUIConditionalFormattingCellExtension" as CFCExtension
+  participant "<<Analysis>>\nUIConditionalFormattingCellSideBarExtension" as UICFCExtension
+  participant "<<Analysis>>\nConditionalFormattingCellPanel" as CFCpanel
+
+
+  
+Actor -> CFCExtension : starts use case
+CFCExtension ->UICFCExtension :create()
+  UICFCExtension -> CFCpanel : create()
+  CFCpanel -> Actor: shows side bar
+@enduml

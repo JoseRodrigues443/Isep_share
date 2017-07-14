@@ -1,0 +1,21 @@
+'1150710@isep.ipp.pt
+@startuml ssd_chart.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+
+
+  box "Create Chart"
+    actor "User" as user
+    participant "System"
+  end box
+
+user -> System : Selects range of cells
+System -> user : shows chart editor
+user -> System : edits parameters (vertical/horizontal\n names, labels, etc)
+System -> user : Shows chart of the selected cells
+
+@enduml

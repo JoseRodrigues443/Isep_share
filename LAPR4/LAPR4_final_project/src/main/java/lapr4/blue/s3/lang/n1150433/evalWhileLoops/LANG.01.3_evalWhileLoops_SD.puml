@@ -1,0 +1,30 @@
+@startuml
+User->CellEditor: insert Instruction
+CellEditor->CellEditor: stopCellEditing()
+CellEditor->CellImpl: setContent(content)
+CellImpl->CellImpl:storeContent(content)
+CellImpl->FormulaCompiler: formula=compile(cell, instruction)
+loop for each ExpressionCompiler:
+    FormulaCompiler->ExcelExpressionCompiler:expression = compile(cell, instruction)
+    ExcelExpressionCompiler->ANTLRStringStream: input = new(instruction)
+    ExcelExpressionCompiler->FormulaLexer: lexer = new(input)
+    ExcelExpressionCompiler->CommonTokenStream:tokens= new (lexer)
+    ExcelExpressionCompiler->FormulaParser:parser = new(tokens)
+    ExcelExpressionCompiler->Tree:tree = parser.expression().getTree()
+    ExcelExpressionCompiler->FormulaEvalVisitor:visit(tree)
+    ExcelExpressionCompiler->Expression:create()
+    ExcelExpressionCompiler->ExcelExpressionCompiler:expression = convert(cell, tree)
+    alt:
+        ExcelExpressionCompiler->Eval:expression = new Eval()
+    else
+        ExcelExpressionCompiler->DoWhile:expression = new DoWhile()
+    else
+        ExcelExpressionCompiler->WhileDo:expression = new WhileDo()
+    end
+    FormulaCompiler->FormulaCompiler: formula = new Formula(cell, expression)
+end
+FormulaCompiler->FormulaCompiler: formula = null
+CellImpl->CellImpl:updateDependencies()
+CellImpl->CellImpl:reevaluate()
+CellEditor->UIController: setActiveCell(cell)
+@enduml

@@ -1,0 +1,24 @@
+@startuml LANG05.1_macro_window_design.png
+
+actor User
+    participant MacroWindowUI as UI
+    participant MacroWindowController as CTRL
+    participant Macro as MACRO
+    participant MacroLanguage as LANGUAGE
+    participant MacroFormulaCompiler as COMPILER    
+    
+    User -> UI : starts use case
+    UI -> CTRL : functions()
+    CTRL -> LANGUAGE : getInstance().functions()
+    UI -> User : show operators
+    UI -> CTRL : operators()
+    CTRL -> LANGUAGE : getInstance().operators()
+    UI -> User : show functions
+    User -> UI : write macro lines
+    User -> UI : press execute Button
+    UI -> CTRL : execute (lines)
+    CTRL -> MACRO : execute(cell, lines)
+    MACRO -> COMPILER : compile(cell, lines)
+    CTRL -> UI : show results
+    UI -> User : show results
+@enduml

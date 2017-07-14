@@ -1,0 +1,10 @@
+@startuml us_LANG_02_2_sd.png
+interface Money
+
+Euro --|> Money : currency of
+Dollar --|> Money : currency of
+Pound --|> Money : currency of
+Money -- ExchangeRate : > has
+ExchangeRate -- Money : > to other
+
+@enduml

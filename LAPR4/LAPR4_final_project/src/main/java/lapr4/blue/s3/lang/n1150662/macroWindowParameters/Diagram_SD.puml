@@ -1,0 +1,42 @@
+@startuml multipleMacro_SD.png
+
+
+skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+
+
+  box "Macro Window"
+  actor "User"
+  participant "MacroWindowUI"
+  participant "Controller"
+  participant "Workbook"
+  participant "MacroHandler"
+  participant "Macro"
+
+  end box
+
+User -> MacroWindowUI : selects MacroWindow option
+create Controller
+MacroWindowUI->Controller:new()
+MacroWindowUI->Controller:macroMap
+Controller->Workbook:macroMap
+MacroWindowUI->User:shows saved Macros
+User -> MacroWindowUI : types new Macro script
+MacroWindowUI->Controller : execute
+create Macro
+Controller->Macro: new Macro
+note left : simplified(See sprint1 javadoc)
+Controller -> MacroHandler: invocations(Macro)
+Controller->Macro:execute
+Controller->MacroWindowUI:output
+User -> MacroWindowUI : names and saves Macro
+MacroWindowUI->Controller: saveMacro
+Controller->Workbook:addMacro(Name,Macro)
+MacroWindowUI->MacroWindowUI:updates UI Macro list
+
+MacroWindowUI -> User : success
+@enduml

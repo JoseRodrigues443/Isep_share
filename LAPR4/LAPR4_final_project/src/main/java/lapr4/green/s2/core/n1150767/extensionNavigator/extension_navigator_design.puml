@@ -1,0 +1,51 @@
+@startuml CORE04.2_extension_navigator_design.png
+
+actor User
+    participant ExtensionNavigatonPanel as UI
+    participant ExtensionNavigatorController as CTRL
+    participant UIController as UICTRL 
+    participant UIExtension as EXTENSIONS
+    participant Extension as EXT
+    participant ListEnabledDisabledExtension as LIST
+    
+    User -> UI : starts use case
+    UI -> CTRL : create()
+    User -> UI : chooses a button
+    alt
+    UI -> CTRL : getEnabledExtensions()
+    CTRL -> LIST : getListEnabled()
+loop
+    CTRL -> UICTRL : getExtensions()[i]
+    UICTRL -> EXTENSIONS : getExtension().equals(extension)
+    CTRL -> UICTRL : getExtensions()[num]
+    UICTRL -> EXTENSIONS : getCellDecorator()
+    UICTRL -> EXTENSIONS : getTableDecorator()
+    UICTRL -> EXTENSIONS : getToolBar()
+    UICTRL -> EXTENSIONS : getSideBar()
+    UICTRL -> EXTENSIONS : getMenu()
+end
+    end
+    alt
+    UI -> CTRL : getDisabledExtensions()
+    CTRL -> LIST : getListDisabled()
+loop
+    CTRL -> UICTRL : getExtensions()[i]
+    UICTRL -> EXTENSIONS : getExtension().equals(extension)
+    CTRL -> UICTRL : getExtensions()[num]
+    UICTRL -> EXTENSIONS : getCellDecorator()
+    UICTRL -> EXTENSIONS : getTableDecorator()
+    UICTRL -> EXTENSIONS : getToolBar()
+    UICTRL -> EXTENSIONS : getSideBar()
+    UICTRL -> EXTENSIONS : getMenu()
+end
+    end
+    UI -> User : show results
+    User -> UI : selects a enabled extension
+    UI -> CTRL : runExtension()
+    CTRL ->UICTRL : getExtensions()[i]
+    UICTRL -> EXTENSIONS : getExtension().equals(extension)
+    EXTENSIONS -> EXT : getExtension()
+    EXT -> EXTENSIONS : getUIExtension()
+    UI -> User : runs a extension
+
+@enduml

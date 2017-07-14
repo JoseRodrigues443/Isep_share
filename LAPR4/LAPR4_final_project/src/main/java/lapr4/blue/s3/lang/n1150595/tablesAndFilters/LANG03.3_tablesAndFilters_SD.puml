@@ -1,0 +1,39 @@
+@startuml
+
+User->TablesAndFiltersSideBar: after selecting some cells to form a table selects the New table option
+TablesAndFiltersSideBar-->User: asks for a name to the table
+User->TablesAndFiltersSideBar: name
+TablesAndFiltersSideBar->TablesAndFiltersController: validateSelectedCells()
+TablesAndFiltersController->TablesAndFiltersController: validateCells()
+TablesAndFiltersController->SpreadsheetTable: selectedCells=getSelectedCells()
+TablesAndFiltersController-->TablesAndFilters: create
+TablesAndFiltersController->TablesAndFilters: setContent(selectedCells)
+TablesAndFiltersController->TablesAndFiltersController: setActualTable(table)
+TablesAndFiltersSideBar->TablesAndFiltersController: updateContent(name)
+TablesAndFiltersController->TablesAndFiltersSideBar: addTable(table)
+TablesAndFiltersSideBar-->User: shows the list of existing tables
+User->TablesAndFiltersSideBar: selects a table
+TablesAndFiltersSideBar-->User: asks for a new filter
+User->TablesAndFiltersSideBar: selects the function
+TablesAndFiltersSideBar->TablesAndFiltersController: selectFunction()
+TablesAndFiltersSideBar->TablesAndFiltersController: syntax()
+User->TablesAndFiltersSideBar: writes the filter
+User->TablesAndFiltersSideBar: applies the filter
+TablesAndFiltersSideBar->TablesAndFiltersController: setActualTable(table)
+TablesAndFiltersSideBar->TablesAndFiltersController: applyFilter(filter)
+TablesAndFiltersController->TablesAndFiltersController: f=formula()
+TablesAndFiltersController->FormulaCompiler: compile(createdCell, f)
+TablesAndFiltersSideBar-->User: shows the table with filter applied
+User->TablesAndFiltersSideBar: selects a table to remove applied filter
+TablesAndFiltersSideBar->TablesAndFiltersController: setActualTable(table)
+User->TablesAndFiltersSideBar: selects the filter that doesn't want to apply anymore
+User->TablesAndFiltersSideBar: selects the option to remove the filter
+TablesAndFiltersSideBar->TablesAndFiltersController: removeFilter(filter)
+TablesAndFiltersController->TablesAndFilters: removeFilter(filter)
+TablesAndFilters->TablesAndFilters: remove(filter)
+TablesAndFiltersSideBar->TablesAndFiltersController: resetContent()
+TablesAndFiltersController->TablesAndFilters: resetContent()
+TablesAndFilters->TablesAndFilters: resetContent()
+TablesAndFiltersSideBar-->User: shows the updated table
+
+@enduml

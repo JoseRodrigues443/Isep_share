@@ -1,0 +1,55 @@
+@startuml
+actor User 
+participant AdvancedWizardUI
+participant AdvancedWizardController
+participant Language
+participant Function
+participant FunctionParameter
+participant UIController
+participant Formula
+participant FormulaCompiler
+
+User->AdvancedWizardUI: starts functionality
+AdvancedWizardUI->AdvancedWizardController: create()
+AdvancedWizardController->Language: getInstance()
+AdvancedWizardUI->AdvancedWizardController: f = functions()
+AdvancedWizardController->Language: f = getFunctions()
+
+loop for each function
+    AdvancedWizardUI->AdvancedWizardController: s = getFunctionIdentifier(f)
+    AdvancedWizardController->Function: s = getIdentifier()
+end
+loop for each function 
+AdvancedWizardUI->User: shows available functions
+User->AdvancedWizardUI: selects function
+AdvancedWizardUI->AdvancedWizardController: fp = functionParameters(f)
+AdvancedWizardUI->AdvancedWizardController: stx= getSintax()
+AdvancedWizardController->Function: fp = getParameters()
+AdvancedWizardController->Function: stx = getSintax()
+
+loop for each parameter
+User->AdvancedWizardUI: selects a parameter in the box, inserts the value and clicks add
+AdvancedWizardUI->AdvancedWizardController: name = parameterName(p)
+AdvancedWizardController->FunctionParameter: name = getName()
+AdvancedWizardUI->AdvancedWizardController: desc = getDescription(p)
+AdvancedWizardController->FunctionParameter: desc = getDescription()
+end
+AdvancedWizardUI->User: shows details of the selected function
+User->AdvancedWizardUI: adds function into formula box
+AdvancedWizardUI->AdvancedWizardController: updateResult()
+AdvancedWizardController-> Formula: new()
+Formula->FormulaCompiler: compile()
+AdvancedWizardUI->User: shows result
+end
+User->AdvancedWizardUI: asks to show generated tree
+AdvancedWizardUI-> AdvancedWizardController: getTreeSource()
+AdvancedWizardUI-> AdvancedWizardController: generateTree()
+AdvancedWizardUI->AdvancedWizardUI: treeAction()
+AdvancedWizardUI->User: shows Tree generated
+
+User->AdvancedWizardUI: confirms
+AdvancedWizardUI->AdvancedWizardController: setFormulaBarExpression(uiController, str)
+AdvancedWizardController->UIController: cell = getActiveCell()
+UIController->Cell: setContent(str)
+
+@enduml

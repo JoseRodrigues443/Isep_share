@@ -1,0 +1,72 @@
+@startuml ipc_05_1_design2.png
+    actor User as u
+    participant "chatUI : ChatUI" as ui
+    participant "ChatController" as ctrl
+    participant "ExtensionConnectionManagerChatApplication : connManager" as connManager
+    participant "SendMessageController" as messageCtrl
+    participant "chat: Chat" as chat
+    participant "chatList: ChatList" as chatList
+
+    u -> ui : starts the chat extension
+    create ctrl
+    ui -> ctrl : new()
+    
+    create connManager
+    ctrl -> connManager : new()
+    note right of connManager
+        To understand the Extension
+        Manager, there is already a
+        diagram on network package called
+        "IPC01.1_Extension Manager start up"
+        the difference to this is the object used
+        since the chat uses Messages and not Cells
+    end note
+    
+    create messageCtrl
+    ui -> messageCtrl : new()
+   
+    create chatList
+    ctrl -> chatList : cl = new();
+	
+    ui -> ctrl : showOnlineUsers();
+    ctrl -> connManager : allMapMembers();
+    ui -> u : displays all active profiles
+	
+    u -> ui : selects one active profile
+    ui -> ctrl : findNetworkAddressByProfile(toProfile);
+
+    ui -> u : asks for the message
+
+    u -> ui : writes the message and sends
+    note left of ui
+        A new dialog is shown to
+        the user, to write the
+        message and press send.
+        A new Diagram will show it.
+    end note
+
+    ui -> messageCtrl : addMessageToSend(m);
+    ui -> messageCtrl : sendMessage();
+    messageCtrl -> connManager : sendTcp(m, port, toIP);
+    
+    note left of connManager
+        The method is sendTcp
+        since the message will
+        be sent via TCP protocol.
+    end note
+
+    ui->ctrl : createChat(m);
+    note left of ctrl
+        The method createChat
+        receives the message
+        previously sent to the
+        other user.
+    end note
+
+    create chat
+    ctrl -> chat : c = new(m);
+    ctrl -> chatList: addChatToList(c);
+
+    ui -> u : informs the success
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml find_workbooks_design.png
+
+  actor User
+  participant "FindWorkbooksUI" as UI
+  participant "FindWorkbooksAction" as ctrl
+  participant "fw : FindWorkbooks" as find
+  participant "app : CleanSheets"  as app
+
+
+User -> UI : insert directory to search
+activate UI
+
+UI -> ctrl : findCLSFiles()
+activate ctrl
+ctrl -> find : setDirectory()
+activate find
+ctrl -> find : findCLSFiles()
+deactivate ctrl
+deactivate find
+UI -> UI : showFiles()
+UI -> User : show files in directory
+deactivate UI
+User -> UI : select file to open
+activate UI
+UI -> ctrl : load(file)
+activate ctrl
+ctrl -> app : load(file)
+deactivate ctrl
+UI -> User : load to active spreadsheet
+deactivate UI
+
+@enduml

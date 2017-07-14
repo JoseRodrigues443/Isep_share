@@ -1,0 +1,44 @@
+@startuml
+actor User 
+participant IntermidiateWizardUI
+participant IntermidiateWizardController
+participant Language
+participant Function
+participant FunctionParameter
+participant UIController
+
+User->IntermidiateWizardUI: starts functionality
+IntermidiateWizardUI->IntermidiateWizardController: create()
+IntermidiateWizardController->Language: getInstance()
+IntermidiateWizardUI->IntermidiateWizardController: f = functions()
+IntermidiateWizardController->Language: f = getFunctions()
+
+loop for each function
+    IntermidiateWizardUI->IntermidiateWizardController: s = getFunctionIdentifier(f)
+    IntermidiateWizardController->Function: s = getIdentifier()
+end
+
+IntermidiateWizardUI->User: shows available functions
+User->IntermidiateWizardUI: selects function
+IntermidiateWizardUI->IntermidiateWizardController: fp = functionParameters(f)
+IntermidiateWizardController->Function: fp = getParameters()
+
+loop for each parameter
+IntermidiateWizardUI->IntermidiateWizardController: name = parameterName(p)
+IntermidiateWizardController->FunctionParameter: name = getName()
+IntermidiateWizardUI->IntermidiateWizardController: b = parameterOptional(p)
+IntermidiateWizardController->FunctionParameter: b = isOptional()
+IntermidiateWizardUI->IntermidiateWizardController: desc = getDescription(p)
+IntermidiateWizardController->FunctionParameter: desc = getDescription()
+end
+
+IntermidiateWizardUI->User: shows details of the selected function
+User->IntermidiateWizardUI: inserts values for parameters on edit box
+IntermidiateWizardUI->IntermidiateWizardController: cellPreview(str)
+IntermidiateWizardUI->User: shows the result of the function and requests confirmation
+User->IntermidiateWizardUI: confirms
+IntermidiateWizardUI->IntermidiateWizardController: setFormulaBarExpression(uiController, str)
+IntermidiateWizardController->UIController: cell = getActiveCell()
+UIController->Cell: setContent(str)
+
+@enduml

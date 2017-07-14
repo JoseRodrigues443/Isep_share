@@ -1,0 +1,32 @@
+@startuml import_export_txt_export.png
+
+actor User 
+  participant "UIExtensionImportExport" as UI
+  participant "ExportUI" as Eui
+  participant "ExportController" as Ctrl
+  participant "out : ExportTxt" as Out
+  participant "this.uiController : UIController" as UIC
+  participant "sheet : Spreadsheet" as sheet
+  participant "cell : Cell" as cell
+
+  User -> UI: Export Option
+  Eui -> User: Cell range
+  activate Eui
+  User -> Eui: Inserts cell range
+  Eui -> User: Asks for special character, file name \n and first row behavior
+  User -> Eui: Gives information
+  create Ctrl
+  Eui -> Ctrl: create(uiController)
+  Eui -> Ctrl: exportInformation(file,specialChar,cell_range,behavior)
+  create Out
+  Ctrl -> Out : create(uiController,file,specialChar,cell_range,behavior)
+  Ctrl -> Out: exportInformationTxt()
+  Out -> UIC : sheet=getActiveSpreadsheet();
+  loop for Cell[] row : num_row
+    Out -> sheet: cell=getCell(column,row)
+    Out -> cell: getContent()
+  end
+  Out -> Out:  exportInformation(information[][])
+
+
+@enduml

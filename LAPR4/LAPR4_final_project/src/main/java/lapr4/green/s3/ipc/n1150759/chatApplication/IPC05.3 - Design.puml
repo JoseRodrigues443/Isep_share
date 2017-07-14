@@ -1,0 +1,68 @@
+@startuml ipc_05_3_design.png
+    actor User as u
+    participant "chatUI : ChatUI" as ui
+    participant "ChatController" as ctrl
+    participant "ExtensionConnectionManagerChatApplication : connManager" as connManager
+    participant "chat: Chat" as chat
+    participant "chatRoomList: ChatRoomList" as chatList
+    participant "SendMessageController" as messageCtrl
+    participant "Message" as msg
+
+    u -> ui : starts the chat extension
+    create ctrl
+    ui -> ctrl : new()
+    
+    create connManager
+    ctrl -> connManager : new()
+    note right of connManager
+        To understand the Extension
+        Manager, there is already a
+        diagram on network package called
+        "IPC01.1_Extension Manager start up"
+        the difference to this is the object used
+        since the chat uses Messages and not Cells
+    end note
+    
+    create chatList
+    ctrl -> chatList: chatRoomList = new()
+    ui --> u : asks for the chat room's data
+    u  -> ui: starts creating a new chat room
+    ui -> ctrl: createChat(name, type)
+    create chat
+    ctrl -> chat: chat = new(user, name, type)
+    
+    ctrl -> chatList : chatRoomList.addChatRoom(chat)
+    
+    alt Public room
+        ctrl --> ui: updates the public chat rooms list
+    else Private room
+        note right of ui: TO BE UPDATED
+    end alt
+        
+    ui -> u : informs the success
+    
+    opt Sending messages
+        u -> ui: selects the chat room
+        ui -> messageCtrl: new(connManager)
+        ctrl -> chat: chat.addChatUser(user)
+        loop
+            u -> ui : writes the message and sends
+            ui -> messageCtrl : createMessage(content, sender, list of receivers)
+            messageCtrl -> msg: msg = new(content, sender, receivers)
+            
+            ui -> messageCtrl : addMessageToSend(msg)
+            
+            loop For each receiver
+                ui -> messageCtrl : sendMessageToChatRoom()
+                messageCtrl -> connManager : sendTcp(m, port, toIP)
+            end loop
+            
+            note right of connManager
+                The method is sendTcp
+                since the message will
+                be sent via TCP protocol.
+            end note
+        end loop
+    end opt
+
+@enduml

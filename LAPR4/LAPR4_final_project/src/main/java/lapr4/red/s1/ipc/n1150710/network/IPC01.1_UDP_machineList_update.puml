@@ -1,0 +1,44 @@
+  @startuml IPC01.1_UDP_machineList_update.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+  box "Share Cell Extension Receiver UDP machine update"
+    participant "ShareCellExtension"
+    participant "ShareCellController"
+    participant "ExtensionConnectionManager"
+    participant "NetworkMachinesList"
+    participant "ConnectionUDP"
+    participant "UDPReceiverManager"
+  end box
+
+create ShareCellController 
+    ShareCellExtension -> ShareCellController : new()
+note right of ShareCellExtension : automatic execution\n without user intervening
+
+create ExtensionConnectionManager 
+    ShareCellController -> ExtensionConnectionManager : new()
+create NetworkMachinesList 
+    ExtensionConnectionManager -> NetworkMachinesList : new()
+create ConnectionUDP 
+    ExtensionConnectionManager -> ConnectionUDP : new(udpPort)
+    ExtensionConnectionManager -> ConnectionUDP : clientStartReceiveMessage(this)
+note right of ConnectionUDP : this extends MessageReceiver
+create UDPReceiverManager
+    ConnectionUDP -> UDPReceiverManager : new(MessageReceiver messageReceiver)
+    ConnectionUDP -> UDPReceiverManager : start()
+    loop While(receivesUdp)
+        UDPReceiverManager -> UDPReceiverManager : run()
+        note right of ConnectionUDP : thread that receives UDP messages\nWhen received forces the ExtensionConnectionManager\n to manage the message and update the machine list             
+        ExtensionConnectionManager -> UDPReceiverManager : messageReceiver.messageReceivedTrigger(messageReceived)
+        ExtensionConnectionManager -> NetworkMachinesList : add(address, port)
+    end
+ 
+ShareCellExtension ->   ShareCellExtension : observerUpdate()
+    
+    
+@enduml
+
+

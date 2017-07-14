@@ -1,0 +1,39 @@
+@startuml
+
+actor User 
+participant SideBar as sb
+participant ContactsMenu as menu
+participant CreateCompanyMenu as menuCompany
+participant CompanyContactsController as controller
+participant Company as company
+participant Database as db
+
+
+User->sb: Select Contacts
+create menu
+sb->menu: createContactsMenu()
+menu->User: Show contacts menu
+
+User->menu: Select create company as contact
+
+create menuCompany
+menu->menuCompany: create()
+User->menuCompany: Introduce Name of company
+
+create controller
+menuCompany->controller: create()
+menuCompany->controller:c=newCompanyContact(nameCompany)
+
+create company
+controller->company: create(name)
+menuCompany->controller: save(c)
+
+create db
+controller->db:create()
+controller->db: validateCompanyContact(c)
+
+alt validateCompanyContact(c)==true
+    controller->db: saveCompanyContact(c)
+end
+
+@enduml

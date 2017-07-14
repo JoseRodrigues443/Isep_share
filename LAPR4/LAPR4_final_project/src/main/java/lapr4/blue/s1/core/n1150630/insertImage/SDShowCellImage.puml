@@ -1,0 +1,15 @@
+@startuml
+actor User
+participant UI
+participant Controller
+participant Cell 
+participant sheet
+
+User->UI : Wants to see one of the images of the current cell
+UI->Controller : getImageListOfSelectedCell()
+Controller->sheet : getCell()
+Controller ->Cell : getImageList()
+UI-->User : Shows the image list in a side bar.
+User->UI : Selects one of them.
+UI->UI : display
+@enduml

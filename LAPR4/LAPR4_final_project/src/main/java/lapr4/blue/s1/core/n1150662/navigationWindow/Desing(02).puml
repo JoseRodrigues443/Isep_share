@@ -1,0 +1,41 @@
+@startuml 
+
+actor User as user
+participant ":NavigationWindow" as navigation
+participant ":NavigationPanel " as panel
+participant "controller : NavigationController" as controller
+participant "uiController : UIController" as uicontroller
+participant "wb : Workbook" as wb
+participant "sp : Spreadsheet" as sp
+participant "ccell : CommentableCell" as ccell
+
+
+user -> panel : show navigation panel
+activate panel
+panel -> navigation : show Value window
+create controller
+navigation -> controller : create(uiController)
+navigation -> controller : getValueFromCells()
+activate controller
+controller -> uicontroller : getActiveWorkbook():workbook
+controller -> wb : getSpreadsheetCount()
+loop for each spreadsheet
+	controller -> sp : rows = getRowCount()
+	controller -> sp : columns = getColumnCount()
+	controller -> sp : name = getTitle()
+	loop for each cell
+		controller -> sp : getCell(column, row):Cell
+		opt if cell is istanceof CommentableCell
+                controller -> controller : put(cell.getAdress().toString(),cell.getValue());
+			|||
+		end opt
+	end loop
+	|||
+end loop
+
+deactivate controller
+
+navigation --> user : showData()
+deactivate navigation
+
+@enduml

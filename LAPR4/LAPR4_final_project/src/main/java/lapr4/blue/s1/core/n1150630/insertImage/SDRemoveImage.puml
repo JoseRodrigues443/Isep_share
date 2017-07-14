@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant UI
+participant Controller
+participant Cell 
+
+User->UI : The user wants to remove the selected image
+UI->Controller : removeImage()
+Controller->Cell : removeImage(Image)
+Controller->UI : setImage(image)
+UI->UI : display
+
+@enduml

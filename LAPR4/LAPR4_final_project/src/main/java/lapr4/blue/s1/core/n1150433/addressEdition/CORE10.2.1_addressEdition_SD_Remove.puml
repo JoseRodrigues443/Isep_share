@@ -1,0 +1,15 @@
+@startuml
+
+actor User as User
+
+User->AddressEditionUI:selects the option to remove an address
+AddressEditionUI->AddressEditionController: create()
+AddressEditionController->Contact:address=getAddressInfo()
+AddressEditionUI-->User:shows the address so that the user can see the address before removing it
+User->AddressEditionUI:remove
+AddressEditionUI->AddressEditionController:removeAddress(address)
+AddressEditionController->Contact:removeAddress(address)
+AddressEditionController->ContactRepository:save(contact)
+AddressEditionUI-->User:reports success
+
+@enduml

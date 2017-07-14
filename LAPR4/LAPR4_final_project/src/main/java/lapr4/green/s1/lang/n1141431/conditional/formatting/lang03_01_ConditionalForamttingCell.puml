@@ -1,0 +1,26 @@
+@startuml lang03_01_ConditionalForamttingCell
+  actor Actor
+  participant "ConditionalFormattingCellExtensionAction" as CFCExtensionAction
+  participant "ConditionalFormattingCellWindow" as CFCWindow
+  participant "Cell" as Cell
+  participant "ReationalOperator" as RO
+  participant "Language" as Language
+  participant "UIController" as UIController
+  participant "ConditionalFormattingCellSideBarExtension" as CF
+
+
+  Actor -> CFCExtensionAction : starts use case
+  CFCExtensionAction -> CFCWindow : create()
+  CFCWindow ->Language :list=getBinaryOperators()
+  CFCWindow ->RO : getIdentifier()
+  CFCWindow -> Actor : asks to choose a operator
+  Actor -> CFCWindow : select one
+  Actor -> CFCWindow : insert value
+  Actor -> CFCWindow : confirms
+  CFCWindow -> UIController : activecell= getActiveCell()
+  CFCWindow -> Cell :  content= getContent()
+  CFCWindow -> RO :  checkCondition(value,content)
+  CFCWindow -> Cell :  setBackgroundColor()
+  CFCWindow -> UIController :refreshConditionSideBar()
+  CFCWindow -> CF :refreshConditionInfo()
+@enduml

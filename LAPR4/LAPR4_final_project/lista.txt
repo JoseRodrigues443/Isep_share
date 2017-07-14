@@ -1,0 +1,273 @@
+﻿Abkhazia/7940-7
+Afghanistan/93-0
+Åland Islands/358457-7
+Albania/355-7
+Algeria/213-9
+American Samoa/1684-7
+Andorra/376-0
+Angola/244-0
+Anguilla/1264-7
+Antigua and Barbuda/1268-7
+Argentina/54-0
+Armenia/374-0
+Aruba/297-0
+Ascension Island/247-0
+Australia/61-9
+Australian Antarctic Territory/6721-0
+Austria/43-10;11
+Azerbaijan/994-0
+Bahamas/1242-7
+Bahrain/973-8
+Bangladesh/880-10
+Barbados/1246-10
+Belarus/375-9
+Belgium/32-9
+Belize/501-0
+Benin/229-0
+Bermuda/1441-7
+Bhutan/975-0
+Bolivia/591-0
+Bonaire/599-0
+Bosnia and Herzegovina/387-0
+Botswana/267-0
+Brazil/55-8;9
+British Indian Ocean Territory/246-7
+British Virgin Islands/1284-7
+Brunei/673-0
+Bulgaria/359-0;9
+Burkina Faso/226-8
+Burma/95-0
+Burundi/257-0
+Cambodia/855-0
+Camerron/237-0
+Canada/1-10
+Canary Islands/34-0
+Cape Verde/238-0
+Cayman Islands/1345-7
+Central African Republic/236-0
+Ceuta/34-0
+Chad/235-6
+Chagos Islands/246-7
+Chile/56-8
+China/86-11
+Christmas Islands/6189164-0
+Cocos Islands/6189164-0
+Colombia/57-10
+Comoros/269-0
+Republic of Congo/242-0
+Democratic Republic of Congo/243-0
+Cook Islands/682-5
+Costa Rica/506-8;0
+Croatia/385-0
+Cuba/53-0
+Curação/599-0
+Curação and the Caribbean Netherlands/599-0
+Cyprus/357-6
+Czech Republic/420-9
+Denmark/45-8
+Diego Garcia/246-7
+Djibouti/253-0
+Dominica/1767-7
+Dominican Republic/1809-7/1829-7/1849-7
+East Timor/670-8
+Easter Island/5632-0
+Ecuador/593-0;9
+Egypt/20-10
+El Salvador/503-0
+England/44-10
+Equatorial Guinea/240-0
+Eritrea/291-0
+Estonia/372-0
+Ethiopia/251-0
+Falkland Islands/500-5
+Faroe Islands/298-5
+Federated States of Micronesia/691-7
+Fiji/679-0
+Finland/358-10;0
+France/33-9
+French Overseas Departments and Territories/262-0/508-0/590-0/594-0/596-0
+French Guiana/594-9;12
+French Polynesia/689-6
+Gabon/241-7
+Gambia/220-0
+Georgia/995-9
+Germany/49-10;11
+Ghana/233-9
+Gibraltar/350-0
+Greece/30-10
+Greenland/299-6
+Grenada/1473-7
+Guadeloupe/590-9;12
+Guam/1671-7
+Guatemala/502-0
+Guernsey/44-10
+Guinea/224-0
+Guinea-Bissau/245-0
+Guyana/592-0
+Haiti/509-0
+Hawaii/1808-7
+Honduras/504-0
+Hong Kong/852-8
+Hungary/36-9
+Iceland/354-0
+India/91-10
+Indonesia/62-9;10;11
+Iran/98-10;0
+Iraq/964-0
+Ireland/353-9
+Isle of Man/44-10
+Israel/972-9
+Italy/39-10;13;12;9
+Ivory Coast/225-0
+Jamaica/1876-7
+Jan Mayen/4779-0
+Japan/81-0
+Jersey/44-10
+Jordan/962-0
+Kazakhstan/7-0
+Kenya/254-0
+Kribati/686-5
+Kosovo/37744-0/381-0/38649-0
+Kuwait/965-0
+Kyrgyzstan/996-0
+Laos/856-0
+Latvia/371-8
+Lebanon/961-7;8
+Lesotho/266-0
+Liberia/231-7;8
+Libya/218-10
+Liechtenstein/423-0
+Lithuania/370-8
+Luxembourg/352-9
+Macau/853-0
+Republic of Macedonia/389-0
+Madagascar/261-0
+Malawi/365-0
+Malaysia/60-0
+Maldives/960-7;9
+Mali/223-0
+Malta/356-0
+Marshall Islands/692-7
+Martinique/596-0
+Mauritania/222-0
+Mauritius/230-8
+Mayotte/262-0
+Melilla/34-0
+Mexico/52-10
+Moldova/373-8
+Monaco/377-0
+Mongolia/976-8
+Montenegro/382-6
+Montserrat/1664-7
+Morocco/212-0
+Mozambique/258-0
+Myanmar/95-8;9;10
+Nagorno-Karabakh Republic/37497-0
+Namibia/264-0
+Nauru/674-0
+Nepal/977-0
+Netherlands/31-9
+New Caledonia/687-6
+New Zealand/64-8;9;10
+Nicaragua/505-0
+Niger/227-8
+Nigeria/234-0
+Niue/683-4
+Nortfolk Island/672-6
+North Korea/850-0
+Northern Cyprus/90-0
+Northern Ireland/44-10
+Northern Mariana Islands/1670-10
+Norway/47-8
+Oman/968-0
+Pakistan/92-10
+Palau/680-7
+Palestine/970-9/972-9
+Panama/507-8
+Papua New Guinea/675-0
+Paraguay/595-0
+Peru/51-9
+Philippines/63-10
+Pitcairn Islands/64-0
+Plazas de soberania/34-0
+Poland/48-9
+Portugal/351-9
+Principe/239-0
+Puerto Rico/1787-10/1939-10
+Qatar/974-8
+Reunion/262-9;12
+Romania/40-0
+Russia/7-10
+Rwanda/250-0
+Saba/599-0
+Sahrawi Arab Democratic Republic/212-0
+Saint Barthélemy/590-0
+Saint Helena and Tristan da Cunha/290-0
+Saint Kitts and Nevis/1869-0
+Saint Lucia/1758-10
+Saint Martin/590-0
+Saint Pierre and Miquelon/508-0
+Saint Vicent and The Grenadines/1784-0
+San Marino/378-0
+São Tomé and Principe/239-0
+Saudi Arabia/966-9
+Scotland/44-10
+Senegal/221-0
+Serbia/381-7
+Seychelles/248-0
+Sierra Leone/232-0
+Singapore/65-8
+Sint Eustatius/599-0
+Sint Maarten/1721-10
+Slovakia/421-9
+Slovenia/386-0
+Somalia/252-7
+South Africa/27-9
+South Georgia and the South Sandwich Islands/500-0
+South Korea/82-0
+South Ossetia/99534-0
+South Sudan/211-0
+Spain/34-9
+Spain/34-6;7
+Sri Lanka/94-7
+Sudan/249-0
+Suriname/597-0
+Svalbard/4779-0
+Swaziland/268-0
+Sweden/46-7
+Switzerland/41-9
+Syria/963-0
+Taiwan/886-9
+Tajikistan/992-0
+Tanzania/255-0
+Thailand/66-9
+Togo/228-8
+Tokelau/690-0
+Tonga/676-0
+Trinidad and Tobago/1868-10
+Tristan da Cunha/2908-0
+Tunisia/216-0
+Turkey/90-11
+Turkmenistan/993-0
+Turks and Caicos Islands/1649-7
+Tuvalu/688-0
+Uganda/256-0
+Ukraine/380-9
+United Arab Emirates/971-9
+United Kingdom/44-10
+United States/1-10
+United States Virgin Islands/1340-7
+Uruguay/598-0
+Uzbekistan/889-0
+Vanuatu/678-0
+Vatican City/3906698-5
+Venezuela/58-0
+Vietnam/841-10/848-9/849-9
+British Virgin Islands/1284-7
+U.S Virgin Islands/1340-7
+Wales/44-10
+Wallis and Fortuna/681-10
+Western Sahara/2125288-0/2125289-0
+Yemen/967-9
+Zambia/260-0
+Zimbabwe/263-0

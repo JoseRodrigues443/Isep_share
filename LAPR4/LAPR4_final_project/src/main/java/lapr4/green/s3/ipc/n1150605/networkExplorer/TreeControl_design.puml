@@ -1,0 +1,39 @@
+@startuml
+
+    participant "ExtensionConnectionManagerNetworkExplorer"
+    participant "JTreeWindow"
+    participant "UIController"
+    participant "Workbook"
+    participant "Extension"
+
+create JTreeWindow
+    ExtensionConnectionManagerNetworkExplorer -> JTreeWindow: new(csI, uiController)
+
+    JTreeWindow -> UIController : cs = getCleanSheets()
+    JTreeWindow -> CleanSheetsInstance : getWorkbooks(cs)
+    
+loop for each workbook
+        JTreeWindow -> Workbook : n = getSpreadsheetCount()
+
+loop for each spreadsheet
+    JTreeWindow -> Workbook : getSpreadsheet(i)
+end
+end
+
+JTreeWindow -> CleanSheetsInstance : getLoadedExtensions()
+    
+loop for each extension
+    JTreeWindow -> Extension : getName()
+    JTreeWindow -> Extension : getDescription()
+    JTreeWindow -> Extension : getVersion()
+end
+
+JTreeWindow -> CleanSheetsInstance : getUnloadedExtensions()
+    
+loop for each extension
+    JTreeWindow -> Extension : getName()
+    JTreeWindow -> Extension : getDescription()
+    JTreeWindow -> Extension : getVersion()
+end
+
+@enduml

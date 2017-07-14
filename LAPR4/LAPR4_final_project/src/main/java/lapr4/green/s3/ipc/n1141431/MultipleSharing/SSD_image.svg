@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="311px" preserveAspectRatio="none" style="width:483px;height:311px;" version="1.1" viewBox="0 0 483 311" width="483px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1wng1d6m4l2aw" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g>
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="31" x2="31" y1="39.6094" y2="272.0703"/>
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="446.5" x2="446.5" y1="39.6094" y2="272.0703"/>
+        <rect fill="#FEFECE" filter="url(#f1wng1d6m4l2aw)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="43" x="8" y="3"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="15" y="24.5332">User</text>
+        <rect fill="#FEFECE" filter="url(#f1wng1d6m4l2aw)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="43" x="8" y="271.0703"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="29" x="15" y="292.6035">User</text>
+        <rect fill="#FEFECE" filter="url(#f1wng1d6m4l2aw)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="60" x="414.5" y="3"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="421.5" y="24.5332">System</text>
+        <rect fill="#FEFECE" filter="url(#f1wng1d6m4l2aw)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="60" x="414.5" y="271.0703"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="46" x="421.5" y="292.6035">System</text>
+        <polygon fill="#A80036" points="434.5,67.6094,444.5,71.6094,434.5,75.6094,438.5,71.6094" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="440.5" y1="71.6094" y2="71.6094"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="157" x="38.5" y="67.1045">Iniciates the share cells UI.</text>
+        <polygon fill="#A80036" points="42.5,97.9609,32.5,101.9609,42.5,105.9609,38.5,101.9609" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="36.5" x2="445.5" y1="101.9609" y2="101.9609"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="274" x="48.5" y="97.4561">asks to select cell area (if not already selected)</text>
+        <polygon fill="#A80036" points="434.5,128.3125,444.5,132.3125,434.5,136.3125,438.5,132.3125" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="440.5" y1="132.3125" y2="132.3125"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="160" x="38.5" y="127.8076">selects the area of the cells</text>
+        <polygon fill="#A80036" points="42.5,158.6641,32.5,162.6641,42.5,166.6641,38.5,162.6641" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="36.5" x2="445.5" y1="162.6641" y2="162.6641"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="195" x="48.5" y="158.1592">list all users in the same network.</text>
+        <polygon fill="#A80036" points="434.5,189.0156,444.5,193.0156,434.5,197.0156,438.5,193.0156" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="440.5" y1="193.0156" y2="193.0156"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="204" x="38.5" y="188.5107">selects one user to share the cells.</text>
+        <polygon fill="#A80036" points="42.5,219.3672,32.5,223.3672,42.5,227.3672,38.5,223.3672" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="36.5" x2="445.5" y1="223.3672" y2="223.3672"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="391" x="48.5" y="218.8623">Informs that the cells were shared and sens a message of success.</text>
+        <polygon fill="#A80036" points="434.5,249.7188,444.5,253.7188,434.5,257.7188,438.5,253.7188" style="stroke: #A80036; stroke-width: 1.0;"/>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="31.5" x2="440.5" y1="253.7188" y2="253.7188"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="34" x="38.5" y="249.2139">Done.</text>
+        <!--
+@startuml
+
+
+User -> System : Iniciates the share cells UI.
+System -> User : asks to select cell area (if not already selected)
+User -> System : selects the area of the cells
+System -> User : list all users in the same network.
+User -> System : selects one user to share the cells.
+System -> User : Informs that the cells were shared and sens a message of success.
+User -> System : Done.
+@enduml
+
+        PlantUML version 2017.11(Wed Apr 19 17:18:59 BST 2017)
+        (GPL source distribution)
+        Java Runtime: Java(TM) SE Runtime Environment
+        JVM: Java HotSpot(TM) 64-Bit Server VM
+        Java Version: 1.8.0_112-b15
+        Operating System: Windows 10
+        OS Version: 10.0
+        Default Encoding: Cp1252
+        Language: pt
+        Country: PT
+        -->
+    </g>
+</svg>

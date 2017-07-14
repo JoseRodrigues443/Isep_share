@@ -1,0 +1,46 @@
+@startuml
+
+actor User as U
+participant UI as UI
+participant Controller as C
+participant "em: ExtensionManager" as EM
+participant "e: Extension" as E
+
+U->UI : initiates functionality
+create C
+UI->C : create()
+UI->C: getEM()
+C->EM: em = getInstance()
+
+UI->C: exts = getExtensions()
+C->EM: exts = getExtensions()
+loop for each extension
+UI->C : name = getExtensionName()
+C->E: name = getExtensionName()
+UI->C : desc = getExtensionDescription()
+C->E: desc = getExtensionDescription()
+end
+
+UI->U :shows all available extensions
+
+alt
+U->UI : selects extension to load
+UI->C: vs = getExtensionVersions(name)
+C->EM: vs = getExtensionVersions(name)
+
+UI->U :shows all versions of the selected extension
+U->UI: selects version to load
+UI->C : loadExtension(i)
+
+C->EM : load(int i)
+end
+
+alt
+U->UI: selects extension to unload
+UI->C: unload(name, version);
+C->EM: unload(name, version);
+end
+
+UI->U: operation's success
+
+@enduml

@@ -1,0 +1,40 @@
+  @startuml us064_analysis.png
+
+  box "Server"
+    participant "CommServer"
+    participant "ServerSocket"
+    participant "CommWorker"
+    participant "aSocket:Socket" as aSocket
+  end box
+
+  box "Client"
+    participant "Client"
+    participant "Socket"
+    participant "ob:DTO" as DTO
+    participant "os:OutputStream" as OutputStream
+  end box
+
+  create ServerSocket
+  CommServer -> ServerSocket : new();
+  CommServer -> ServerSocket : aSocket=accept();
+
+  create Socket
+  Client -> Socket : new();
+  ServerSocket <-- Socket : connection established 
+
+  create aSocket
+  ServerSocket -> aSocket : new();
+
+  create CommWorker
+  CommServer -> CommWorker : new(aSocket);
+
+  CommWorker -> aSocket : getInputStream();
+
+  create DTO
+  Client -> DTO : ob=new();
+  Client -> Socket : os=getOutputStream();
+  create OutputStream
+  Socket -> OutputStream : new();
+  Client -> OutputStream : write(ob);
+
+  @enduml

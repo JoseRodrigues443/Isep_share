@@ -1,0 +1,66 @@
+@startuml ipc82sdOneTime.png
+actor User as user
+participant FileShareUI as fsui
+participant DownloadProgressUI as pui
+participant FileTransferController as ftc
+participant FileShareController as fsc
+participant ConnectionManagerFileTransfer as cm
+participant ConnectionManagerFileShare as cm2
+participant NetworkMachinesTcpPortsList as nm
+participant NetworkMachinesAndFileList as nm2
+participant TextConnectionTCP as tctcp
+participant ObjectConnectionTCP as octcp
+participant FileConnectionTCP as fctcp
+participant FileDataAndTcpPort as fd
+participant PermanentFileRepository as repo
+
+fsui->ftc: create();
+ftc->cm: create();
+cm->nm: create();
+cm->cm: start();
+cm->octcp: newTcpListener();
+cm->tctcp: newTcpListenerText();
+alt
+ftc->repo: getAllChangedFiles();
+loop
+ftc->cm: refreshChangedFile();
+end
+end
+cm->cm:sendAnnouncementTimedUDP();
+cm->cm: udpListener();
+user->fsui: Selects the download option
+fsui-->user: Asks the user if he wants a permanent download
+alt
+user->fsui: Accepts
+fsui->pui: permanent = true;
+end
+alt
+user->fsui: Rejects
+fsui->pui: permanent = false;
+end
+fsui->pui: create(permanent);
+pui->ftc: setFileName(fileName)
+pui->ftc: getFileHost();
+loop
+ftc->fsc: getConnectionManager();
+fsc->cm2: getNetworkMachinesAndFileList();
+cm2->nm2: allMapMembers().values();
+loop
+ftc->fd: getTcpPort()
+end
+end
+ftc->fsc: getConnectionManager();
+fsc->cm2: getNetworkMachinesAndFileList();
+cm2->nm2: findAllAdressesByTCP(temp);
+fsui->pui: setAddress();
+fsui->pui: setVisible(true);
+pui->user: Shows the progress of the download;
+fsui->pui: download();
+pui->ftc: sendTransferRequest(permanent);
+alt
+ftc->repo: add(file);
+end
+ftc->cm: sendTcp(sendMessage, tcpPort, address);
+cm->tctcp: tcpSenderSendMessage(s, adressToSend);
+
+@enduml

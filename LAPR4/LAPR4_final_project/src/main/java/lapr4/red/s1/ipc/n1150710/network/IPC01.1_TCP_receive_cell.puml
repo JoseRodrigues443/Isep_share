@@ -1,0 +1,37 @@
+  @startuml IPC01.1_TCP_receive_Cell_update.png
+    skinparam handwritten false
+    skinparam monochrome false
+    skinparam packageStyle rect
+    skinparam defaultFontName FG Virgil
+    skinparam shadowing false
+
+  box "Share Cell Extension Receiver TCP cell importer"
+    participant "ExtensionShareCellController"
+    participant "ExtensionConnectionManager"
+    participant "ShareCellWorker"
+    participant "ObjectConnectionTCP"
+    participant "ReceiverTCP"
+  end box
+
+create ExtensionConnectionManager 
+    ExtensionShareCellController -> ExtensionConnectionManager : new()
+create ShareCellWorker 
+    ExtensionConnectionManager -> ShareCellWorker : new()
+create ObjectConnectionTCP 
+    ShareCellWorker -> ObjectConnectionTCP : new(tcpPort)
+    ShareCellWorker -> ObjectConnectionTCP : clientStartReceiveMessage(this)
+create ReceiverTCP
+    ObjectConnectionTCP -> ReceiverTCP : new()
+    ObjectConnectionTCP -> ReceiverTCP : start()
+    loop While(receivesUdp)
+        ReceiverTCP -> ReceiverTCP : run()
+        note right of ObjectConnectionTCP : thread that receives TCP messages\nWhen received forces the ShareCellWorker\n to manage the message and update the machine list             
+        ShareCellWorker -> ShareCellWorker : messageReceivedTrigger(messageReceived)
+        ShareCellWorker -> ExtensionShareCellController : update()
+    end
+    
+    
+    
+@enduml
+
+
